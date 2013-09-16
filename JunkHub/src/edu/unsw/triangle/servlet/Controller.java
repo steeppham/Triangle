@@ -27,24 +27,33 @@ public class Controller extends HttpServlet
 	 * Perform servlet initialisation.
 	 */
 	@Override
-	public void init() throws ServletException {
+	public void init() throws ServletException 
+	{
 		// TODO Auto-generated method stub
 		super.init();
 	}
-	
-	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doGet(req, resp);
-	}
 
+	/**
+	 * Perform both GET and POST requests.
+	 */
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		try 
+		{
+			Command command = CommandFactory.create(request);
+			String view = command.execute(request, response);
+			
+			// Forward view to client
+			request.getRequestDispatcher("/WEB-INF/" + view + ".jsp").forward(request, response);
+            
+			// Redirect to another view?
+			//response.sendRedirect(view);
+		}
+		catch (Exception e)
+		{
+			throw new ServletException("Request operation failed.", e);
+		}
 	}
 
 }

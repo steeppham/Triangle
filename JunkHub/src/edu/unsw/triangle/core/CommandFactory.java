@@ -1,4 +1,4 @@
-package edu.unsw.triangle.servlet;
+package edu.unsw.triangle.core;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +18,7 @@ public class CommandFactory
 	// Create mapping for request commands and the associated command handler
 	static 
 	{
-		commands.put("POST/login", new LoginHandler());
+		commands.put("GET/login", new LoginHandler());
 	}
 	
 	/**

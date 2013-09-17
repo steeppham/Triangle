@@ -1,4 +1,4 @@
-package edu.unsw.triangle.servlet;
+package edu.unsw.triangle.core;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +19,7 @@ public class LoginHandler implements Command
 		// Sets beans
 		// Select view to return
 
-		return null;
+		return "login";
 	}
 
 }

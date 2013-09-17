@@ -1,6 +1,7 @@
-package edu.unsw.triangle.servlet;
+package edu.unsw.triangle.core;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +15,8 @@ public class Controller extends HttpServlet
 {
 
 	private static final long serialVersionUID = 1L;
+	
+	private final static Logger logger = Logger.getLogger(Controller.class.getName());
 	
 	/**
 	 * Default constructor
@@ -52,7 +55,9 @@ public class Controller extends HttpServlet
 		}
 		catch (Exception e)
 		{
-			throw new ServletException("Request operation failed.", e);
+			request.getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
+			logger.severe("Request operation failed");
+			//throw new ServletException("Request operation failed.", e);
 		}
 	}
 

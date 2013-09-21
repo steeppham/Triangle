@@ -8,5 +8,6 @@
 </head>
 <body>
 Error
+<a href="login">Login</a>
 </body>
 </html>

@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-Login Page
-<a href="register">Register</a>
+Main Page
 </body>
 </html>

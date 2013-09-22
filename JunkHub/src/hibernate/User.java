@@ -1,12 +1,27 @@
 package hibernate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class User {
+	@Id
 	private String userID;
+	@Column
 	private String firstname;
+	@Column
 	private String lastname;
+	@Column
 	private String address;
+	@Column
 	private String creditCard;
+	@Column
 	private String DOB;
+	@Column
+	private boolean hasConfirmedAccount;
+	@Column
+	private boolean loggedIn;
 	public String getUserID() {
 		return userID;
 	}
@@ -42,5 +57,17 @@ public class User {
 	}
 	public void setDOB(String dOB) {
 		DOB = dOB;
+	}
+	public boolean isHasConfirmedAccount() {
+		return hasConfirmedAccount;
+	}
+	public void setHasConfirmedAccount(boolean hasConfirmedAccount) {
+		this.hasConfirmedAccount = hasConfirmedAccount;
+	}
+	public boolean isLoggedIn() {
+		return loggedIn;
+	}
+	public void setLoggedIn(boolean loggedIn) {
+		this.loggedIn = loggedIn;
 	}
 }

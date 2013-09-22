@@ -1,4 +1,4 @@
-package edu.unsw.triangle.data;
+package edu.unsw.triangle.model.data;
 
 public class ConnectionManager 
 {

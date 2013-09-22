@@ -1,6 +1,6 @@
-package edu.unsw.triangle.data;
+package edu.unsw.triangle.model.data;
 
-import edu.unsw.trianlge.model.Profile;
+import edu.unsw.triangle.model.Profile;
 
 public interface ProfileDao 
 {

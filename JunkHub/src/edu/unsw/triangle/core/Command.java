@@ -15,6 +15,6 @@ public interface Command
 	 * @return
 	 * @throws Exception
 	 */
-	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public Dispatcher execute(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }

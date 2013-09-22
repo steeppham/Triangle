@@ -12,7 +12,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import edu.unsw.trianlge.model.Keychain;
+import edu.unsw.triangle.model.Keychain;
 
 /**
  * Performs user authentication check for incoming requests.
@@ -34,18 +34,17 @@ public class AuthenticationFilter implements Filter
 	{
 		logger.info("Invoking authentication filter");
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		HttpSession httpSession = httpRequest.getSession(false);
+		HttpSession httpSession = httpRequest.getSession();
 
 		Keychain keychain = (Keychain) httpSession.getAttribute("keychain");
 		if (keychain == null)
 		{
 			// Session has not been initialised
-			// Create session and login
 			logger.info("Authentication not found, initialising session");
-			//TODO initialise session
-			filterConfig.getServletContext().getRequestDispatcher("/controller/login").forward(request, response);
+			// Forward to login page
+			filterConfig.getServletContext().getRequestDispatcher("/control/login").forward(request, response);
 		}
-		else if (keychain.isValid())
+		else if (keychain.isAuthenticated())
 		{
 			// Credentials are valid
 			// Proceed with request
@@ -54,9 +53,9 @@ public class AuthenticationFilter implements Filter
 		else
 		{
 			// Session is logged out or invalid
-			// forward to login page
+			// Forward to login page
 			logger.info("Authentication failed, forward to login");
-			filterConfig.getServletContext().getRequestDispatcher("/controller/login").forward(request, response);
+			filterConfig.getServletContext().getRequestDispatcher("/control/login").forward(request, response);
 		}
 	}
 

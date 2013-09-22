@@ -6,8 +6,10 @@ import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
-import edu.unsw.triangle.core.command.LoginCommand;
-import edu.unsw.triangle.core.command.RegisterCommand;
+import edu.unsw.triangle.core.command.LoginAction;
+import edu.unsw.triangle.core.command.LoginPageRequest;
+import edu.unsw.triangle.core.command.MainPageRequest;
+import edu.unsw.triangle.core.command.RegisterPageRequest;
 
 /**
  * Factory for creating concrete command objects based on request parameters.
@@ -18,6 +20,7 @@ public class CommandFactory
 	public static final String CONTROLLER = "controller";
 	public static final String REGISTER = "register";
 	public static final String LOGIN = "login";
+	public static final String MAIN = "main";
 	
 	private static Map<String, Command> commands = new HashMap<String, Command>();
 	
@@ -26,8 +29,10 @@ public class CommandFactory
 	// Create mapping for request commands and the associated command handler
 	static 
 	{
-		commands.put("GET/" + LOGIN, new LoginCommand());
-		commands.put("GET/" + REGISTER, new RegisterCommand());
+		commands.put("GET/" + LOGIN, new LoginPageRequest());
+		commands.put("POST/" + LOGIN, new LoginAction());
+		commands.put("GET/" + REGISTER, new RegisterPageRequest());
+		commands.put("GET/" + MAIN, new MainPageRequest());
 	}
 	
 	/**

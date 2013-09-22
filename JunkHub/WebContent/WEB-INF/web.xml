@@ -14,20 +14,20 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>authentication</filter-name>
-		<url-pattern>/controller/*</url-pattern>
+		<url-pattern>/control/*</url-pattern>
 	</filter-mapping>
 	<servlet>
 		<description>
 		</description>
-		<display-name>Controller</display-name>
-		<servlet-name>controller</servlet-name>
+		<display-name>Control</display-name>
+		<servlet-name>control</servlet-name>
 		<servlet-class>edu.unsw.triangle.core.Controller</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>controller</servlet-name>
-		<url-pattern>/controller/*</url-pattern>
+		<servlet-name>control</servlet-name>
+		<url-pattern>/control/*</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
-		<welcome-file>default.html</welcome-file>
+		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 </web-app>

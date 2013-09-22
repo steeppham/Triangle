@@ -8,10 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.unsw.triangle.view.View;
-
 /**
- * Main controller  
+ * Main controller for all servlet requests. 
  */
 public class Controller extends HttpServlet
 {
@@ -47,17 +45,29 @@ public class Controller extends HttpServlet
 		try 
 		{
 			Command command = CommandFactory.create(request);
-			String view = command.execute(request, response);
+			Dispatcher dispatcher = command.execute(request, response);
 			
-			// Forward view to client
-			request.getRequestDispatcher("/WEB-INF/" + view).forward(request, response);
-            
-			// Redirect to another view?
-			//response.sendRedirect(view);
+			switch (dispatcher.getAction())
+			{
+				case FORWARD:
+					// Forward view
+					request.getRequestDispatcher(dispatcher.getUri()).forward(request, response);
+					break;
+				case REDIRECT:
+					// Redirect to view
+					response.sendRedirect(dispatcher.getUri());
+					break;
+				default:
+					// Invalid view action
+					// throw exception
+			}
 		}
 		catch (Exception e)
 		{
-			request.getRequestDispatcher("/WEB-INF/" + View.ERROR).forward(request, response);
+			// Issue with relative path when given <url>/control
+			Dispatcher dispatcher = new Dispatcher.DispatcherBuilder("error.jsp").build();
+			request.getRequestDispatcher(dispatcher.getUri()).forward(request, response);
+			//response.sendRedirect(dispatcher.getUri());
 			logger.severe("Request operation failed");
 			//throw new ServletException("Request operation failed.", e);
 		}

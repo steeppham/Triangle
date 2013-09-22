@@ -1,7 +1,10 @@
-package edu.unsw.trianlge.model;
+package edu.unsw.triangle.model;
 
 import java.io.Serializable;
 
+/**
+ * A bean that represents a user profile information. 
+ */
 public class Profile implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -17,5 +20,6 @@ public class Profile implements Serializable
 	private String dob;
 	private int creditNumber;
 	private boolean isActive;
+	private boolean isAdmin;
 
 }

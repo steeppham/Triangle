@@ -17,7 +17,7 @@ import edu.unsw.triangle.model.Keychain;
 /**
  * Performs user authentication check for incoming requests.
  */
-public class AuthenticationFilter implements Filter
+public class ControlFilter implements Filter
 {
 	private FilterConfig filterConfig;
 	final Logger logger = Logger.getLogger(this.getClass().getName());
@@ -35,12 +35,28 @@ public class AuthenticationFilter implements Filter
 		logger.info("Invoking authentication filter");
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpSession httpSession = httpRequest.getSession();
+		
+		// Check if request is for register page
+		if (httpRequest.getPathInfo().equals("/register"))
+		{
+			logger.info("Bypassing filter to registration");
+			chain.doFilter(request, response);
+			return;
+		}
+		
+		// Check if request if for confirm page
+		if (httpRequest.getPathInfo().equals("/confirm"))
+		{
+			logger.info("Bypassing filter to confirm");
+			chain.doFilter(request, response);
+			return;
+		}
 
 		Keychain keychain = (Keychain) httpSession.getAttribute("keychain");
 		if (keychain == null)
 		{
 			// Session has not been initialised
-			logger.info("Authentication not found, initialising session");
+			logger.info("Authentication not found, forward to login");
 			// Forward to login page
 			filterConfig.getServletContext().getRequestDispatcher("/control/login").forward(request, response);
 		}

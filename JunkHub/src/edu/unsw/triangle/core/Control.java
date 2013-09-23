@@ -11,17 +11,17 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Main controller for all servlet requests. 
  */
-public class Controller extends HttpServlet
+public class Control extends HttpServlet
 {
 
 	private static final long serialVersionUID = 1L;
 	
-	private final static Logger logger = Logger.getLogger(Controller.class.getName());
+	private final static Logger logger = Logger.getLogger(Control.class.getName());
 	
 	/**
 	 * Default constructor
 	 */
-	public Controller()
+	public Control()
 	{
 		super();
 	}

@@ -6,9 +6,11 @@ import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
+import edu.unsw.triangle.core.command.ConfirmPageRequest;
 import edu.unsw.triangle.core.command.LoginAction;
 import edu.unsw.triangle.core.command.LoginPageRequest;
 import edu.unsw.triangle.core.command.MainPageRequest;
+import edu.unsw.triangle.core.command.RegisterAction;
 import edu.unsw.triangle.core.command.RegisterPageRequest;
 
 /**
@@ -21,6 +23,7 @@ public class CommandFactory
 	public static final String REGISTER = "register";
 	public static final String LOGIN = "login";
 	public static final String MAIN = "main";
+	private static final String CONFIRM = "confirm";
 	
 	private static Map<String, Command> commands = new HashMap<String, Command>();
 	
@@ -32,7 +35,9 @@ public class CommandFactory
 		commands.put("GET/" + LOGIN, new LoginPageRequest());
 		commands.put("POST/" + LOGIN, new LoginAction());
 		commands.put("GET/" + REGISTER, new RegisterPageRequest());
+		commands.put("POST/" + REGISTER, new RegisterAction());
 		commands.put("GET/" + MAIN, new MainPageRequest());
+		commands.put("GET/" + CONFIRM, new ConfirmPageRequest());
 	}
 	
 	/**

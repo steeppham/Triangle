@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.unsw.triangle.core.Command;
-import edu.unsw.triangle.core.Controller;
+import edu.unsw.triangle.core.Control;
 import edu.unsw.triangle.core.Dispatcher;
 import edu.unsw.triangle.core.service.LoginService;
 import edu.unsw.triangle.model.Credential;
@@ -19,7 +19,7 @@ import edu.unsw.triangle.ui.ViewAction;
  */
 public class LoginAction implements Command 
 {
-	private final static Logger logger = Logger.getLogger(Controller.class.getName());
+	private final static Logger logger = Logger.getLogger(Control.class.getName());
 	
 	@Override
 	public Dispatcher execute(HttpServletRequest request, HttpServletResponse response) throws Exception 

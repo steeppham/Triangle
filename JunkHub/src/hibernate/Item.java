@@ -4,38 +4,32 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import org.apache.derby.client.am.Decimal;
-/**
- * note: the decimal datatypes will need to have a restriction to 2 decimal places
- * @author matthewwilliams
- *
- */
 @Entity
 public class Item {
 @Id
-private Integer itemId;
+private String itemId;
 @Column
 private String title;
 @Column
 private String category;
 @Column
-private String pictureLink; //picture as 0's and 1's perhaps?
+private Integer picture; //picture as 0's and 1's perhaps?
 @Column
 private String desciption;//limit 100 words
 @Column
 private String postDetails;
 @Column
-private Decimal reservePrice;
+private String reservePrice;
 @Column
 private String endTime; // optional
 @Column
-private Decimal currentPrice; // in dollas
+private String currentPrice;
 @Column
 private boolean halt; // 1 halt 0 continue
-public Integer getItemId() {
+public String getItemId() {
 	return itemId;
 }
-public void setItemId(Integer itemId) {
+public void setItemId(String itemId) {
 	this.itemId = itemId;
 }
 public String getTitle() {
@@ -50,11 +44,11 @@ public String getCategory() {
 public void setCategory(String category) {
 	this.category = category;
 }
-public String getPictureLink() {
-	return pictureLink;
+public Integer getPicture() {
+	return picture;
 }
-public void setPictureLink(String picture) {
-	this.pictureLink = picture;
+public void setPicture(Integer picture) {
+	this.picture = picture;
 }
 public String getDesciption() {
 	return desciption;
@@ -68,10 +62,10 @@ public String getPostDetails() {
 public void setPostDetails(String postDetails) {
 	this.postDetails = postDetails;
 }
-public Decimal getReservePrice() {
+public String getReservePrice() {
 	return reservePrice;
 }
-public void setReservePrice(Decimal reservePrice) {
+public void setReservePrice(String reservePrice) {
 	this.reservePrice = reservePrice;
 }
 public String getEndTime() {
@@ -80,10 +74,10 @@ public String getEndTime() {
 public void setEndTime(String endTime) {
 	this.endTime = endTime;
 }
-public Decimal getCurrentPrice() {
+public String getCurrentPrice() {
 	return currentPrice;
 }
-public void setCurrentPrice(Decimal currentPrice) {
+public void setCurrentPrice(String currentPrice) {
 	this.currentPrice = currentPrice;
 }
 public boolean isHalt() {

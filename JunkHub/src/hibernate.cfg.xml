@@ -20,6 +20,6 @@
   <!-- make create if i want it to clear at beginning -->
   <property name="hibernate.hbm2ddl.auto">update</property>
   <!-- Mapping files -->
-  <mapping resource="/src/hibernate/***"/>
+  <mapping resource="/src/hibernate/***.hbm.xml"/>
 </session-factory>
 </hibernate-configuration>

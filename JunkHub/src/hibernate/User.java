@@ -7,7 +7,11 @@ import javax.persistence.Id;
 @Entity
 public class User {
 	@Id
-	private String userID;
+	private Integer userID;
+	@Column
+	private String username;
+	@Column
+	private String password;
 	@Column
 	private String firstname;
 	@Column
@@ -15,17 +19,17 @@ public class User {
 	@Column
 	private String address;
 	@Column
-	private String creditCard;
+	private Integer creditCard;
 	@Column
 	private String DOB;
 	@Column
 	private boolean hasConfirmedAccount;
 	@Column
 	private boolean loggedIn;
-	public String getUserID() {
+	public Integer getUserID() {
 		return userID;
 	}
-	public void setUserID(String userID) {
+	public void setUserID(Integer userID) {
 		this.userID = userID;
 	}
 	public String getFirstname() {
@@ -46,10 +50,10 @@ public class User {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getCreditCard() {
+	public Integer getCreditCard() {
 		return creditCard;
 	}
-	public void setCreditCard(String creditCard) {
+	public void setCreditCard(Integer creditCard) {
 		this.creditCard = creditCard;
 	}
 	public String getDOB() {
@@ -69,5 +73,17 @@ public class User {
 	}
 	public void setLoggedIn(boolean loggedIn) {
 		this.loggedIn = loggedIn;
+	}
+	public String getUserName() {
+		return username;
+	}
+	public void setUserName(String userName) {
+		this.username = userName;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

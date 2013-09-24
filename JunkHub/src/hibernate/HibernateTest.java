@@ -10,11 +10,11 @@ public class HibernateTest {
 	public static void main(String[] args){
 		User user = new User();
 		user.setAddress("27 ramsgate rd kogarah bay");
-		user.setCreditCard("1234567890");
+		user.setCreditCard(1234567890);
 		user.setDOB("01/04/1991");
 		user.setFirstname("Matthew");
 		user.setLastname("Williams");
-		user.setUserID("z3337541");
+		user.setUserID(3337541);
 		//having a problem here 
 	
 		AnnotationConfiguration config = new AnnotationConfiguration();

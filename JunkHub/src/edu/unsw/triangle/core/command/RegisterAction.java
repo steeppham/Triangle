@@ -41,6 +41,7 @@ public class RegisterAction implements Command
 			Profile profile = registerView.getProfile();
 			// Check profile with database for uniqueness
 			// TODO session manager here
+			// Profile should not be in attributes here?
 			request.getSession().setAttribute("profile", profile);
 			// Redirect to confirm page
 			dispatcher = new Dispatcher.DispatcherBuilder("confirm").action(ViewAction.REDIRECT).resource(false).build();

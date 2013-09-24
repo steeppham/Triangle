@@ -18,7 +18,7 @@
 	<form method="POST" action="login">
 		Please enter your username <input type="text" name="username" /><br>
 		Please enter your password <input type="password" name="password" /><br>
-		<input type="submit" value="submit">
+		<input type="submit" value="login">
 	</form>
 	<a href="register">Register</a>
 </body>

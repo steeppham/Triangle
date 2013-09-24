@@ -68,7 +68,7 @@ public class Control extends HttpServlet
 			Dispatcher dispatcher = new Dispatcher.DispatcherBuilder("error.jsp").build();
 			request.getRequestDispatcher(dispatcher.getUri()).forward(request, response);
 			//response.sendRedirect(dispatcher.getUri());
-			logger.severe("Request operation failed");
+			logger.severe("Request operation failed reason: " + e.getMessage());
 			//throw new ServletException("Request operation failed.", e);
 		}
 	}

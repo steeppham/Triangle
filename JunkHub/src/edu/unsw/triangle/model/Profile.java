@@ -23,56 +23,65 @@ public class Profile implements Serializable
 	public String getUsername() {
 		return username;
 	}
-	public void setUsername(String username) {
+	public Profile setUsername(String username) {
 		this.username = username;
+		return this;
 	}
 	public String getPassword() {
 		return password;
 	}
-	public void setPassword(String password) {
+	public Profile setPassword(String password) {
 		this.password = password;
+		return this;
 	}
 	public String getNickname() {
 		return nickname;
 	}
-	public void setNickname(String nickname) {
+	public Profile setNickname(String nickname) {
 		this.nickname = nickname;
+		return this;
 	}
 	public String getFirstname() {
 		return firstname;
 	}
-	public void setFirstname(String firstname) {
+	public Profile setFirstname(String firstname) {
 		this.firstname = firstname;
+		return this;
 	}
 	public String getLastname() {
 		return lastname;
 	}
-	public void setLastname(String lastname) {
+	public Profile setLastname(String lastname) {
 		this.lastname = lastname;
+		return this;
 	}
 	public String getEmail() {
 		return email;
 	}
-	public void setEmail(String email) {
+	public Profile setEmail(String email) {
 		this.email = email;
+		return this;
 	}
 	public String getAddress() {
 		return address;
 	}
-	public void setAddress(String address) {
+	public Profile setAddress(String address) {
 		this.address = address;
+		return this;
 	}
 	public Date getDob() {
 		return dob;
 	}
-	public void setDob(Date dob) {
+	public Profile setDob(Date dob) {
 		this.dob = dob;
+		return this;
 	}
 	public int getCredit() {
 		return credit;
 	}
-	public void setCredit(int credit) {
+	public Profile setCredit(int credit) {
 		this.credit = credit;
+		return this;
 	}
 
 }

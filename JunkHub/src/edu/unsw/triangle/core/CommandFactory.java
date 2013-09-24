@@ -10,8 +10,10 @@ import edu.unsw.triangle.core.command.ConfirmPageRequest;
 import edu.unsw.triangle.core.command.LoginAction;
 import edu.unsw.triangle.core.command.LoginPageRequest;
 import edu.unsw.triangle.core.command.MainPageRequest;
+import edu.unsw.triangle.core.command.ProfilePageRequest;
 import edu.unsw.triangle.core.command.RegisterAction;
 import edu.unsw.triangle.core.command.RegisterPageRequest;
+import edu.unsw.triangle.core.command.SearchAction;
 
 /**
  * Factory for creating concrete command objects based on request parameters.
@@ -24,6 +26,8 @@ public class CommandFactory
 	public static final String LOGIN = "login";
 	public static final String MAIN = "main";
 	private static final String CONFIRM = "confirm";
+	private static final String SEARCH = "search";
+	private static final String PROFILE = "profile";
 	
 	private static Map<String, Command> commands = new HashMap<String, Command>();
 	
@@ -38,6 +42,8 @@ public class CommandFactory
 		commands.put("POST/" + REGISTER, new RegisterAction());
 		commands.put("GET/" + MAIN, new MainPageRequest());
 		commands.put("GET/" + CONFIRM, new ConfirmPageRequest());
+		commands.put("GET/" + SEARCH, new SearchAction());
+		commands.put("GET/" + PROFILE, new ProfilePageRequest());
 	}
 	
 	/**

@@ -1,6 +1,8 @@
 package hibernate;
 
-import javax.security.auth.login.Configuration;
+import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.tool.hbm2ddl.SchemaExport;
+
 
 //import javax.security.auth.login.Configuration;
 
@@ -13,6 +15,15 @@ public class HibernateTest {
 		user.setFirstname("Matthew");
 		user.setLastname("Williams");
 		user.setUserID("z3337541");
-		//SessionFactory session = new Configuration().;
+		//having a problem here 
+	
+		AnnotationConfiguration config = new AnnotationConfiguration();
+		// add your annotated classes
+		config.addAnnotatedClass(User.class);
+		config.configure("hibernate.cfg.xml");
+		
+		new SchemaExport(config).create(true, true);
+		
+	
 	}
 }

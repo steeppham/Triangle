@@ -11,15 +11,20 @@
 <body>
 <h1>My Profile</h1>
 <form method="POST" action="profile">
-username:
-<input type="text" value="${profile.username}" name="username">
-<input type="submit" value="update" name="update"><br>
-</form>
-firstname: ${profile.firstname}<br>
-lastname: ${profile.lastname}<br>
+username: ${profile.username}
+firstname: 
+<input type="text" value="${profile.firstname}" name="username"><br>
+lastname:
+<input type="text" value="${profile.lastname}" name="firstname"><br>
 dob: ${profile.dob}<br>
+<input type="text" value="${profile.dob}" name="dob"><br>
 email: ${profile.email}<br>
+<input type="text" value="${profile.email}" name="email"><br>
 address: ${profile.address}<br>
+<input type="text" value="${profile.address}" name="address"><br>
+<input type="submit" value="save" name="update"><br>
+</form>
+
 <a href="main">Go back to Main</a>
 </body>
 </html>

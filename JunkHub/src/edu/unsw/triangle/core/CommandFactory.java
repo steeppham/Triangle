@@ -10,6 +10,7 @@ import edu.unsw.triangle.core.command.ConfirmPageRequest;
 import edu.unsw.triangle.core.command.LoginAction;
 import edu.unsw.triangle.core.command.LoginPageRequest;
 import edu.unsw.triangle.core.command.MainPageRequest;
+import edu.unsw.triangle.core.command.ProfileAction;
 import edu.unsw.triangle.core.command.ProfilePageRequest;
 import edu.unsw.triangle.core.command.RegisterAction;
 import edu.unsw.triangle.core.command.RegisterPageRequest;
@@ -44,6 +45,7 @@ public class CommandFactory
 		commands.put("GET/" + CONFIRM, new ConfirmPageRequest());
 		commands.put("GET/" + SEARCH, new SearchAction());
 		commands.put("GET/" + PROFILE, new ProfilePageRequest());
+		commands.put("POST/" + PROFILE, new ProfileAction());
 	}
 	
 	/**

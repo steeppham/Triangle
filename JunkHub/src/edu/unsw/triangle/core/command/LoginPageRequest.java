@@ -14,7 +14,6 @@ import edu.unsw.triangle.ui.ViewAction;
  */
 public class LoginPageRequest implements Command
 {
-
 	/**
 	 * Request to display login page.
 	 */

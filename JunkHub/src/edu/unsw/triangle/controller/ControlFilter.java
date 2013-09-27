@@ -1,4 +1,4 @@
-package edu.unsw.triangle.control;
+package edu.unsw.triangle.controller;
 
 import java.io.IOException;
 import java.util.logging.Logger;

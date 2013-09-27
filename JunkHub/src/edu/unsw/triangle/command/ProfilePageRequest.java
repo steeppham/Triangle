@@ -5,8 +5,8 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.unsw.triangle.control.Command;
-import edu.unsw.triangle.control.Dispatcher;
+import edu.unsw.triangle.controller.Command;
+import edu.unsw.triangle.controller.Dispatcher2;
 import edu.unsw.triangle.model.Keychain;
 import edu.unsw.triangle.model.Profile;
 import edu.unsw.triangle.service.ProfileService;
@@ -20,9 +20,9 @@ public class ProfilePageRequest implements Command {
 	final Logger logger = Logger.getLogger(this.getClass().getName());
 	
 	@Override
-	public Dispatcher execute(HttpServletRequest request, HttpServletResponse response) throws Exception 
+	public Dispatcher2 handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception 
 	{
-		Dispatcher dispatcher = null;
+		Dispatcher2 dispatcher = null;
 		// TODO session manager
 		// Get profile bean from session
 		Profile profile = (Profile) request.getSession().getAttribute("profile");
@@ -44,14 +44,14 @@ public class ProfilePageRequest implements Command {
 				// could not retrieve user details
 				logger.warning("Could not retrieve profile details for username: " + keychain.getUsername());
 				// show error
-				dispatcher = new Dispatcher.DispatcherBuilder("error").action(ViewAction.FORWARD).build();
+				dispatcher = new Dispatcher2.DispatcherBuilder("error").action(ViewAction.FORWARD).build();
 			}
 		}
 
 		// Prepare view to display profile information
 		request.setAttribute("profile", profile);
 		logger.info("Displaying profile page for username: " + profile.getUsername());
-		dispatcher = new Dispatcher.DispatcherBuilder("profile.jsp").action(ViewAction.FORWARD).resource(true).build();
+		dispatcher = new Dispatcher2.DispatcherBuilder("profile.jsp").action(ViewAction.FORWARD).resource(true).build();
 		
 		return dispatcher;
 	}

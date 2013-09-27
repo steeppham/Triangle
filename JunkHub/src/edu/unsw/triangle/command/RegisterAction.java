@@ -5,8 +5,8 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.unsw.triangle.control.Command;
-import edu.unsw.triangle.control.Dispatcher;
+import edu.unsw.triangle.controller.Command;
+import edu.unsw.triangle.controller.Dispatcher2;
 import edu.unsw.triangle.model.Profile;
 import edu.unsw.triangle.view.RegisterViewHelper;
 import edu.unsw.triangle.view.ValidatorResult;
@@ -20,12 +20,12 @@ public class RegisterAction implements Command
 	final Logger logger = Logger.getLogger(this.getClass().getName());
 
 	@Override
-	public Dispatcher execute(HttpServletRequest request, HttpServletResponse response) throws Exception 
+	public Dispatcher2 handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception 
 	{
 		// TODO
 		// getView(request).
 		RegisterViewHelper registerView = new RegisterViewHelper(request);
-		Dispatcher dispatcher;
+		Dispatcher2 dispatcher;
 		ValidatorResult result = registerView.validate();
 		if (result.hasRejected())
 		{
@@ -33,7 +33,7 @@ public class RegisterAction implements Command
 			// Invalid form data
 			// Forward back to registration page with rejected properties
 			registerView.setMessage("Invalid");
-			dispatcher = new Dispatcher.DispatcherBuilder("register.jsp").action(ViewAction.FORWARD).build();
+			dispatcher = new Dispatcher2.DispatcherBuilder("register.jsp").action(ViewAction.FORWARD).build();
 		}	
 		else
 		{
@@ -44,7 +44,7 @@ public class RegisterAction implements Command
 			// Profile should not be in attributes here?
 			request.getSession().setAttribute("profile", profile);
 			// Redirect to confirm page
-			dispatcher = new Dispatcher.DispatcherBuilder("confirm").action(ViewAction.REDIRECT).resource(false).build();
+			dispatcher = new Dispatcher2.DispatcherBuilder("confirm").action(ViewAction.REDIRECT).resource(false).build();
 		}
 		
 		return dispatcher;

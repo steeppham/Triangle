@@ -5,9 +5,9 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.unsw.triangle.control.Command;
-import edu.unsw.triangle.control.Control;
-import edu.unsw.triangle.control.Dispatcher;
+import edu.unsw.triangle.controller.Command;
+import edu.unsw.triangle.controller.Dispatcher2;
+import edu.unsw.triangle.controller.FrontController;
 import edu.unsw.triangle.model.ItemCollection;
 import edu.unsw.triangle.service.SearchService;
 import edu.unsw.triangle.view.MainViewHelper;
@@ -18,10 +18,10 @@ import edu.unsw.triangle.view.ViewAction;
  */
 public class SearchAction implements Command 
 {
-	private final static Logger logger = Logger.getLogger(Control.class.getName());
+	private final static Logger logger = Logger.getLogger(FrontController.class.getName());
 	
 	@Override
-	public Dispatcher execute(HttpServletRequest request, HttpServletResponse response) throws Exception 
+	public Dispatcher2 handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception 
 	{
 		MainViewHelper mainView = new MainViewHelper(request);
 		// Validate search query
@@ -32,7 +32,7 @@ public class SearchAction implements Command
 		// Prepare view to display result
 		mainView.setSearchResult(result);
 		// Forward result to main page
-		Dispatcher dispatcher = new Dispatcher.DispatcherBuilder("main.jsp").action(ViewAction.FORWARD).resource(true).build();
+		Dispatcher2 dispatcher = new Dispatcher2.DispatcherBuilder("main.jsp").action(ViewAction.FORWARD).resource(true).build();
 		return dispatcher;
 	}
 

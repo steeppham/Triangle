@@ -1,0 +1,62 @@
+package edu.unsw.triangle.controller;
+
+import java.io.IOException;
+import java.util.logging.Logger;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Front controller for all servlet requests. Delegates to controller implementations according to request.
+ */
+public class FrontController extends HttpServlet
+{
+
+	private static final long serialVersionUID = 1L;
+	
+	private final static Logger logger = Logger.getLogger(FrontController.class.getName());
+	
+	/**
+	 * Default constructor
+	 */
+	public FrontController()
+	{
+		super();
+	}
+
+	/**
+	 * Perform servlet initialisation.
+	 */
+	@Override
+	public void init() throws ServletException 
+	{
+		// TODO Auto-generated method stub
+		super.init();
+	}
+
+	/**
+	 * Perform both GET and POST requests.
+	 */
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		try 
+		{
+			Controller controller = ControllerFactory.create(request);
+			ModelView modelView = controller.handleRequest(request, response);
+			// Intermediate steps here...
+			Dispatcher.create(request, response).doDispatch(modelView);
+			
+		}
+		catch (Exception e)
+		{
+			ModelView errorView = new ModelView("error.view").forward();
+			Dispatcher.create(request, response).doDispatch(errorView);
+			logger.severe("Request operation failed reason: " + e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
+}

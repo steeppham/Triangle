@@ -3,8 +3,8 @@ package edu.unsw.triangle.command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.unsw.triangle.control.Command;
-import edu.unsw.triangle.control.Dispatcher;
+import edu.unsw.triangle.controller.Command;
+import edu.unsw.triangle.controller.Dispatcher2;
 import edu.unsw.triangle.view.ViewAction;
 
 /**
@@ -13,9 +13,9 @@ import edu.unsw.triangle.view.ViewAction;
 public class ConfirmPageRequest implements Command {
 
 	@Override
-	public Dispatcher execute(HttpServletRequest request, HttpServletResponse response) throws Exception 
+	public Dispatcher2 handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception 
 	{
-		return new Dispatcher.DispatcherBuilder("confirm.jsp").action(ViewAction.FORWARD).build();
+		return new Dispatcher2.DispatcherBuilder("confirm.jsp").action(ViewAction.FORWARD).build();
 	}
 
 }

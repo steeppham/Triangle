@@ -3,8 +3,8 @@ package edu.unsw.triangle.command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.unsw.triangle.control.Command;
-import edu.unsw.triangle.control.Dispatcher;
+import edu.unsw.triangle.controller.Command;
+import edu.unsw.triangle.controller.Dispatcher2;
 
 /**
  * Handles the servlet POST request for updating profile 
@@ -13,7 +13,7 @@ import edu.unsw.triangle.control.Dispatcher;
 public class ProfileAction implements Command {
 
 	@Override
-	public Dispatcher execute(HttpServletRequest request, HttpServletResponse response) throws Exception 
+	public Dispatcher2 handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception 
 	{
 		// Validate profile data
 		// Profile profileUpdate = ProfileViewHelper.getProfileUpdates()

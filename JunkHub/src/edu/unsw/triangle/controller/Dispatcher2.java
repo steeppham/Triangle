@@ -1,18 +1,21 @@
-package edu.unsw.triangle.control;
+package edu.unsw.triangle.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import edu.unsw.triangle.view.ViewAction;
 
 /**
  * Builds the descriptor used for servlet dispatching. 
  */
-public class Dispatcher 
+public class Dispatcher2 
 {
 	private String uri;
 	private ViewAction action;
 	private boolean isResource;
 	private final String WEB_INF = "/WEB-INF/";
 	
-	private Dispatcher(DispatcherBuilder builder)
+	private Dispatcher2(DispatcherBuilder builder)
 	{
 		this.uri = builder.name + builder.parameters.toString();
 		if (builder.isResource)
@@ -69,10 +72,15 @@ public class Dispatcher
 			return this;
 		}
 		
-		public Dispatcher build()
+		public Dispatcher2 build()
 		{
-			return new Dispatcher(this);
+			return new Dispatcher2(this);
 		}
+	}
+
+	public static Dispatcher2 create(HttpServletRequest request, HttpServletResponse response) {
+		
+		return null;
 	}
 
 }

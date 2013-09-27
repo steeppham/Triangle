@@ -5,9 +5,9 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.unsw.triangle.control.Command;
-import edu.unsw.triangle.control.Control;
-import edu.unsw.triangle.control.Dispatcher;
+import edu.unsw.triangle.controller.Command;
+import edu.unsw.triangle.controller.Dispatcher2;
+import edu.unsw.triangle.controller.FrontController;
 import edu.unsw.triangle.model.Credential;
 import edu.unsw.triangle.model.Keychain;
 import edu.unsw.triangle.service.LoginService;
@@ -19,13 +19,13 @@ import edu.unsw.triangle.view.ViewAction;
  */
 public class LoginAction implements Command 
 {
-	private final static Logger logger = Logger.getLogger(Control.class.getName());
+	private final static Logger logger = Logger.getLogger(FrontController.class.getName());
 	
 	@Override
-	public Dispatcher execute(HttpServletRequest request, HttpServletResponse response) throws Exception 
+	public Dispatcher2 handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception 
 	{
 		logger.info("Executing login action");
-		Dispatcher dispatcher = null;
+		Dispatcher2 dispatcher = null;
 		LoginViewHelper loginView = new LoginViewHelper(request);
 		
 		// Retrieve login parameters
@@ -40,7 +40,7 @@ public class LoginAction implements Command
 			// This should go in a SessionManager class
 			request.getSession(true).setAttribute("keychain", keychain);
 			// Redirect to main command
-			dispatcher = new Dispatcher.DispatcherBuilder("main").action(ViewAction.REDIRECT).resource(false).build();
+			dispatcher = new Dispatcher2.DispatcherBuilder("main").action(ViewAction.REDIRECT).resource(false).build();
 
 		}
 		else
@@ -48,7 +48,7 @@ public class LoginAction implements Command
 			// Login unsuccessful
 			// Return to login page
 			loginView.setMessage("Login failed");
-			dispatcher = new Dispatcher.DispatcherBuilder(LoginViewHelper.LOGIN_VIEW).action(ViewAction.FORWARD).build();
+			dispatcher = new Dispatcher2.DispatcherBuilder(LoginViewHelper.LOGIN_VIEW).action(ViewAction.FORWARD).build();
 		}
 	
 		return dispatcher;

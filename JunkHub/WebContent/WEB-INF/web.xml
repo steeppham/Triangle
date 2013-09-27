@@ -6,7 +6,7 @@
 	<display-name>JunkHub</display-name>
 	<filter>
 		<filter-name>ControlFilter</filter-name>
-		<filter-class>edu.unsw.triangle.control.ControlFilter</filter-class>
+		<filter-class>edu.unsw.triangle.controller.ControlFilter</filter-class>
 		<init-param>
 			<param-name>param</param-name>
 			<param-value>value</param-value>
@@ -21,7 +21,7 @@
 		</description>
 		<display-name>Control</display-name>
 		<servlet-name>Control</servlet-name>
-		<servlet-class>edu.unsw.triangle.control.Control</servlet-class>
+		<servlet-class>edu.unsw.triangle.controller.FrontController</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Control</servlet-name>

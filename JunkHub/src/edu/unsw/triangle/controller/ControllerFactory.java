@@ -4,10 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 import edu.unsw.triangle.web.LoginFormController;
 import edu.unsw.triangle.web.LoginRequestController;
+import edu.unsw.triangle.web.RegisterFormController;
+import edu.unsw.triangle.web.RegisterRequestController;
 
 /**
  * Factory for creating concrete command objects based on request parameters.
@@ -33,6 +36,8 @@ public class ControllerFactory
 		mapping = new HashMap<String, Controller>();
 		mapping.put("GET/login", new LoginRequestController());
 		mapping.put("POST/login", new LoginFormController());
+		mapping.put("GET/register", new RegisterRequestController());
+		mapping.put("POST/register", new RegisterFormController());
 //		mapping.put("POST/" + LOGIN, new LoginAction());
 //		mapping.put("GET/" + REGISTER, new RegisterPageRequest());
 //		mapping.put("POST/" + REGISTER, new RegisterAction());
@@ -47,11 +52,17 @@ public class ControllerFactory
 	 * Creates a concrete command object based on the parameters of the http request.
 	 * @param request
 	 * @return Concrete command object.
+	 * @throws ServletException 
 	 */
-	public static Controller create(HttpServletRequest request)
+	public static Controller create(HttpServletRequest request) throws ServletException
 	{
-		logger.info("Controller hanlder: " + request.getMethod() + request.getPathInfo());
-		return mapping.get(request.getMethod() + request.getPathInfo());
+		String url = request.getMethod() + request.getPathInfo();
+		if (!mapping.containsKey(url))
+		{
+			logger.warning("request url: " + url + " is not mapped");
+			throw new ServletException("Request url: " + url + " is not mapped");
+		}
+		return mapping.get(url);
 	}
 
 }

@@ -83,5 +83,4 @@ public class Profile implements Serializable
 		this.credit = credit;
 		return this;
 	}
-
 }

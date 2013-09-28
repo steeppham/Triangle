@@ -13,6 +13,7 @@ public class ViewResolver
 		mapping.put("login.view", "/WEB-INF/login.jsp");
 		mapping.put("login", "login");
 		mapping.put("error.view", "/WEB-INF/error.jsp");
+		mapping.put("register.view", "/WEB-INF/register.jsp");
 	}
 	
 	public String resolve(String name)

@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
+import edu.unsw.triangle.web.LoginFormController;
 import edu.unsw.triangle.web.LoginRequestController;
 
 /**
@@ -31,6 +32,7 @@ public class ControllerFactory
 	{
 		mapping = new HashMap<String, Controller>();
 		mapping.put("GET/login", new LoginRequestController());
+		mapping.put("POST/login", new LoginFormController());
 //		mapping.put("POST/" + LOGIN, new LoginAction());
 //		mapping.put("GET/" + REGISTER, new RegisterPageRequest());
 //		mapping.put("POST/" + REGISTER, new RegisterAction());

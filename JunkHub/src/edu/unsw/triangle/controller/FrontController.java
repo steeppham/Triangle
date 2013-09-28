@@ -47,15 +47,25 @@ public class FrontController extends HttpServlet
 			Controller controller = ControllerFactory.create(request);
 			ModelView modelView = controller.handleRequest(request, response);
 			// Intermediate steps here...
+			bindModelView(request, modelView);
 			Dispatcher.create(request, response).doDispatch(modelView);
 			
 		}
 		catch (Exception e)
 		{
+			// Show error page
 			ModelView errorView = new ModelView("error.view").forward();
 			Dispatcher.create(request, response).doDispatch(errorView);
 			logger.severe("Request operation failed reason: " + e.getMessage());
 			e.printStackTrace();
+		}
+	}
+	
+	protected void bindModelView(HttpServletRequest request, ModelView modelView)
+	{
+		for (String name : modelView.modelSet())
+		{
+			request.setAttribute(name, modelView.getModel(name));
 		}
 	}
 

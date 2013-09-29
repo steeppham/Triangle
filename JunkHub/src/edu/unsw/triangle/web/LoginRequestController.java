@@ -17,7 +17,12 @@ public class LoginRequestController implements Controller
 	{
 		logger.info("Handling login request");
 		logger.info("Forward view to login");
-		return new ModelView("login.view").forward();
+		return new ModelView(getFormView()).forward();
 	}
 
+	@Override
+	public String getFormView() 
+	{
+		return "login.view";
+	}
 }

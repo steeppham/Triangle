@@ -1,6 +1,7 @@
 package edu.unsw.triangle.model;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -69,17 +70,29 @@ public class Profile implements Serializable
 		this.address = address;
 		return this;
 	}
-	public Date getDob() {
-		return dob;
+	public Date getDobObject() {
+		if (dob == null)
+			return null;
+		return (Date) dob.clone();
 	}
+	
+	public String getDob()
+	{
+		if (getDobObject() == null)
+			return "";
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		return dateFormat.format(dob);
+	}
+	
 	public Profile setDob(Date dob) {
-		this.dob = dob;
+		this.dob = (Date) dob.clone();
 		return this;
 	}
 	public int getCredit() {
 		return credit;
 	}
-	public Profile setCredit(int credit) {
+	public Profile setCredit(int credit)
+	{
 		this.credit = credit;
 		return this;
 	}

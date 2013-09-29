@@ -8,7 +8,9 @@ import edu.unsw.triangle.controller.AbstractFormController;
 import edu.unsw.triangle.controller.ModelView;
 import edu.unsw.triangle.model.Login;
 import edu.unsw.triangle.util.Errors;
+import edu.unsw.triangle.util.LoginBinder;
 import edu.unsw.triangle.util.LoginValidator;
+import edu.unsw.triangle.util.RequestBinder;
 import edu.unsw.triangle.util.Validator;
 
 public class LoginFormController extends AbstractFormController 
@@ -46,7 +48,7 @@ public class LoginFormController extends AbstractFormController
 			logger.info("authentication failed for username: " + login.getUsername());
 			Errors errors = new Errors();
 			errors.rejectValue("authentication", "Incorrect username and/or password");
-			modelView = handleFormError(errors);
+			modelView = handleFormError(login, errors);
 		}
 		
 		modelView.addModel("login", login);
@@ -67,10 +69,22 @@ public class LoginFormController extends AbstractFormController
 	}
 
 	@Override
-	protected ModelView handleFormError(Errors errors) 
+	protected ModelView handleFormError(Object command, Errors errors) 
 	{
-		ModelView modelView = new ModelView("login.view").forward().addModel("errors", errors);
+		ModelView modelView = new ModelView(getFormView()).forward().
+				addModel("errors", errors).addModel("login", command);
 		return modelView;
+	}
+
+	@Override
+	protected RequestBinder getBinder() 
+	{
+		return new LoginBinder();
+	}
+
+	@Override
+	public String getFormView() {
+		return "login.view";
 	}
 
 }

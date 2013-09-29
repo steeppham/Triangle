@@ -17,7 +17,13 @@ public class RegisterRequestController implements Controller {
 	{	
 		logger.info("Handling register request");
 		logger.info("Forward view to register page");
-		return new ModelView("register.view").forward();
+		return new ModelView(getFormView()).forward();
+	}
+
+	@Override
+	public String getFormView() 
+	{
+		return "register.view";
 	}
 
 }

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import edu.unsw.triangle.web.LoginFormController;
 import edu.unsw.triangle.web.LoginRequestController;
+import edu.unsw.triangle.web.MainRequestController;
 import edu.unsw.triangle.web.RegisterFormController;
 import edu.unsw.triangle.web.RegisterRequestController;
 
@@ -38,6 +39,7 @@ public class ControllerFactory
 		mapping.put("POST/login", new LoginFormController());
 		mapping.put("GET/register", new RegisterRequestController());
 		mapping.put("POST/register", new RegisterFormController());
+		mapping.put("GET/main", new MainRequestController());
 //		mapping.put("POST/" + LOGIN, new LoginAction());
 //		mapping.put("GET/" + REGISTER, new RegisterPageRequest());
 //		mapping.put("POST/" + REGISTER, new RegisterAction());

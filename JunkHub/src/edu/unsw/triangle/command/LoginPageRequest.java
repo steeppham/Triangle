@@ -12,6 +12,7 @@ import edu.unsw.triangle.view.ViewAction;
 /**
  * Command to prepare and display login page. 
  */
+@Deprecated
 public class LoginPageRequest implements Command
 {
 	/**

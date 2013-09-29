@@ -5,15 +5,15 @@
 	id="WebApp_ID" version="3.0">
 	<display-name>JunkHub</display-name>
 	<filter>
-		<filter-name>ControlFilter</filter-name>
-		<filter-class>edu.unsw.triangle.controller.ControlFilter</filter-class>
+		<filter-name>ControllerFilter</filter-name>
+		<filter-class>edu.unsw.triangle.controller.ControllerFilter</filter-class>
 		<init-param>
 			<param-name>param</param-name>
 			<param-value>value</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>
-		<filter-name>ControlFilter</filter-name>
+		<filter-name>ControllerFilter</filter-name>
 		<url-pattern>/control/*</url-pattern>
 	</filter-mapping>
 	<servlet>

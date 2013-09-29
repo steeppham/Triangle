@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Front controller for all servlet requests. Delegates to controller implementations according to request.
@@ -66,6 +67,12 @@ public class FrontController extends HttpServlet
 		for (String name : modelView.modelSet())
 		{
 			request.setAttribute(name, modelView.getModel(name));
+		}
+		
+		HttpSession session = request.getSession();
+		for (String name : modelView.sessionModelSet())
+		{
+			session.setAttribute(name, modelView.getSessionModel(name));
 		}
 	}
 

@@ -2,9 +2,13 @@ package edu.unsw.triangle.view;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
+
+import edu.unsw.triangle.web.LoginRequestController;
 
 public class ViewResolver 
 {
+	private final Logger logger = Logger.getLogger(LoginRequestController.class.getName());
 	private final static Map<String, String> mapping;
 	
 	static
@@ -14,10 +18,16 @@ public class ViewResolver
 		mapping.put("login", "login");
 		mapping.put("error.view", "/WEB-INF/error.jsp");
 		mapping.put("register.view", "/WEB-INF/register.jsp");
+		mapping.put("main", "main");
+		mapping.put("main.view", "/WEB-INF/main.jsp");
 	}
 	
 	public String resolve(String name)
 	{
+		if (!mapping.containsKey(name))
+		{
+			logger.warning("no mapping exist for view '" + name + "'");
+		}
 		return mapping.get(name);
 	}
 

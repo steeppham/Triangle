@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import edu.unsw.triangle.model.WebSession;
+
 public class ModelView 
 {
 	public enum ResponseAction
@@ -15,6 +17,7 @@ public class ModelView
 	private String viewName;
 	private ResponseAction action = ResponseAction.FORWARD;
 	private final Map<String, Object> modelMap = new HashMap<String, Object>();
+	private final Map<String, Object> sessionModelMap = new HashMap<String, Object>();
 	
 	public ModelView(String viewName) 
 	{
@@ -59,4 +62,19 @@ public class ModelView
 		return modelMap.get(name);
 	}
 
+	public ModelView addSessionModel(String name, Object model) 
+	{
+		sessionModelMap.put(name, model);
+		return this;	
+	}
+
+	public Object getSessionModel(String name) 
+	{
+		return sessionModelMap.get(name);
+	}
+
+	public Set<String> sessionModelSet() 
+	{
+		return sessionModelMap.keySet();
+	}
 }

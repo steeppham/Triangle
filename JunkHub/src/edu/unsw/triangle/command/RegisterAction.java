@@ -15,6 +15,7 @@ import edu.unsw.triangle.view.ViewAction;
 /**
  * Handles the registration of a user profile from a servlet POST request.
  */
+@Deprecated
 public class RegisterAction implements Command 
 {
 	final Logger logger = Logger.getLogger(this.getClass().getName());

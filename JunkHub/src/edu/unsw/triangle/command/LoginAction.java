@@ -17,6 +17,7 @@ import edu.unsw.triangle.view.ViewAction;
 /**
  * Command to execute login by checking credentials.
  */
+@Deprecated
 public class LoginAction implements Command 
 {
 	private final static Logger logger = Logger.getLogger(FrontController.class.getName());

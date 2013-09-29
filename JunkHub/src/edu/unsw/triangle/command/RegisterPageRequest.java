@@ -11,6 +11,7 @@ import edu.unsw.triangle.view.ViewAction;
 /**
  * Implementation for handling GET register page request.
  */
+@Deprecated
 public class RegisterPageRequest implements Command 
 {
 	@Override

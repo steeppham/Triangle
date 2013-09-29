@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import edu.unsw.triangle.controller.AbstractFormController;
 import edu.unsw.triangle.controller.ModelView;
 import edu.unsw.triangle.model.Login;
+import edu.unsw.triangle.model.WebSession;
 import edu.unsw.triangle.util.Errors;
 import edu.unsw.triangle.util.LoginBinder;
 import edu.unsw.triangle.util.LoginValidator;
@@ -41,6 +42,11 @@ public class LoginFormController extends AbstractFormController
 			// Authenticated
 			logger.info("authenticated for username: " + login.getUsername());
 			modelView = new ModelView(getSuccessView()).redirect();
+			
+			// Create new web session and add to model
+			WebSession websession = new WebSession();
+			websession.setUsername(login.getUsername());
+			modelView.addSessionModel("websession", websession);
 		}
 		else
 		{

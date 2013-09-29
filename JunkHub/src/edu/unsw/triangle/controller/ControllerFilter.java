@@ -13,11 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import edu.unsw.triangle.model.Keychain;
+import edu.unsw.triangle.model.WebSession;
 
 /**
  * Performs user authentication check for incoming requests.
  */
-public class ControlFilter implements Filter
+public class ControllerFilter implements Filter
 {
 	private FilterConfig filterConfig;
 	final Logger logger = Logger.getLogger(this.getClass().getName());
@@ -39,7 +40,7 @@ public class ControlFilter implements Filter
 		// Check if request is for register page
 		if (httpRequest.getPathInfo().equals("/register"))
 		{
-			logger.info("Bypassing filter to registration");
+			logger.info("Bypassing filter to register");
 			chain.doFilter(request, response);
 			return;
 		}
@@ -51,27 +52,18 @@ public class ControlFilter implements Filter
 			chain.doFilter(request, response);
 			return;
 		}
-
-		Keychain keychain = (Keychain) httpSession.getAttribute("keychain");
-		if (keychain == null)
+		
+		
+		WebSession websession = (WebSession) httpSession.getAttribute("websession");
+		if (websession == null)
 		{
-			// Session has not been initialised
 			logger.info("Authentication not found, forward to login");
-			// Forward to login page
 			filterConfig.getServletContext().getRequestDispatcher("/control/login").forward(request, response);
-		}
-		else if (keychain.isAuthenticated())
-		{
-			// Credentials are valid
-			// Proceed with request
-			chain.doFilter(request, response);
 		}
 		else
 		{
-			// Session is logged out or invalid
-			// Forward to login page
-			logger.info("Authentication failed, forward to login");
-			filterConfig.getServletContext().getRequestDispatcher("/control/login").forward(request, response);
+			logger.info("Authenticated for username '" + websession.getUsername() + "'");
+			chain.doFilter(request, response);
 		}
 	}
 

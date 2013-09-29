@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import edu.unsw.triangle.model.Profile;
 
-public class RegisterBinder implements RequestBinder {
+public class ProfileBinder implements RequestBinder {
 
 	@Override
 	public Object bindAndValidate(HttpServletRequest request, Errors errors) 

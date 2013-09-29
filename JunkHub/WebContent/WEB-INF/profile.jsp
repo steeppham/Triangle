@@ -10,13 +10,17 @@
 </head>
 <body>
 <h1>My Profile</h1>
+<div style="color: #FF0000;">${errors.getErrorMessage("username")}</div>
+<div style="color: #FF0000;">${errors.getErrorMessage("password")}</div>
+<div style="color: #FF0000;">${errors.getErrorMessage("email")}</div>
+<div style="color: #FF0000;">${errors.getErrorMessage("dob")}</div>
+<div style="color: #FF0000;">${errors.getErrorMessage("credit")}</div>
 <form method="POST" action="profile">
 username: ${profile.username}
 firstname: 
 <input type="text" value="${profile.firstname}" name="username"><br>
 lastname:
 <input type="text" value="${profile.lastname}" name="firstname"><br>
-dob: ${profile.dob}<br>
 <input type="text" value="${profile.dob}" name="dob"><br>
 email: ${profile.email}<br>
 <input type="text" value="${profile.email}" name="email"><br>

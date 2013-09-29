@@ -8,7 +8,7 @@ import edu.unsw.triangle.controller.AbstractFormController;
 import edu.unsw.triangle.controller.ModelView;
 import edu.unsw.triangle.util.Errors;
 import edu.unsw.triangle.util.ProfileValidator;
-import edu.unsw.triangle.util.RegisterBinder;
+import edu.unsw.triangle.util.ProfileBinder;
 import edu.unsw.triangle.util.RequestBinder;
 import edu.unsw.triangle.util.Validator;
 
@@ -66,7 +66,7 @@ public class RegisterFormController extends AbstractFormController
 	@Override
 	protected RequestBinder getBinder() 
 	{
-		return new RegisterBinder();
+		return new ProfileBinder();
 	}
 
 	@Override

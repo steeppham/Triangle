@@ -15,6 +15,7 @@ import javax.xml.bind.ValidationException;
  * index.php/How_to_add_validation_logic_to_HttpServletRequest
  * TODO not implemented yet due to inability to pass out exceptions
  */
+@Deprecated
 public class RequestValidator extends HttpServletRequestWrapper {
 	
 	public RequestValidator(HttpServletRequest request) 

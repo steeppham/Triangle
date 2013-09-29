@@ -12,6 +12,7 @@ import edu.unsw.triangle.web.LoginRequestController;
 import edu.unsw.triangle.web.MainRequestController;
 import edu.unsw.triangle.web.RegisterFormController;
 import edu.unsw.triangle.web.RegisterRequestController;
+import edu.unsw.triangle.web.SearchFormController;
 
 /**
  * Factory for creating concrete command objects based on request parameters.
@@ -40,6 +41,7 @@ public class ControllerFactory
 		mapping.put("GET/register", new RegisterRequestController());
 		mapping.put("POST/register", new RegisterFormController());
 		mapping.put("GET/main", new MainRequestController());
+		mapping.put("GET/search", new SearchFormController());
 //		mapping.put("POST/" + LOGIN, new LoginAction());
 //		mapping.put("GET/" + REGISTER, new RegisterPageRequest());
 //		mapping.put("POST/" + REGISTER, new RegisterAction());

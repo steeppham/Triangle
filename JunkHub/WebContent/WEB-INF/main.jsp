@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.ArrayList" %>
 <jsp:useBean id="errors" class="edu.unsw.triangle.util.Errors" scope="request"></jsp:useBean>
 <jsp:useBean id="websession" class="edu.unsw.triangle.model.WebSession" scope="request"></jsp:useBean>
 
@@ -15,8 +16,9 @@
 	<form method="GET" action="search">
 		<input type="submit" name="search"> 
 		<input type="text" name="query"><br>
-		<!-- Search results shown below -->
-		<c:if test="${not empty result}">
+	</form>
+	<!-- Search results shown below -->
+		
 			<!--Display message-->
 			SEARCH RESULT
 			<c:choose>
@@ -25,10 +27,10 @@
 			</c:when>
 			<c:otherwise> 
 				<!-- search results here -->
+				${result.size()}
 			</c:otherwise>
 			</c:choose>
-		</c:if>
-	</form>
+
 	<a href="profile">Profile</a>
 </body>
 </html>

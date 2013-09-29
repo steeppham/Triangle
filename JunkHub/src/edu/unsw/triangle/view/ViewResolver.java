@@ -20,6 +20,7 @@ public class ViewResolver
 		mapping.put("register.view", "/WEB-INF/register.jsp");
 		mapping.put("main", "main");
 		mapping.put("main.view", "/WEB-INF/main.jsp");
+		mapping.put("profile.view", "/WEB-INF/profile.jsp");
 	}
 	
 	public String resolve(String name)

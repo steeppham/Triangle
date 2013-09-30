@@ -23,6 +23,6 @@ public class SearchValidator implements Validator {
 
 		// TODO validate search query ?
 		Query search = (Query) obj;
-		ValidationUtility.rejectIfNullOrEmpty(errors, "query", search.getFindByTitle(), "No search results");
+		ValidationUtility.rejectNullOrEmpty(errors, "query", search.getFindByTitle(), "No search results");
 	}
 }

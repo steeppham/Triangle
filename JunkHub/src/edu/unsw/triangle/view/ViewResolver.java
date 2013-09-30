@@ -21,6 +21,9 @@ public class ViewResolver
 		mapping.put("main", "main");
 		mapping.put("main.view", "/WEB-INF/main.jsp");
 		mapping.put("profile.view", "/WEB-INF/profile.jsp");
+		mapping.put("sell", "sell");
+		mapping.put("sell.view", "/WEB-INF/sell.jsp");
+		mapping.put("sell.confirm.view", "/WEB-INF/sell.jsp");
 	}
 	
 	public String resolve(String name)

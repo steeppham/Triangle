@@ -22,11 +22,11 @@ public class ProfileValidator implements Validator {
 		}
 		
 		Profile profile = (Profile) obj;
-		ValidationUtility.rejectIfNullOrEmpty(errors, "username", profile.getUsername(), "username cannot be empty");
-		ValidationUtility.rejectIfNullOrEmpty(errors, "password", profile.getPassword(), "password cannot be empty");
+		ValidationUtility.rejectNullOrEmpty(errors, "username", profile.getUsername(), "username cannot be empty");
+		ValidationUtility.rejectNullOrEmpty(errors, "password", profile.getPassword(), "password cannot be empty");
 		ValidationUtility.rejectInvalidEmail(errors, "email", profile.getEmail(), "email must contain valid address format");
-		ValidationUtility.rejectIfNullOrEmpty(errors, "nickname", profile.getNickname(), "nickname cannot be empty");
-		ValidationUtility.rejectIfNullOrEmpty(errors, "address", profile.getAddress(), "address cannot be empty");
+		ValidationUtility.rejectNullOrEmpty(errors, "nickname", profile.getNickname(), "nickname cannot be empty");
+		ValidationUtility.rejectNullOrEmpty(errors, "address", profile.getAddress(), "address cannot be empty");
 		ValidationUtility.rejectInvalidCredit(errors, "credit", profile.getCredit(), "credit must be 8 digits");
 		//ValidationUtility.rejectInvalidCredit(errors, "dob", profile.getDob(), "dob is invalid");
 	}

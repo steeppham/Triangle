@@ -32,5 +32,6 @@
 			</c:choose>
 
 	<a href="profile">Profile</a>
+	<a href="sell">Sell Item</a>
 </body>
 </html>

@@ -3,6 +3,7 @@ package edu.unsw.triangle.util;
 import java.util.HashMap;
 import java.util.Map;
 
+//TODO merge with messages class
 public class Errors 
 {
 	private final Map<String, String> errors = new HashMap<String, String>();

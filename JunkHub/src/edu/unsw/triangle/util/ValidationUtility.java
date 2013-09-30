@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public class ValidationUtility 
 {
-	public static void rejectIfNullOrEmpty(Errors errors, String field, String value, String message)
+	public static void rejectNullOrEmpty(Errors errors, String field, String value, String message)
 	{
 		if (value == null || value.isEmpty())
 		{
@@ -29,5 +29,33 @@ public class ValidationUtility
 			errors.rejectValue(field, message);
 		}
 	}
+	
+	public static void rejectNotFloat(Errors errors, String field, String value, String message)
+	{
+		try
+		{
+			float reservePrice = Float.parseFloat(value);
+		}
+		catch (NumberFormatException e)
+		{
+			
+		}
+	}
 
+	public static void rejectInvalidPrice(Errors errors, String field,
+			float value, String message) 
+	{
+		if (value <= 0)
+		{
+			errors.rejectValue(field, message);
+		}
+	}
+
+	public static void rejectNotGreaterThan(Errors errors, String field1,
+			float value1, float value2, String message) {
+		if (value1 < value2)
+		{
+			errors.rejectValue(field1, message);
+		}
+	}
 }

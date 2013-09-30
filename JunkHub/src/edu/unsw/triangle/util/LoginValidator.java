@@ -23,8 +23,8 @@ public class LoginValidator implements Validator
 		}
 		
 		Login login = (Login) obj;
-		ValidationUtility.rejectIfNullOrEmpty(errors, "username", login.getUsername(), "username cannot be empty");
-		ValidationUtility.rejectIfNullOrEmpty(errors, "password", login.getPassword(), "password cannot be empty");
+		ValidationUtility.rejectNullOrEmpty(errors, "username", login.getUsername(), "username cannot be empty");
+		ValidationUtility.rejectNullOrEmpty(errors, "password", login.getPassword(), "password cannot be empty");
 	}
 
 

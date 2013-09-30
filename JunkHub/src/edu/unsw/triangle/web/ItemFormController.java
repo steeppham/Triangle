@@ -5,11 +5,11 @@ import javax.servlet.http.HttpServletRequest;
 import edu.unsw.triangle.controller.AbstractFormController;
 import edu.unsw.triangle.controller.ModelView;
 import edu.unsw.triangle.model.Bid;
-import edu.unsw.triangle.util.BidBinder;
 import edu.unsw.triangle.util.BidValidator;
 import edu.unsw.triangle.util.Errors;
-import edu.unsw.triangle.util.RequestBinder;
 import edu.unsw.triangle.util.Validator;
+import edu.unsw.triangle.view.BidBinder;
+import edu.unsw.triangle.view.RequestBinder;
 
 public class ItemFormController extends AbstractFormController {
 

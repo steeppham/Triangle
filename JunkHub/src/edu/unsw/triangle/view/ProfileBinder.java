@@ -1,4 +1,4 @@
-package edu.unsw.triangle.util;
+package edu.unsw.triangle.view;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import javax.servlet.http.HttpServletRequest;
 
 import edu.unsw.triangle.model.Profile;
+import edu.unsw.triangle.util.Errors;
 
 public class ProfileBinder implements RequestBinder {
 

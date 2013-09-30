@@ -12,10 +12,10 @@ import edu.unsw.triangle.controller.ModelView;
 import edu.unsw.triangle.model.Item;
 import edu.unsw.triangle.model.Query;
 import edu.unsw.triangle.util.Errors;
-import edu.unsw.triangle.util.RequestBinder;
-import edu.unsw.triangle.util.SearchBinder;
 import edu.unsw.triangle.util.SearchValidator;
 import edu.unsw.triangle.util.Validator;
+import edu.unsw.triangle.view.RequestBinder;
+import edu.unsw.triangle.view.SearchBinder;
 
 public class SearchFormController extends AbstractFormController
 {

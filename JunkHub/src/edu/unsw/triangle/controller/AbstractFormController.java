@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.unsw.triangle.util.Errors;
-import edu.unsw.triangle.util.RequestBinder;
 import edu.unsw.triangle.util.Validator;
+import edu.unsw.triangle.view.RequestBinder;
 
 public abstract class AbstractFormController implements Controller 
 {

@@ -6,11 +6,11 @@ import edu.unsw.triangle.controller.AbstractFormController;
 import edu.unsw.triangle.controller.ModelView;
 import edu.unsw.triangle.model.Item;
 import edu.unsw.triangle.util.Errors;
-import edu.unsw.triangle.util.ItemBinder;
 import edu.unsw.triangle.util.ItemValidator;
 import edu.unsw.triangle.util.Messages;
-import edu.unsw.triangle.util.RequestBinder;
 import edu.unsw.triangle.util.Validator;
+import edu.unsw.triangle.view.ItemBinder;
+import edu.unsw.triangle.view.RequestBinder;
 
 public class SellFormController extends AbstractFormController 
 {

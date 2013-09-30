@@ -1,8 +1,9 @@
-package edu.unsw.triangle.util;
+package edu.unsw.triangle.view;
 
 import javax.servlet.http.HttpServletRequest;
 
 import edu.unsw.triangle.model.Item;
+import edu.unsw.triangle.util.Errors;
 
 public class ItemBinder implements RequestBinder {
 

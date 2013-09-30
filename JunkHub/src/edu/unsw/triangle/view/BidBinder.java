@@ -1,9 +1,10 @@
-package edu.unsw.triangle.util;
+package edu.unsw.triangle.view;
 
 import javax.servlet.http.HttpServletRequest;
 
 import edu.unsw.triangle.model.Bid;
 import edu.unsw.triangle.model.WebSession;
+import edu.unsw.triangle.util.Errors;
 
 public class BidBinder implements RequestBinder {
 

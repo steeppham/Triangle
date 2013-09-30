@@ -1,8 +1,9 @@
-package edu.unsw.triangle.util;
+package edu.unsw.triangle.view;
 
 import javax.servlet.http.HttpServletRequest;
 
 import edu.unsw.triangle.model.Login;
+import edu.unsw.triangle.util.Errors;
 
 public class LoginBinder implements RequestBinder {
 

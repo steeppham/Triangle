@@ -9,10 +9,10 @@ import edu.unsw.triangle.controller.ModelView;
 import edu.unsw.triangle.model.Login;
 import edu.unsw.triangle.model.WebSession;
 import edu.unsw.triangle.util.Errors;
-import edu.unsw.triangle.util.LoginBinder;
 import edu.unsw.triangle.util.LoginValidator;
-import edu.unsw.triangle.util.RequestBinder;
 import edu.unsw.triangle.util.Validator;
+import edu.unsw.triangle.view.LoginBinder;
+import edu.unsw.triangle.view.RequestBinder;
 
 public class LoginFormController extends AbstractFormController 
 {

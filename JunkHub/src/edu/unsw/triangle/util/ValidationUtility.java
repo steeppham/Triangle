@@ -42,7 +42,7 @@ public class ValidationUtility
 		}
 	}
 
-	public static void rejectInvalidPrice(Errors errors, String field,
+	public static void rejectInvalidMonetary(Errors errors, String field,
 			float value, String message) 
 	{
 		if (value <= 0)

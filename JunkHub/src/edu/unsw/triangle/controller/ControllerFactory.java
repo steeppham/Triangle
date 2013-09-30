@@ -7,6 +7,8 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
+import edu.unsw.triangle.web.ItemFormController;
+import edu.unsw.triangle.web.ItemRequestController;
 import edu.unsw.triangle.web.LoginFormController;
 import edu.unsw.triangle.web.LoginRequestController;
 import edu.unsw.triangle.web.MainRequestController;
@@ -50,6 +52,8 @@ public class ControllerFactory
 		mapping.put("POST/profile", new ProfileFormController());
 		mapping.put("GET/sell", new SellRequestController());
 		mapping.put("POST/sell", new SellFormController());
+		mapping.put("GET/item", new ItemRequestController());
+		mapping.put("POST/item", new ItemFormController());
 //		mapping.put("POST/" + LOGIN, new LoginAction());
 //		mapping.put("GET/" + REGISTER, new RegisterPageRequest());
 //		mapping.put("POST/" + REGISTER, new RegisterAction());

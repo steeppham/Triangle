@@ -12,7 +12,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import edu.unsw.triangle.model.Keychain;
+import edu.unsw.triangle.data.DatabaseTest;
 import edu.unsw.triangle.model.WebSession;
 
 /**
@@ -36,6 +36,13 @@ public class ControllerFilter implements Filter
 		logger.info("Invoking authentication filter");
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpSession httpSession = httpRequest.getSession();
+		
+		// TESTING ZONE***********
+		DatabaseTest db = new DatabaseTest();
+		db.probe();
+		
+		
+		// *******************
 		
 		// Check if request is for register page
 		if (httpRequest.getPathInfo().equals("/register"))

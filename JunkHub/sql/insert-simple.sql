@@ -1,0 +1,1 @@
+INSERT INTO PROFILES(USERNAME, PASSWORD, NICKNAME, FIRSTNAME, LASTNAME, EMAIL, ADDRESS, DOB, CREDIT, STATUS) VALUES ('stephen','password', 'steve', 'stephen', 'pham', 'stephen@gmail.com', 'sydney', '1988-05-28', 12345678, 1);

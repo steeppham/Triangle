@@ -1,26 +1,66 @@
 package edu.unsw.triangle.data;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Logger;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+
+/**
+ * A connection pool manager for handling connections to a database.
+ */
 public class ConnectionManager 
 {
-	private static ConnectionManager connection = null;
+	private static ConnectionManager connectionManager = null;
 	
-	public static ConnectionManager getInstance()
+	private DataSource datasource;
+	private Connection connection;
+	private final Logger logger = Logger.getLogger(ConnectionManager.class.getName());
+	
+	public static ConnectionManager getInstance() throws Exception
 	{
-		if (connection == null)
+		if (connectionManager == null)
 		{
-			connection = new ConnectionManager();
+			connectionManager = new ConnectionManager();
+		}
+		return connectionManager;
+	}
+	
+	private ConnectionManager() throws Exception
+	{
+		try
+		{
+			// Get DataSource
+			Context initContext = new InitialContext();
+			Context envContext = (Context) initContext.lookup("java:/comp/env");
+			datasource = (DataSource) envContext.lookup("jdbc/junkdb");
+		}
+		catch (NamingException e)
+		{
+			logger.severe("cannot locate database");
+			throw e;
+		}
+	}
+	
+	public Connection getConnection() throws SQLException
+	{
+		if (connection == null || connection.isClosed())
+		{
+			connection = datasource.getConnection();
 		}
 		return connection;
 	}
 	
-	public void open()
+	public void closeConnection() throws SQLException
 	{
-		
-	}
-	
-	public void closed()
-	{
-		
+		if (connection != null && !connection.isClosed())
+		{
+			connection.close();
+		}
 	}
 
 }

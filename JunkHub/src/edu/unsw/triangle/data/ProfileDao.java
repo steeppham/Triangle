@@ -1,15 +1,16 @@
 package edu.unsw.triangle.data;
 
+import java.util.List;
+
 import edu.unsw.triangle.model.Profile;
 
-public interface ProfileDao 
+public interface ProfileDao
 {
-	public void insert();
+	public List<Profile> getAll();
 	
-	public void delete();
+	public List<Profile> findById(int id);
 	
-	public void update(Profile profile);
+	public void update(Profile value);
 	
-	public Profile query(String key);
-
+	public void detele(Profile value);
 }

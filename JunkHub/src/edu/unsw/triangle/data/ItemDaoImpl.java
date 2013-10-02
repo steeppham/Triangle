@@ -24,9 +24,20 @@ public class ItemDaoImpl extends GenericDao implements ItemDao
 	}
 
 	@Override
-	public Item findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Item findById(int id) throws SQLException 
+	{
+		Item item = null;
+		Statement statement = connection.createStatement();
+		ResultSet result = statement.executeQuery("SELECT * FROM ITEMS WHERE ID = " + id);
+		
+		if (result.next())
+		{
+			item = bindResultToItem(result);
+		}
+		
+		statement.close();
+		result.close();
+		return item;
 	}
 
 	@Override
@@ -49,11 +60,12 @@ public class ItemDaoImpl extends GenericDao implements ItemDao
 		Statement statement = connection.createStatement();
 		ResultSet result = statement.executeQuery("SELECT * FROM ITEMS WHERE TITLE LIKE '%" + title + "%'" );
 		
-		if (result.next())
+		while (result.next())
 		{
 			items.add(bindResultToItem(result));
 		}
-		
+		statement.close();
+		result.close();
 		return items;
 	}
 	

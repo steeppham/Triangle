@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import edu.unsw.triangle.controller.Controller;
 import edu.unsw.triangle.controller.ModelView;
 import edu.unsw.triangle.model.Item;
+import edu.unsw.triangle.service.ItemService;
 import edu.unsw.triangle.util.Errors;
 
 public class ItemRequestController implements Controller
@@ -19,8 +20,8 @@ public class ItemRequestController implements Controller
 	{
 		logger.info("handling item request");
 		// Expect request contain parameter "id"
-		String id = request.getParameter("id");
-		if (id == null)
+		String idString = request.getParameter("id");
+		if (idString == null)
 		{
 			// Missing request parameter
 			logger.warning("item request missing id parameter");
@@ -30,10 +31,24 @@ public class ItemRequestController implements Controller
 			return modelView;
 		}
 		
-		// Service layer here...
+		// Parse id as number
+		// TODO Exception handling here..
+		int id = Integer.parseInt(idString);
+		
+		// Retrieve item from repository
 		logger.info("retrieving item id:" + id + " from repository");
-		Item item = new Item();
-		item.setTitle("jeans").setCategory("clothes").setDescription("best jeans ever");
+		Item item = ItemService.findItemById(id);
+		
+		if (item == null)
+		{
+			// Item not found
+			logger.info("item id:" + id + " not found");
+			Errors errors = new Errors();
+			errors.rejectValue("request", "item not found");
+			ModelView modelView = new ModelView(getFormView()).forward().addModel("errors", errors);
+			return modelView;
+		}
+		
 		ModelView modelView = new ModelView(getFormView()).forward().addModel("item", item);
 		return modelView;
 	}

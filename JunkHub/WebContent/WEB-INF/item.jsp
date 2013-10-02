@@ -13,11 +13,17 @@
 <body>
 
 <c:if test="${errors.hasErrors()}">
-${errors.getErrorMessage("request")}
-</c:if>
+<div style="color: #FF0000;">${errors.getErrorMessage("request")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("bid")}</div>
+</c:if>
+
 <h1>${item.title}</h1>
+<p>${item.category}</p>
 <p>${item.description}</p>
+<p>${item.postage}</p>
+<p>${item.start}</p>
+<p>${item.bid}</p>
+<p>${item.owner}</p>
 <form  method="POST" action="item">
 <input type="text" name="bid"><br>
 <input type="submit" value="bid" name="place bid">

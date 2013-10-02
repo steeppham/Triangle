@@ -9,7 +9,7 @@ public interface ItemDao
 {
 	public List<Item> getAll();
 	
-	public Item findById(int id);
+	public Item findById(int id) throws SQLException;
 	
 	public void update(Item value);
 	

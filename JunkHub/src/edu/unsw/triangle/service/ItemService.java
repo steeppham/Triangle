@@ -26,5 +26,20 @@ public class ItemService
 		
 		return item;
 	}
+	
+	public static void addNewItem(Item item) throws SQLException, DataSourceException
+	{
+		DerbyDaoManager daoManager = null;
+		try
+		{
+			daoManager = new DerbyDaoManager(ConnectionManager.getInstance());
+			daoManager.getItemDao().add(item);
+		}
+		finally
+		{
+			if(daoManager != null)
+				daoManager.close();
+		}
+	}
 
 }

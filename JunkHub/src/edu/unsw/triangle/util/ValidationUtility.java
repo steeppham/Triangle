@@ -30,20 +30,22 @@ public class ValidationUtility
 		}
 	}
 	
-	public static void rejectNotFloat(Errors errors, String field, String value, String message)
+	public static float tryRejectNotFloat(Errors errors, String field, String value, String message)
 	{
+		float floatValue = 0;
 		try
 		{
-			float reservePrice = Float.parseFloat(value);
+			if (value != null)
+				floatValue = Float.parseFloat(value);
 		}
 		catch (NumberFormatException e)
 		{
-			
+			errors.rejectValue(field, message);
 		}
+		return floatValue;
 	}
 
-	public static void rejectInvalidMonetary(Errors errors, String field,
-			float value, String message) 
+	public static void rejectInvalidMonetary(Errors errors, String field, float value, String message) 
 	{
 		if (value <= 0)
 		{

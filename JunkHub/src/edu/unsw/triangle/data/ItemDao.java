@@ -13,6 +13,8 @@ public interface ItemDao
 	
 	public void update(Item value);
 	
+	public void add(Item value) throws SQLException;
+	
 	public void detele(Item value);
 	
 	public List<Item> findByTitle(String title) throws SQLException;

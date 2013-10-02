@@ -18,7 +18,7 @@
 		<input type="text" name="query"><br>
 	</form>
 	<!-- Search results shown below -->
-		
+			<div style="color: #FF0000;">${errors.getErrorMessage("search.error")}</div>
 			<!--Display message-->
 			SEARCH RESULT
 			<c:choose>
@@ -28,6 +28,16 @@
 			<c:otherwise> 
 				<!-- search results here -->
 				${result.size()}
+				<table>
+			      <c:forEach var="item" items="${result}">
+			        <tr>
+			          <td>${item.title}</td>
+			          <td>${item.category}</td>
+			          <td>${item.start}</td>
+			          <td><a href="item?id=${item.id}">${item.title}</a></td>
+			        </tr>
+			      </c:forEach>
+			    </table>
 			</c:otherwise>
 			</c:choose>
 

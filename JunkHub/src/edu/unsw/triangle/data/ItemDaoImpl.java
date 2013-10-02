@@ -1,9 +1,14 @@
 package edu.unsw.triangle.data;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.unsw.triangle.model.Item;
+import edu.unsw.triangle.model.Item.ItemStatus;
 
 public class ItemDaoImpl extends GenericDao implements ItemDao
 {
@@ -19,7 +24,7 @@ public class ItemDaoImpl extends GenericDao implements ItemDao
 	}
 
 	@Override
-	public List<Item> findById(int id) {
+	public Item findById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -34,5 +39,41 @@ public class ItemDaoImpl extends GenericDao implements ItemDao
 	public void detele(Item value) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<Item> findByTitle(String title) throws SQLException 
+	{
+		List<Item> items = new ArrayList<Item>();
+		// Find items by title that contains search string..
+		Statement statement = connection.createStatement();
+		ResultSet result = statement.executeQuery("SELECT * FROM ITEMS WHERE TITLE LIKE '%" + title + "%'" );
+		
+		if (result.next())
+		{
+			items.add(bindResultToItem(result));
+		}
+		
+		return items;
+	}
+	
+	private Item bindResultToItem(ResultSet result) throws SQLException
+	{
+		Item item = new Item();
+		item.setId(result.getInt("ID"));
+		item.setTitle(result.getString("TITLE"));
+		item.setCategory(result.getString("CATEGORY"));
+		item.setPicture(result.getString("PICTURE"));
+		item.setDescription(result.getString("DESCRIPTION"));
+		item.setPostage(result.getString("POSTAGE"));
+		item.setReserve(result.getBigDecimal("RESERVE").floatValue());
+		item.setStart(result.getBigDecimal("START").floatValue());
+		item.setIncrement(result.getBigDecimal("INC").floatValue());
+		item.setOwner(result.getString("OWNER"));
+		item.setStatus(ItemStatus.values()[result.getInt("STATUS")]);
+		item.setBidder(result.getString("BIDDER"));
+		if (result.getBigDecimal("BID") != null)
+			item.setBid(result.getBigDecimal("BID").floatValue());
+		return item;
 	}
 }

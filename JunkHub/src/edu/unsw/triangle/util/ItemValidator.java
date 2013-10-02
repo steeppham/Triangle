@@ -30,11 +30,11 @@ public class ItemValidator implements Validator {
 		
 		
 		ValidationUtility.rejectInvalidMonetary(errors, "reserve", item.getReserve(), "reserve price must be greater than 0.00");
-		ValidationUtility.rejectInvalidMonetary(errors, "start", item.getStartPrice(), "starting price must be greater than 0.00");
-		ValidationUtility.rejectInvalidMonetary(errors, "increment", item.getBidIncrement(), "bid increment must be greater than 0.00");
+		ValidationUtility.rejectInvalidMonetary(errors, "start", item.getStart(), "starting price must be greater than 0.00");
+		ValidationUtility.rejectInvalidMonetary(errors, "increment", item.getIncrement(), "bid increment must be greater than 0.00");
 
 		// Reserve price must be greater or equal to start price
-		ValidationUtility.rejectNotGreaterThan(errors, "reserve", item.getReserve(), item.getStartPrice(), "reserve price must be greater than starting price");
+		ValidationUtility.rejectNotGreaterThan(errors, "reserve", item.getReserve(), item.getStart(), "reserve price must be greater than starting price");
 	}
 
 }

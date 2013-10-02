@@ -4,18 +4,79 @@ import java.io.Serializable;
 
 public class Item implements Serializable
 {
+	public enum ItemStatus
+	{
+		NOT_ACTIVE,
+		ACTIVE,
+		SOLD,
+		UNSOLD;
+	}
+	
 	private static final long serialVersionUID = 1L;
 	
+	private int id;
 	private String title;
 	private String category;
 	private String picture;
 	private String description;
 	private String postage;
 	private float reserve;
-	private float startPrice;
-	private float bidIncrement;
-	private boolean isEnded;
+	private float start;
+	private float increment;
+	private String owner;
+	private ItemStatus status;
+	private String bidder;
+	private float bid;
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public float getStart() {
+		return start;
+	}
+	public float getIncrement() {
+		return increment;
+	}
+	public String getOwner() {
+		return owner;
+	}
+	public Item setOwner(String username)
+	{
+		this.owner = username;
+		return this;
+	}
+	
+	public ItemStatus getStatus() {
+		return status;
+	}
+	public String getBidder() {
+		return bidder;
+	}
+	public float getBid() {
+		return bid;
+	}
+	public void setStart(float start) {
+		this.start = start;
+	}
+	public void setIncrement(float increment) {
+		this.increment = increment;
+	}
+	public Item setStatus(ItemStatus status) {
+		this.status = status;
+		return this;
+	}
+	public Item setBidder(String bidder) {
+		this.bidder = bidder;
+		return this;
+	}
+	public Item setBid(float bid) {
+		this.bid = bid;
+		return this;
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -56,27 +117,6 @@ public class Item implements Serializable
 	}
 	public Item setReserve(float reserve) {
 		this.reserve = reserve;
-		return this;
-	}
-	public float getStartPrice() {
-		return startPrice;
-	}
-	public Item setStartPrice(float startPrice) {
-		this.startPrice = startPrice;
-		return this;
-	}
-	public float getBidIncrement() {
-		return bidIncrement;
-	}
-	public Item setBidIncrement(float bidIncrement) {
-		this.bidIncrement = bidIncrement;
-		return this;
-	}
-	public boolean isEnded() {
-		return isEnded;
-	}
-	public Item setIsEnded(boolean isEnded) {
-		this.isEnded = isEnded;
 		return this;
 	}
 }

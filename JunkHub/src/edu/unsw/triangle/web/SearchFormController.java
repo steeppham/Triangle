@@ -1,6 +1,5 @@
 package edu.unsw.triangle.web;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -11,6 +10,7 @@ import edu.unsw.triangle.controller.FrontController;
 import edu.unsw.triangle.controller.ModelView;
 import edu.unsw.triangle.model.Item;
 import edu.unsw.triangle.model.Query;
+import edu.unsw.triangle.service.SearchService;
 import edu.unsw.triangle.util.Errors;
 import edu.unsw.triangle.util.SearchValidator;
 import edu.unsw.triangle.util.Validator;
@@ -38,14 +38,23 @@ public class SearchFormController extends AbstractFormController
 	protected ModelView handleFormSubmit(Object command) 
 	{
 		Query query = (Query) command;
+		ModelView modelView;
+		List<Item> results;
+		try
+		{
+			results = SearchService.search(query);
+			logger.info(String.format("Search query \"%s\" returned %d results", query, results.size()));
+			modelView = new ModelView(getSuccessView()).forward().addModel("query", query).addModel("result", results);
+		}
+		catch (Exception e)
+		{
+			// TODO Need to bubble exceptions higher up
+			logger.severe("Search service error reason: " + e.getMessage());
+			e.printStackTrace();
+			Errors errors = new Errors().rejectValue("search.error", "search service unavailable reason : " + e.getMessage());
+			modelView = handleFormError(query, errors);
+		}
 		
-		// Search service here..
-		//ItemCollection result = SearchService.search();
-		
-		List<Item> results = new ArrayList<Item>();
-		logger.info(String.format("Search query \"%s\" returned %d results", query, results.size()));
-		
-		ModelView modelView = new ModelView(getSuccessView()).forward().addModel("query", query).addModel("result", results);
 		return modelView;
 	}
 

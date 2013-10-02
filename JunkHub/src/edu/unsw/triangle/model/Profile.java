@@ -9,6 +9,13 @@ import java.util.Date;
  */
 public class Profile implements Serializable
 {
+	public enum AccountStatus
+	{
+		NOT_ACTIVE,
+		ACTIVE,
+		NOT_CONFIRMED;
+	}
+	
 	private static final long serialVersionUID = 1L;
 	
 	private String username;
@@ -20,6 +27,8 @@ public class Profile implements Serializable
 	private String address;
 	private Date dob;
 	private int credit;
+	private boolean isAdmin;
+	private AccountStatus status;
 	
 	public String getUsername() {
 		return username;
@@ -94,6 +103,20 @@ public class Profile implements Serializable
 	public Profile setCredit(int credit)
 	{
 		this.credit = credit;
+		return this;
+	}
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+	public AccountStatus getStatus() {
+		return status;
+	}
+	public Profile setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+		return this;
+	}
+	public Profile setStatus(AccountStatus status) {
+		this.status = status;
 		return this;
 	}
 }

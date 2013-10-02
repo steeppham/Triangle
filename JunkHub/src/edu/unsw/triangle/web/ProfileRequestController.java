@@ -1,6 +1,6 @@
 package edu.unsw.triangle.web;
 
-import java.util.Date;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +13,8 @@ import edu.unsw.triangle.model.WebSession;
 
 public class ProfileRequestController implements Controller 
 {
-
+	private final Logger logger = Logger.getLogger(ProfileRequestController.class.getName());
+	
 	@Override
 	public ModelView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception 
 	{
@@ -29,11 +30,12 @@ public class ProfileRequestController implements Controller
 		Profile profileError = (Profile) request.getAttribute("profile.error");
 		if (profile == null || profileError != null)
 		{
-			// Retrieve profile details
-			// Service here...
-			profile = new Profile();
-			profile.setUsername("stephen");
-			profile.setDob(new Date());
+			// Retrieve profile from web session
+			profile = websession.getProfile();
+			if (profile == null)
+			{
+				logger.warning("profile missing from web session");
+			}
 		}
 		
 		ModelView modelView = new ModelView(getFormView()).forward().addModel("profile", profile);

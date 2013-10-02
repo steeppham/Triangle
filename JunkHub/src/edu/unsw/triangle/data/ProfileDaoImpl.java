@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import edu.unsw.triangle.model.Profile;
+import edu.unsw.triangle.model.Profile.AccountStatus;
 
 public class ProfileDaoImpl extends GenericDao implements ProfileDao
 {
@@ -102,7 +103,8 @@ public class ProfileDaoImpl extends GenericDao implements ProfileDao
 			int status = result.getInt("STATUS");
 			boolean isAdmin = result.getBoolean("ADMIN");
 			profile = new Profile().setUsername(username).setPassword(password).setFirstname(firstname).setLastname(lastname).
-					setNickname(nickname).setEmail(email).setAddress(address).setDob(dob).setCredit(credit);
+					setNickname(nickname).setEmail(email).setAddress(address).setDob(dob).setCredit(credit).setAdmin(isAdmin).
+					setStatus(AccountStatus.values()[status]);
 			statement.close();
 			result.close();
 		}

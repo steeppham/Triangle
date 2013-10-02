@@ -9,6 +9,7 @@ import edu.unsw.triangle.controller.ModelView;
 import edu.unsw.triangle.model.Login;
 import edu.unsw.triangle.model.Profile;
 import edu.unsw.triangle.model.WebSession;
+import edu.unsw.triangle.model.Profile.AccountStatus;
 import edu.unsw.triangle.service.LoginService;
 import edu.unsw.triangle.util.Errors;
 import edu.unsw.triangle.util.LoginValidator;
@@ -49,10 +50,19 @@ public class LoginFormController extends AbstractFormController
 			logger.info("authentication failure reason:" + e.getMessage());
 			Errors errors = new Errors();
 			errors.rejectValue("authentication", "authentication failure");
-			modelView = handleFormError(login, errors);
+			return modelView = handleFormError(login, errors).addModel("login", login);
 		}
 		
-		if (profile != null)
+		if (profile == null)
+		{
+			// Not authenticated
+			logger.info("incorrect username or password for: " + login.getUsername());
+			Errors errors = new Errors();
+			errors.rejectValue("authentication", "Incorrect username and/or password");
+			return modelView = handleFormError(login, errors).addModel("login", login);
+		}
+		
+		if (profile.getStatus() == AccountStatus.ACTIVE)
 		{
 			// Authenticated
 			logger.info("authenticated for username: " + login.getUsername());
@@ -64,13 +74,29 @@ public class LoginFormController extends AbstractFormController
 			websession.setProfile(profile);
 			modelView.addSessionModel("websession", websession);
 		}
+		else if (profile.getStatus() == AccountStatus.NOT_ACTIVE)
+		{
+			// User banned
+			logger.info(login.getUsername() + " has no access");
+			Errors errors = new Errors();
+			errors.rejectValue("authentication", "access has been revoked");
+			modelView = handleFormError(login, errors).addModel("login", login);
+		}
+		else if (profile.getStatus() == AccountStatus.NOT_CONFIRMED)
+		{
+			// User has not confirmed registration
+			logger.info("confirmation invalid for: " + login.getUsername());
+			Errors errors = new Errors();
+			errors.rejectValue("authentication", "please confirm registration before logining in");
+			modelView = handleFormError(login, errors).addModel("login", login);
+		}
 		else
 		{
-			// Not authenticated
-			logger.info("incorrect username or password for: " + login.getUsername());
+			// invalid state
+			logger.info("invalid account status");
 			Errors errors = new Errors();
-			errors.rejectValue("authentication", "Incorrect username and/or password");
-			modelView = handleFormError(login, errors);
+			errors.rejectValue("authentication", "invalid account status");
+			modelView = handleFormError(login, errors).addModel("login", login);
 		}
 		
 		modelView.addModel("login", login);

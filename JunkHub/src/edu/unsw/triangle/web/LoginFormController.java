@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import edu.unsw.triangle.controller.AbstractFormController;
 import edu.unsw.triangle.controller.ModelView;
 import edu.unsw.triangle.model.Login;
+import edu.unsw.triangle.model.Profile;
 import edu.unsw.triangle.model.WebSession;
+import edu.unsw.triangle.service.LoginService;
 import edu.unsw.triangle.util.Errors;
 import edu.unsw.triangle.util.LoginValidator;
 import edu.unsw.triangle.util.Validator;
@@ -35,9 +37,22 @@ public class LoginFormController extends AbstractFormController
 		logger.info("handling login form submit");
 		Login login = (Login) command;
 		ModelView modelView;
-		//TODO Implement service
-		// Authenticate with service here...
-		if (login.getUsername().equals("stephen"))
+		Profile profile = null;
+		
+		// Call service layer to authenticate
+		try 
+		{
+			profile = LoginService.authenticate(login);
+		}
+		catch (Exception e)
+		{
+			logger.info("authentication failure reason:" + e.getMessage());
+			Errors errors = new Errors();
+			errors.rejectValue("authentication", "authentication failure");
+			modelView = handleFormError(login, errors);
+		}
+		
+		if (profile != null)
 		{
 			// Authenticated
 			logger.info("authenticated for username: " + login.getUsername());
@@ -46,12 +61,13 @@ public class LoginFormController extends AbstractFormController
 			// Create new web session and add to model
 			WebSession websession = new WebSession();
 			websession.setUsername(login.getUsername());
+			websession.setProfile(profile);
 			modelView.addSessionModel("websession", websession);
 		}
 		else
 		{
 			// Not authenticated
-			logger.info("authentication failed for username: " + login.getUsername());
+			logger.info("incorrect username or password for: " + login.getUsername());
 			Errors errors = new Errors();
 			errors.rejectValue("authentication", "Incorrect username and/or password");
 			modelView = handleFormError(login, errors);

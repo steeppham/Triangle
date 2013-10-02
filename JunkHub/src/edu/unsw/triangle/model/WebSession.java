@@ -8,6 +8,7 @@ public class WebSession implements Serializable
 
 	private String username;
 	private int userid;
+	private Profile profile;
 	
 	public String getUsername() {
 		return username;
@@ -20,5 +21,13 @@ public class WebSession implements Serializable
 	}
 	public void setUserid(int userid) {
 		this.userid = userid;
+	}
+	public void setProfile(Profile profile) 
+	{
+		this.profile = profile;
+	}
+	public Profile getProfile() 
+	{
+		return profile;
 	}
 }

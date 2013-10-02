@@ -37,13 +37,6 @@ public class ControllerFilter implements Filter
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpSession httpSession = httpRequest.getSession();
 		
-		// TESTING ZONE***********
-		DatabaseTest db = new DatabaseTest();
-		db.probe();
-		
-		
-		// *******************
-		
 		// Check if request is for register page
 		if (httpRequest.getPathInfo().equals("/register"))
 		{
@@ -59,7 +52,6 @@ public class ControllerFilter implements Filter
 			chain.doFilter(request, response);
 			return;
 		}
-		
 		
 		WebSession websession = (WebSession) httpSession.getAttribute("websession");
 		if (websession == null)

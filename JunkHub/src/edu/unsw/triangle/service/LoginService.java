@@ -1,38 +1,40 @@
 package edu.unsw.triangle.service;
 
-import javax.servlet.http.HttpServletRequest;
+import java.sql.SQLException;
 
-import edu.unsw.triangle.model.Credential;
-import edu.unsw.triangle.model.Keychain;
+import edu.unsw.triangle.data.ConnectionManager;
+import edu.unsw.triangle.data.DataSourceException;
+import edu.unsw.triangle.data.DerbyDaoManager;
+import edu.unsw.triangle.model.Login;
+import edu.unsw.triangle.model.Profile;
 
 /**
  * Provides the service layer to operate with Login DAO.
  */
 public class LoginService 
 {
-	private HttpServletRequest request = null;
-	
-	public LoginService(HttpServletRequest request)
+	//TODO static?
+	public static Profile authenticate(Login login) throws DataSourceException, SQLException 
 	{
-		this.request = request;
-	}
-
-	public static Keychain authenticate(Credential credential) 
-	{
-		boolean isAuthenticated = false;
-		// TODO TESTING: REMOVE FOR DEPLOYMENT
-		if (credential.getUsername().equals("stephen"))
+		DerbyDaoManager derbyManager = null;
+		Profile profile = null;
+		try
 		{
-			isAuthenticated = true;
+			// Check if profile exist
+			derbyManager = new DerbyDaoManager(ConnectionManager.getInstance());
+			profile = derbyManager.getProfileDao().findByUsername(login.getUsername());
+			if (profile == null)
+				return null;
+			// Check password match
+			if (!profile.getPassword().equals(login.getPassword()))
+				return null;
+		}
+		finally
+		{
+			if (derbyManager != null)
+				derbyManager.close();
 		}
 		
-		// TODO DAO operations here
-		// Talk to dao object which talks to database
-		// e.g.
-		// String password logindao.getpassword(username);
-		
-		
-		Keychain keychain = new Keychain(credential.getUsername(), isAuthenticated);
-		return keychain;
+		return profile;
 	}
 }

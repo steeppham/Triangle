@@ -21,7 +21,7 @@ public class ConnectionManager
 	private Connection connection;
 	private final Logger logger = Logger.getLogger(ConnectionManager.class.getName());
 	
-	public static ConnectionManager getInstance() throws Exception
+	public static ConnectionManager getInstance() throws DataSourceException
 	{
 		if (connectionManager == null)
 		{
@@ -30,7 +30,7 @@ public class ConnectionManager
 		return connectionManager;
 	}
 	
-	private ConnectionManager() throws Exception
+	private ConnectionManager() throws DataSourceException
 	{
 		try
 		{
@@ -42,7 +42,7 @@ public class ConnectionManager
 		catch (NamingException e)
 		{
 			logger.severe("cannot locate database");
-			throw e;
+			throw new DataSourceException("cannot locate database", e);
 		}
 	}
 	

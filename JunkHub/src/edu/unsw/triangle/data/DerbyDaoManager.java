@@ -7,7 +7,7 @@ public class DerbyDaoManager extends AbstractDaoFactory
 	private ProfileDao profileDao;
 	private ItemDao itemDao;
 	
-	private DerbyDaoManager(ConnectionManager connectionManager) 
+	public DerbyDaoManager(ConnectionManager connectionManager) 
 	{ 
 		super(connectionManager);
 	}

@@ -37,12 +37,12 @@ public class DatabaseTest
             // Get Connection and Statement
             connection = dataSource.getConnection();
             statement = connection.createStatement();
-            String query = "SELECT * FROM STUDENTS";
+            String query = "SELECT * FROM PROFILES";
             resultSet = statement.executeQuery(query);
             
             while (resultSet.next()) 
             {
-                System.out.println(resultSet.getString(1) + resultSet.getString(2) + resultSet.getString(3));
+                System.out.println(resultSet.getString(1));
             }
         } 
         catch (SQLException e) 

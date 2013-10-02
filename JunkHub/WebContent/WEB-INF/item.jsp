@@ -12,10 +12,11 @@
 </head>
 <body>
 
-<c:if test="${errors.hasErrors()}">
+
 <div style="color: #FF0000;">${errors.getErrorMessage("request")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("bid")}</div>
-</c:if>
+<div style="color: #FF0000;">${errors.getErrorMessage("id")}</div>
+
 
 <h1>${item.title}</h1>
 <p>${item.category}</p>
@@ -24,8 +25,10 @@
 <p>${item.start}</p>
 <p>${item.bid}</p>
 <p>${item.owner}</p>
+<p>${item.bidder}</p>
 <form  method="POST" action="item">
 <input type="text" name="bid"><br>
+<input type="hidden" name="id" value="${item.id}"/> 
 <input type="submit" value="bid" name="place bid">
 </form>
 <a href="main">return to main</a>

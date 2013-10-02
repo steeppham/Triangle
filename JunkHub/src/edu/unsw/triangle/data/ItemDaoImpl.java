@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import edu.unsw.triangle.model.Bid;
 import edu.unsw.triangle.model.Item;
 import edu.unsw.triangle.model.Item.ItemStatus;
 
@@ -112,6 +113,20 @@ public class ItemDaoImpl extends GenericDao implements ItemDao
 		
 		int result = statement.executeUpdate();
 		logger.info("Item " + item.getTitle() + "successfully inserted into repository"+ result);
+		statement.close();
+	}
+
+	@Override
+	public void updateItemBid(Bid bid) throws SQLException 
+	{
+		String query = "UPDATE ITEMS SET BID=?, BIDDER=? WHERE ID=?";
+		PreparedStatement statement = connection.prepareStatement(query);
+		statement.setBigDecimal(1, BigDecimal.valueOf(bid.getBidFloat()));
+		statement.setString(2, bid.getBidder());
+		statement.setInt(3, bid.getItemId());
+
+		int result = statement.executeUpdate();
+		logger.info("Item " + bid.getItemId() + "bid successfully updated"+ result);
 		statement.close();
 	}
 }

@@ -18,6 +18,7 @@ public class ModelView
 	private ResponseAction action = ResponseAction.FORWARD;
 	private final Map<String, Object> modelMap = new HashMap<String, Object>();
 	private final Map<String, Object> sessionModelMap = new HashMap<String, Object>();
+	private final Map<String, String> parameterMap =  new HashMap<String, String>();
 	
 	public ModelView(String viewName) 
 	{
@@ -76,5 +77,21 @@ public class ModelView
 	public Set<String> sessionModelSet() 
 	{
 		return sessionModelMap.keySet();
+	}
+	
+	public ModelView addParameter(String name, String value)
+	{
+		parameterMap.put(name, value);
+		return this;
+	}
+	
+	public Set<String> getParameterSet()
+	{
+		return parameterMap.keySet();
+	}
+	
+	public String getParameter(String name)
+	{
+		return parameterMap.get(name);
 	}
 }

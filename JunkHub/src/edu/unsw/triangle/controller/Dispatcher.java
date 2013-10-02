@@ -1,6 +1,7 @@
 package edu.unsw.triangle.controller;
 
 import java.io.IOException;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
@@ -31,6 +32,18 @@ public class Dispatcher
 	{
 		ViewResolver viewResolver = new ViewResolver();
 		String url = viewResolver.resolve(modelView.getViewName());
+		
+		// Add parameter to url request
+		Set<String> parameters = modelView.getParameterSet();
+		int count = 0;
+		for(String parameter : parameters)
+		{
+			if (count == 0)
+				url = url + "?";
+			else
+				url = url + "&";
+			url = url + parameter + modelView.getParameter(parameter);
+		}
 		
 		if (url == null)
 		{

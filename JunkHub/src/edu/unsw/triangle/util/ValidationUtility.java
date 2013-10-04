@@ -14,12 +14,12 @@ public class ValidationUtility
 
 	public static void rejectInvalidEmail(Errors errors, String field, String value, String message) 
 	{
-		//TODO need to implement correct regex
-//		Pattern pattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$");
-//		if (!pattern.matcher(value.toLowerCase()).matches())
-//		{
-//			errors.rejectValue(field, message);
-//		}
+		// Regular expression for valid email address
+		Pattern pattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$", Pattern.CASE_INSENSITIVE);
+		if (!pattern.matcher(value.toLowerCase()).matches())
+		{
+			errors.rejectValue(field, message);
+		}
 	}
 
 	public static void rejectInvalidCredit(Errors errors, String field, int credit, String message) 

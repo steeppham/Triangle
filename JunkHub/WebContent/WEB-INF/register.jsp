@@ -23,15 +23,15 @@ Register
 	<div style="color: #FF0000;">${errors.getErrorMessage("dob")}</div>
 	<div style="color: #FF0000;">${errors.getErrorMessage("credit")}</div>
 	<form method="POST" action="register">
-		Username <input type="text" name="username" value="${profile.username}"/><br>
-		Password <input type="password" name="password" value="${profile.password}" /><br>
-		Nickname <input type="text" name="nickname" value="${profile.nickname}"/><br>
-		Email address <input type="text" name="email" value="${profile.email}"/><br>
-		First name <input type="text" name="firstname" value="${profile.firstname}"/><br>
-		Last name <input type="text" name="lastname" value="${profile.lastname}"/><br>
+		Username <input type="text" name="username" value="${profile.username}" maxlength= "20"/><br>
+		Password <input type="password" name="password" value="${profile.password}" maxlength= "20" /><br>
+		Nickname <input type="text" name="nickname" value="${profile.nickname}" maxlength= "20"/><br>
+		Email address <input type="text" name="email" value="${profile.email}" maxlength= "20"/><br>
+		First name <input type="text" name="firstname" value="${profile.firstname}" maxlength= "20"/><br>
+		Last name <input type="text" name="lastname" value="${profile.lastname}" maxlength= "20"/><br>
 		Date of birth <input type="text" name="dob" value="${profile.dob}"/><br>
-		Address <input type="text" name="address" value="${profile.address}"/><br>
-		Credit card number <input type="text" name="credit" value="${profile.credit}"/><br>
+		Address <input type="text" name="address" value="${profile.address}" maxlength= "20"/><br>
+		Credit card number <input type="text" name="credit" value="${profile.credit}" maxlength= "8"/><br>
 		<input type="submit" value="register">
 	</form>
 	<a href="login">Login</a>

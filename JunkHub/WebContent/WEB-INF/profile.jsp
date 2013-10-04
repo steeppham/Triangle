@@ -23,14 +23,14 @@
 <form method="POST" action="profile">
 <h2>${profile.username}</h2>
 <input type="hidden" name="username" value="${profile.username}"/>
-Password <input type="password" name="password" value="${profile.password}" /><br>
-Nickname <input type="text" name="nickname" value="${profile.nickname}"/><br>
-Email address <input type="text" name="email" value="${profile.email}"/><br>
-First name <input type="text" name="firstname" value="${profile.firstname}"/><br>
-Last name <input type="text" name="lastname" value="${profile.lastname}"/><br>
+Password <input type="password" name="password" value="${profile.password}" maxlength= "20"/><br>
+Nickname <input type="text" name="nickname" value="${profile.nickname}" maxlength= "20"/><br>
+Email address <input type="text" name="email" value="${profile.email}" maxlength= "20"/><br>
+First name <input type="text" name="firstname" value="${profile.firstname}" maxlength= "20"/><br>
+Last name <input type="text" name="lastname" value="${profile.lastname}" maxlength= "20"/><br>
 Date of birth <input type="text" name="dob" value="${profile.dob}"/><br>
-Address <input type="text" name="address" value="${profile.address}"/><br>
-Credit card number <input type="text" name="credit" value="${profile.credit}"/><br>
+Address <input type="text" name="address" value="${profile.address}" maxlength= "20"/><br>
+Credit card number <input type="text" name="credit" value="${profile.credit}" maxlength= "8"/><br>
 <input type="submit" value="save" name="update"><br>
 </form>
 

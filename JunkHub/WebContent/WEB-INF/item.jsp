@@ -27,7 +27,7 @@
 <p>${item.owner}</p>
 <p>${item.bidder}</p>
 <form  method="POST" action="item">
-<input type="text" name="bid"><br>
+<input type="text" name="bid" maxlength= "5"><br>
 <input type="hidden" name="id" value="${item.id}"/> 
 <input type="submit" value="bid" name="place bid">
 </form>

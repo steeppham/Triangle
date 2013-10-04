@@ -25,21 +25,21 @@
 
 <form  method="POST" action="sell">
 <label>title</label>
-<input type="text" value="${item.title}" name="title"><br>
+<input type="text" value="${item.title}" name="title" maxlength="10"><br>
 <label>category</label>
-<input type="text" value="${item.category}" name="category"><br>
+<input type="text" value="${item.category}" name="category" maxlength= "20"><br>
 <label>picture</label>
 <input type="file" value="${item.picture}" name="picture"><br>
 <label>description</label>
-<input type="text" value="${item.description}" name="description"><br>
+<input type="text" value="${item.description}" name="description" maxlength= "100"><br>
 <label>postage</label>
-<input type="text" value="${item.postage}" name="postage"><br>
+<input type="text" value="${item.postage}" name="postage" maxlength= "20"><br>
 <label>reserve price</label>
-<input type="text" value="${item.reserve}" name="reserve"><br>
+<input type="text" value="${item.reserve}" name="reserve" maxlength= "5"><br>
 <label>start price</label>
-<input type="text" value="${item.start}" name="start"><br>
+<input type="text" value="${item.start}" name="start" maxlength= "5"><br>
 <label>bid increments</label>
-<input type="text" value="${item.increment}" name="increment"><br>
+<input type="text" value="${item.increment}" name="increment" maxlength= "5"><br>
 <input type="submit" value="sell" name="sell">
 </form>
 </body>

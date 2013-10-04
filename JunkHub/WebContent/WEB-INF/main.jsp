@@ -43,5 +43,6 @@
 
 	<a href="profile">Profile</a>
 	<a href="sell">Sell Item</a>
+	<a href="logout">Logout</a>
 </body>
 </html>

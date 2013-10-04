@@ -11,6 +11,7 @@ import edu.unsw.triangle.web.ItemFormController;
 import edu.unsw.triangle.web.ItemRequestController;
 import edu.unsw.triangle.web.LoginFormController;
 import edu.unsw.triangle.web.LoginRequestController;
+import edu.unsw.triangle.web.LogoutRequestController;
 import edu.unsw.triangle.web.MainRequestController;
 import edu.unsw.triangle.web.ProfileFormController;
 import edu.unsw.triangle.web.ProfileRequestController;
@@ -54,14 +55,7 @@ public class ControllerFactory
 		mapping.put("POST/sell", new SellFormController());
 		mapping.put("GET/item", new ItemRequestController());
 		mapping.put("POST/item", new ItemFormController());
-//		mapping.put("POST/" + LOGIN, new LoginAction());
-//		mapping.put("GET/" + REGISTER, new RegisterPageRequest());
-//		mapping.put("POST/" + REGISTER, new RegisterAction());
-//		mapping.put("GET/" + MAIN, new MainPageRequest());
-//		mapping.put("GET/" + CONFIRM, new ConfirmPageRequest());
-//		mapping.put("GET/" + SEARCH, new SearchAction());
-//		mapping.put("GET/" + PROFILE, new ProfilePageRequest());
-//		mapping.put("POST/" + PROFILE, new ProfileAction());
+		mapping.put("GET/logout", new LogoutRequestController());
 	}
 	
 	/**

@@ -39,13 +39,19 @@ public class ProfileFormController extends AbstractFormController
 	@Override
 	public ModelView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelView modelView =  super.handleRequest(request, response);
-		// If modelView is successful, then update websession with new profile
+		
+		WebSession websession = (WebSession)request.getSession().getAttribute("websession");
 		Errors errors = (Errors)modelView.getModel("errors");
 		if (errors == null)
 		{
+			// If modelView is successful, then update websession with new profile
 			logger.info("Updating websession with profile");
-			WebSession websession = (WebSession)request.getSession().getAttribute("websession");
 			websession.setProfile((Profile)modelView.getModel("profile"));
+		}
+		else
+		{
+			// Errors in the form, replace command object with profile from web session
+			modelView.addModel("profile", websession.getProfile());
 		}
 		return modelView;
 	}

@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+@Deprecated
 public class ValidatorResult 
 {
 	private Map<String, String> rejectedValues = new HashMap<String, String>();

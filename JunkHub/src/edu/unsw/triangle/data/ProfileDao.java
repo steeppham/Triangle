@@ -15,7 +15,9 @@ public interface ProfileDao
 	
 	public Profile findByUsername(String username) throws SQLException;
 	
-	public void update(Profile value);
+	public void update(Profile value) throws SQLException;
 	
 	public void detele(Profile value);
+	
+	public void insert(Profile value) throws SQLException;
 }

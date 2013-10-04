@@ -12,19 +12,20 @@
 </head>
 <body>
 Register
-	<c:set var="message" value="${message}"/> 
-	<c:if test="${not empty message}">
-		<!--Display message-->
-		X ${message}			
-	</c:if>
+	<div style="color: #FF0000;">${errors.getErrorMessage("register.error")}</div>
 	<div style="color: #FF0000;">${errors.getErrorMessage("username")}</div>
 	<div style="color: #FF0000;">${errors.getErrorMessage("password")}</div>
 	<div style="color: #FF0000;">${errors.getErrorMessage("email")}</div>
+	<div style="color: #FF0000;">${errors.getErrorMessage("firstname")}</div>
+	<div style="color: #FF0000;">${errors.getErrorMessage("lastname")}</div>
+	<div style="color: #FF0000;">${errors.getErrorMessage("nickname")}</div>
+	<div style="color: #FF0000;">${errors.getErrorMessage("address")}</div>
 	<div style="color: #FF0000;">${errors.getErrorMessage("dob")}</div>
 	<div style="color: #FF0000;">${errors.getErrorMessage("credit")}</div>
 	<form method="POST" action="register">
 		Username <input type="text" name="username" value="${profile.username}"/><br>
 		Password <input type="password" name="password" value="${profile.password}" /><br>
+		Nickname <input type="text" name="nickname" value="${profile.nickname}"/><br>
 		Email address <input type="text" name="email" value="${profile.email}"/><br>
 		First name <input type="text" name="firstname" value="${profile.firstname}"/><br>
 		Last name <input type="text" name="lastname" value="${profile.lastname}"/><br>

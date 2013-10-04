@@ -6,6 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import edu.unsw.triangle.controller.AbstractFormController;
 import edu.unsw.triangle.controller.ModelView;
+import edu.unsw.triangle.data.ConnectionManager;
+import edu.unsw.triangle.data.DerbyDaoManager;
+import edu.unsw.triangle.model.Profile;
+import edu.unsw.triangle.model.Profile.AccountStatus;
 import edu.unsw.triangle.util.Errors;
 import edu.unsw.triangle.util.ProfileValidator;
 import edu.unsw.triangle.util.Validator;
@@ -19,16 +23,6 @@ public class RegisterFormController extends AbstractFormController
 	@Override
 	protected Object createBackingObject(HttpServletRequest request) 
 	{
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		String nickname = request.getParameter("nickname");
-		String firstname = request.getParameter("firstname");
-		String lastname = request.getParameter("lastname");
-		String email = request.getParameter("email");
-		String address = request.getParameter("address");
-		String credit = request.getParameter("credit");
-		String dob = request.getParameter("dob");
-		
 		return null;
 	}
 
@@ -36,10 +30,40 @@ public class RegisterFormController extends AbstractFormController
 	protected ModelView handleFormSubmit(Object command) 
 	{
 		logger.info("handling register form submit request");
-		
+		Profile profile = (Profile) command;
+		ModelView modelView = null;
 		// Service provider here...
-		ModelView modelView = new ModelView(getSuccessView()).redirect();
-		modelView.addModel("profile", command);
+		//input data
+		
+		try 
+		{
+			DerbyDaoManager derbyManager = new DerbyDaoManager(ConnectionManager.getInstance());
+			
+			// check if username is free
+			if (derbyManager.getProfileDao().findByUsername(profile.getUsername()) == null)
+			{
+				// insert new profile into repository
+				// set profile to default for new user
+				profile.setAdmin(false).setStatus(AccountStatus.ACTIVE); //TODO change this for confirmation
+				derbyManager.getProfileDao().insert(profile);
+				modelView = new ModelView(getSuccessView()).forward().addModel("profile", command);
+			}
+			else
+			{
+				// username already taken
+				logger.info("username " + profile.getUsername() + " is already taken");
+				Errors errors = new Errors().rejectValue("username", "username is alredy taken");
+				modelView = handleFormError(profile, errors);
+			}
+			derbyManager.close();
+		} 
+		catch (Exception e)
+		{
+			logger.severe("failed to create profile for " + profile.getUsername() + " reason " + e.getMessage());
+			Errors errors = new Errors().rejectValue("register.error", "failed to create profile reason " + e.getMessage());
+			modelView = handleFormError(profile, errors);
+		}
+		
 		return modelView;
 	}
 

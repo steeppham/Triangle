@@ -119,4 +119,8 @@ public class Profile implements Serializable
 		this.status = status;
 		return this;
 	}
+	public java.sql.Date getDobSQLObject() 
+	{
+		return new java.sql.Date(this.dob.getTime());
+	}
 }

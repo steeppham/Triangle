@@ -1,5 +1,6 @@
 package edu.unsw.triangle.data;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -44,10 +45,27 @@ public class ProfileDaoImpl extends GenericDao implements ProfileDao
 	}
 
 	@Override
-	public void update(Profile value) 
+	public void update(Profile profile) throws SQLException 
 	{
-		// TODO Auto-generated method stub
-		
+		String query = "UPDATE PROFILES SET USERNAME=?, PASSWORD=?, NICKNAME=?, FIRSTNAME=?, LASTNAME=?, EMAIL=?, ADDRESS=?, DOB=?, CREDIT=?, STATUS=?, ADMIN=?";
+		PreparedStatement statement = connection.prepareStatement(query);
+		statement.setString(1, profile.getUsername());
+		statement.setString(2, profile.getPassword());
+		statement.setString(3, profile.getNickname());
+		statement.setString(4, profile.getFirstname());
+		statement.setString(5, profile.getLastname());
+		statement.setString(6, profile.getEmail());
+		statement.setString(7, profile.getAddress());
+		statement.setDate(8, profile.getDobSQLObject());
+		statement.setInt(9, profile.getStatus().ordinal());
+		statement.setInt(10, profile.isAdmin()? 1 : 0);
+
+		int result = statement.executeUpdate();
+		if (result == 1)
+			logger.info("Profile " + profile.getUsername() + "is successfully updated"+ result);
+		else
+			throw new SQLException("Profile " + profile.getUsername() + "was not updated into the repository");
+		statement.close();
 	}
 
 	@Override
@@ -110,6 +128,33 @@ public class ProfileDaoImpl extends GenericDao implements ProfileDao
 		}
 		
 		return profile;
+	}
+
+	@Override
+	public void insert(Profile profile) throws SQLException
+	{
+		logger.info("inserting profile: " + profile.getUsername() + " into repository");
+		
+		String query = "INSERT INTO PROFILES(USERNAME, PASSWORD, NICKNAME, FIRSTNAME, LASTNAME, EMAIL, ADDRESS, DOB, CREDIT, STATUS, ADMIN) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+		PreparedStatement statement = connection.prepareStatement(query);
+		statement.setString(1, profile.getUsername());
+		statement.setString(2, profile.getPassword());
+		statement.setString(3, profile.getNickname());
+		statement.setString(4, profile.getFirstname());
+		statement.setString(5, profile.getLastname());
+		statement.setString(6, profile.getEmail());
+		statement.setString(7, profile.getAddress());
+		statement.setDate(8, profile.getDobSQLObject());
+		statement.setInt(9, profile.getCredit());
+		statement.setInt(10, profile.getStatus().ordinal());
+		statement.setInt(11, profile.isAdmin()? 1 : 0);
+
+		int result = statement.executeUpdate();
+		if (result == 1)
+			logger.info("Profile " + profile.getUsername() + "successfully inserted into repository"+ result);
+		else
+			throw new SQLException("Profile " + profile.getUsername() + "was not inserted into the repository");
+		statement.close();
 	}
 
 }

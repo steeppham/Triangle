@@ -10,22 +10,27 @@
 </head>
 <body>
 <h1>My Profile</h1>
-<div style="color: #FF0000;">${errors.getErrorMessage("username")}</div>
+<div style="color: #009900;">${messages.getMessage("profile.success")}</div>
+<div style="color: #FF0000;">${errors.getErrorMessage("profile.error")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("password")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("email")}</div>
+<div style="color: #FF0000;">${errors.getErrorMessage("firstname")}</div>
+<div style="color: #FF0000;">${errors.getErrorMessage("lastname")}</div>
+<div style="color: #FF0000;">${errors.getErrorMessage("nickname")}</div>
+<div style="color: #FF0000;">${errors.getErrorMessage("address")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("dob")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("credit")}</div>
 <form method="POST" action="profile">
-username: ${profile.username}
-firstname: 
-<input type="text" value="${profile.firstname}" name="username"><br>
-lastname:
-<input type="text" value="${profile.lastname}" name="firstname"><br>
-<input type="text" value="${profile.dob}" name="dob"><br>
-email: ${profile.email}<br>
-<input type="text" value="${profile.email}" name="email"><br>
-address: ${profile.address}<br>
-<input type="text" value="${profile.address}" name="address"><br>
+<h2>${profile.username}</h2>
+<input type="hidden" name="username" value="${profile.username}"/>
+Password <input type="password" name="password" value="${profile.password}" /><br>
+Nickname <input type="text" name="nickname" value="${profile.nickname}"/><br>
+Email address <input type="text" name="email" value="${profile.email}"/><br>
+First name <input type="text" name="firstname" value="${profile.firstname}"/><br>
+Last name <input type="text" name="lastname" value="${profile.lastname}"/><br>
+Date of birth <input type="text" name="dob" value="${profile.dob}"/><br>
+Address <input type="text" name="address" value="${profile.address}"/><br>
+Credit card number <input type="text" name="credit" value="${profile.credit}"/><br>
 <input type="submit" value="save" name="update"><br>
 </form>
 

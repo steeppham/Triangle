@@ -22,7 +22,6 @@ public class ProfileBinder implements RequestBinder {
 		String address = request.getParameter("address");
 		String credit = request.getParameter("credit");
 		String dob = request.getParameter("dob");
-		
 		Profile profile = new Profile();
 		
 		// Parse date

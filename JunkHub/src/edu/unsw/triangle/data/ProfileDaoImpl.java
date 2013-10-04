@@ -44,21 +44,24 @@ public class ProfileDaoImpl extends GenericDao implements ProfileDao
 		return null;
 	}
 
+	// Updates profile details
 	@Override
 	public void update(Profile profile) throws SQLException 
 	{
-		String query = "UPDATE PROFILES SET USERNAME=?, PASSWORD=?, NICKNAME=?, FIRSTNAME=?, LASTNAME=?, EMAIL=?, ADDRESS=?, DOB=?, CREDIT=?, STATUS=?, ADMIN=?";
+		//String query = "UPDATE PROFILES SET USERNAME=?, PASSWORD=?, NICKNAME=?, FIRSTNAME=?, LASTNAME=?, EMAIL=?, ADDRESS=?, DOB=?, CREDIT=?, STATUS=?, ADMIN=?";
+		String query = "UPDATE PROFILES SET PASSWORD=?, NICKNAME=?, FIRSTNAME=?, LASTNAME=?, EMAIL=?, ADDRESS=?, DOB=?, CREDIT=? WHERE USERNAME=?";
 		PreparedStatement statement = connection.prepareStatement(query);
-		statement.setString(1, profile.getUsername());
-		statement.setString(2, profile.getPassword());
-		statement.setString(3, profile.getNickname());
-		statement.setString(4, profile.getFirstname());
-		statement.setString(5, profile.getLastname());
-		statement.setString(6, profile.getEmail());
-		statement.setString(7, profile.getAddress());
-		statement.setDate(8, profile.getDobSQLObject());
-		statement.setInt(9, profile.getStatus().ordinal());
-		statement.setInt(10, profile.isAdmin()? 1 : 0);
+		statement.setString(1, profile.getPassword());
+		statement.setString(2, profile.getNickname());
+		statement.setString(3, profile.getFirstname());
+		statement.setString(4, profile.getLastname());
+		statement.setString(5, profile.getEmail());
+		statement.setString(6, profile.getAddress());
+		statement.setDate(7, profile.getDobSQLObject());
+		statement.setInt(8, profile.getCredit());
+		statement.setString(9, profile.getUsername());
+		//statement.setInt(9, profile.getStatus().ordinal());
+		//statement.setInt(10, profile.isAdmin()? 1 : 0);
 
 		int result = statement.executeUpdate();
 		if (result == 1)

@@ -21,4 +21,6 @@ public interface ItemDao
 	public void detele(Item value);
 	
 	public List<Item> findByTitle(String title) throws SQLException;
+
+	public List<Integer> getAllIds() throws SQLException;
 }

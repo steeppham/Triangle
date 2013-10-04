@@ -129,4 +129,17 @@ public class ItemDaoImpl extends GenericDao implements ItemDao
 		logger.info("Item " + bid.getItemId() + "bid successfully updated"+ result);
 		statement.close();
 	}
+
+	@Override
+	public List<Integer> getAllIds() throws SQLException 
+	{
+		Statement statement = connection.createStatement();
+		ResultSet result = statement.executeQuery("SELECT ID FROM ITEMS");
+		List<Integer> id = new ArrayList<Integer>();
+		while (result.next())
+		{
+			id.add(result.getInt("ID"));
+		}
+		return id;
+	}
 }

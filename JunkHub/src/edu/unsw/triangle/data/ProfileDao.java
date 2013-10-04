@@ -20,4 +20,5 @@ public interface ProfileDao
 	public void detele(Profile value);
 	
 	public void insert(Profile value) throws SQLException;
+
 }

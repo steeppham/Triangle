@@ -8,6 +8,8 @@
 </head>
 <body>
 Error
+<div style="color: #FF0000;">${errors.getErrorMessage("error")}</div>
 <a href="login">Login</a>
+<a href="main">Main</a>
 </body>
 </html>

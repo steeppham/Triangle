@@ -1,6 +1,5 @@
 package edu.unsw.triangle.data;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,7 +28,6 @@ public class ProfileDaoImpl extends GenericDao implements ProfileDao
 	{
 		Statement statement = connection.createStatement();
 		ResultSet result = statement.executeQuery("SELECT * FROM " + TABLE);
-		
 		while (result.next())
 		{
 			
@@ -85,9 +83,9 @@ public class ProfileDaoImpl extends GenericDao implements ProfileDao
 		List<String> usernames = new ArrayList<String>();
 		while (result.next())
 		{
-			
+			usernames.add(result.getString("USERNAME"));
 		}
-		return null;
+		return usernames;
 	}
 
 	@Override
@@ -159,5 +157,4 @@ public class ProfileDaoImpl extends GenericDao implements ProfileDao
 			throw new SQLException("Profile " + profile.getUsername() + "was not inserted into the repository");
 		statement.close();
 	}
-
 }

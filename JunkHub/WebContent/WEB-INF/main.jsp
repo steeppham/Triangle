@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.ArrayList" %>
 <jsp:useBean id="errors" class="edu.unsw.triangle.util.Errors" scope="request"></jsp:useBean>
-<jsp:useBean id="websession" class="edu.unsw.triangle.model.WebSession" scope="request"></jsp:useBean>
+<jsp:useBean id="websession" class="edu.unsw.triangle.model.WebSession" scope="session"></jsp:useBean>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -13,6 +13,9 @@
 </head>
 <body>
 	Main Page
+	<c:if test="${websession.profile.admin}">
+		<a href="admin">Admin</a>
+	</c:if>
 	<form method="GET" action="search">
 		<input type="submit" name="search"> 
 		<input type="text" name="query"><br>

@@ -35,6 +35,9 @@ public class ItemValidator implements Validator {
 
 		// Reserve price must be greater or equal to start price
 		ValidationUtility.rejectNotGreaterThan(errors, "reserve", item.getReserve(), item.getStart(), "reserve price must be greater than starting price");
+		
+		// Bid time period must be within range of 3-60 min
+		ValidationUtility.rejectNotInRange(errors, "period", 3, 60, item.getPeriod(), "period must be a value between 3 and 60 min");
 	}
 
 }

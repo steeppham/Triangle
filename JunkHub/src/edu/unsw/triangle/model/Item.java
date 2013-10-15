@@ -1,6 +1,7 @@
 package edu.unsw.triangle.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Item implements Serializable
 {
@@ -13,6 +14,8 @@ public class Item implements Serializable
 	}
 	
 	private static final long serialVersionUID = 1L;
+	
+	private final int MILLISECOND = 1000;
 	
 	private int id;
 	private String title;
@@ -27,6 +30,8 @@ public class Item implements Serializable
 	private ItemStatus status;
 	private String bidder;
 	private float bid;
+	private Date startTime;
+	private int period;
 	
 	public int getId() {
 		return id;
@@ -118,5 +123,27 @@ public class Item implements Serializable
 	public Item setReserve(float reserve) {
 		this.reserve = reserve;
 		return this;
+	}
+	public Item setPeriod(int value) {
+		this.period = value;
+		return this;
+	}
+	public Date getStartTime() {
+		return (Date) startTime.clone();
+	}
+	public int getPeriod() {
+		return period;
+	}
+	public Item setStartTime(Date startTime) {
+		this.startTime = startTime;
+		return this;
+	}
+	
+	public int getTimeLeft()
+	{
+		long now = new Date().getTime();
+		long end = getStartTime().getTime() + (getPeriod() * 60 * MILLISECOND);
+		long difference = end - now;
+		return (int) difference / (60 * MILLISECOND);
 	}
 }

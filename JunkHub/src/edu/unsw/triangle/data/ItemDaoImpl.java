@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -86,6 +87,8 @@ public class ItemDaoImpl extends GenericDao implements ItemDao
 		item.setReserve(result.getBigDecimal("RESERVE").floatValue());
 		item.setStart(result.getBigDecimal("START").floatValue());
 		item.setIncrement(result.getBigDecimal("INC").floatValue());
+		item.setStartTime(result.getTimestamp("STARTTIME"));
+		item.setPeriod(result.getInt("PERIOD"));
 		item.setOwner(result.getString("OWNER"));
 		item.setStatus(ItemStatus.values()[result.getInt("STATUS")]);
 		item.setBidder(result.getString("BIDDER"));
@@ -97,8 +100,8 @@ public class ItemDaoImpl extends GenericDao implements ItemDao
 	@Override
 	public void add(Item item) throws SQLException 
 	{
-		String query = "INSERT INTO ITEMS(TITLE, CATEGORY, PICTURE, DESCRIPTION, POSTAGE, RESERVE, START, INC, OWNER, STATUS) " +
-						"VALUES (?,?,?,?,?,?,?,?,?,?)";
+		String query = "INSERT INTO ITEMS(TITLE, CATEGORY, PICTURE, DESCRIPTION, POSTAGE, RESERVE, START, INC, STARTTIME, PERIOD, OWNER, STATUS) " +
+						"VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement statement = connection.prepareStatement(query);
 		statement.setString(1, item.getTitle());
 		statement.setString(2, item.getCategory());
@@ -108,8 +111,10 @@ public class ItemDaoImpl extends GenericDao implements ItemDao
 		statement.setBigDecimal(6, BigDecimal.valueOf(item.getReserve()));
 		statement.setBigDecimal(7, BigDecimal.valueOf(item.getStart()));
 		statement.setBigDecimal(8, BigDecimal.valueOf(item.getIncrement()));
-		statement.setString(9, item.getOwner());
-		statement.setInt(10, item.getStatus().ordinal());
+		statement.setTimestamp(9, new Timestamp(item.getStartTime().getTime()));
+		statement.setInt(10, item.getPeriod());
+		statement.setString(11, item.getOwner());
+		statement.setInt(12, item.getStatus().ordinal());
 		
 		int result = statement.executeUpdate();
 		logger.info("Item " + item.getTitle() + "successfully inserted into repository"+ result);

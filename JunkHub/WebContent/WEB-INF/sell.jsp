@@ -22,6 +22,7 @@
 <div style="color: #FF0000;">${errors.getErrorMessage("reserve")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("start")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("increment")}</div>
+<div style="color: #FF0000;">${errors.getErrorMessage("period")}</div>
 
 <form  method="POST" action="sell">
 <label>title</label>
@@ -40,6 +41,8 @@
 <input type="text" value="${item.start}" name="start" maxlength= "5"><br>
 <label>bid increments</label>
 <input type="text" value="${item.increment}" name="increment" maxlength= "5"><br>
+<label>closing time period</label>
+<input type="text" value="${item.period}" name="period" maxlength= "2"><br>
 <input type="submit" value="sell" name="sell">
 </form>
 </body>

@@ -45,6 +45,21 @@ public class ValidationUtility
 		}
 		return floatValue;
 	}
+	
+	public static int tryRejectNotInteger(Errors errors, String field, String value, String message)
+	{
+		int integerValue = 0;
+		try
+		{
+			if (value != null)
+				integerValue = Integer.parseInt(value);
+		}
+		catch (NumberFormatException e)
+		{
+			errors.rejectValue(field, message);
+		}
+		return integerValue;
+	}
 
 	public static void rejectInvalidMonetary(Errors errors, String field, float value, String message) 
 	{
@@ -54,11 +69,19 @@ public class ValidationUtility
 		}
 	}
 
-	public static void rejectNotGreaterThan(Errors errors, String field1,
+	public static void rejectNotGreaterThan(Errors errors, String field,
 			float value1, float value2, String message) {
 		if (value1 < value2)
 		{
-			errors.rejectValue(field1, message);
+			errors.rejectValue(field, message);
 		}
+	}
+
+	public static void rejectNotInRange(Errors errors, String field, int lower, int upper, int value, String message) 
+	{
+		if (value < lower || value > upper)
+		{
+			errors.rejectValue(field, message);
+		}	
 	}
 }

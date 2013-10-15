@@ -8,12 +8,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Sell Item</title>
 </head>
 <body>
 <h1>Sell Item</h1>
 <div style="color: #009900;">${messages.getMessage("sell.success")}</div>
-
 <div style="color: #FF0000;">${errors.getErrorMessage("title")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("category")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("picture")}</div>
@@ -24,6 +23,7 @@
 <div style="color: #FF0000;">${errors.getErrorMessage("increment")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("period")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("sell.error")}</div>
+<br>
 
 <form  method="POST" action="sell" enctype="multipart/form-data">
 <label>title</label>
@@ -46,5 +46,6 @@
 <input type="text" value="${item.period}" name="period" maxlength= "2"><br>
 <input type="submit" value="sell" name="sell">
 </form>
+<p><a href="main">Back</a></p>
 </body>
 </html>

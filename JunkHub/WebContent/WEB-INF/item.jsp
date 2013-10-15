@@ -11,35 +11,46 @@
 <title>${item.title}</title>
 </head>
 <body>
-
-
+<h1>${item.title}</h1>
+<!-- messages here -->
 <div style="color: #FF0000;">${errors.getErrorMessage("request")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("bid")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("id")}</div>
+<br>
 
-<h1>${item.title}</h1>
-<p>${item.category}</p>
-<img src="../images/${item.picture}" alt="${item.picture}"/>
-<p>${item.description}</p>
-<p>${item.postage}</p>
-<p>${item.start}</p>
-<p>${item.bid}</p>
-<p>${item.owner}</p>
-<p>${item.bidder}</p>
-<p>${item.timeLeft}</p>
-
+<p><img src="../images/${item.picture}" alt="${item.picture}" width="200" height="150"></p>
+<table>
+<tr><td>Category</td><td>${item.category}</td></tr>
+<tr><td>Description</td><td>${item.description}</td></tr>
+<tr><td>Seller</td><td>${item.owner}</td></tr>
+<tr><td>Postage</td><td>${item.postage}</td></tr>
+<tr><td>Starting Bid</td><td>$${item.start}</td></tr>
+<tr><td>Current Bid</td><td>$${item.bid} ${item.bidder}</td></tr>
+<tr><td>Time Left</td>
+<c:choose>
+	<c:when test="${item.timeLeft >= 0}">
+	<td>${item.timeLeft} mins</td>
+	</c:when>
+	<c:otherwise>
+	<td><div style="color: #FF0000;">Expired</div></td>
+	</c:otherwise>
+</c:choose>
+</tr>
+</table>
+<br>
 <c:choose>
   <c:when test="${websession.profile.admin}"><div style="color: #FF0000;">admin cannot place bids</div></c:when>
   <c:when test="${item.owner eq websession.username}"><div style="color: #FF0000;">owner of item cannot place bids</div></c:when>
   <c:otherwise>
   <form  method="POST" action="item">
-	<input type="text" name="bid" maxlength= "5"><br>
-	<input type="hidden" name="id" value="${item.id}"/> 
-  	<input type="submit" value="bid" name="place bid">
+  	<p><label>bid increments of $${item.increment}</label></p>
+	<input type="text" name="bid" maxlength= "5">
+	<input type="hidden" name="id" value="${item.id}"> 
+  	<input type="submit" value="bid" name="Place Bid">
   </form>
   </c:otherwise>
 </c:choose>
-<a href="main">return to main</a>
+<p><a href="main">return to main</a></p>
 <a href="main.back">back</a>
 </body>
 </html>

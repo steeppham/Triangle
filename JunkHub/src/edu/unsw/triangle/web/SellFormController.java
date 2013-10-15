@@ -43,7 +43,7 @@ public class SellFormController extends AbstractFormController
 			ItemService.addNewItem(item);
 			// Success message
 			Messages message = new Messages();
-			message.add("sell.success", "item is saved");
+			message.add("sell.success", "item \"" + item.getTitle() + "\" is now listed");
 			
 			modelView = new ModelView(getSuccessView()).addModel("messages", message);		
 		}

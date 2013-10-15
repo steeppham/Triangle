@@ -27,11 +27,18 @@
 <p>${item.owner}</p>
 <p>${item.bidder}</p>
 <p>${item.timeLeft}</p>
-<form  method="POST" action="item">
-<input type="text" name="bid" maxlength= "5"><br>
-<input type="hidden" name="id" value="${item.id}"/> 
-<input type="submit" value="bid" name="place bid">
-</form>
+
+<c:choose>
+  <c:when test="${websession.profile.admin}"><div style="color: #FF0000;">admin cannot place bids</div></c:when>
+  <c:when test="${item.owner eq websession.username}"><div style="color: #FF0000;">owner of item cannot place bids</div></c:when>
+  <c:otherwise>
+  <form  method="POST" action="item">
+	<input type="text" name="bid" maxlength= "5"><br>
+	<input type="hidden" name="id" value="${item.id}"/> 
+  	<input type="submit" value="bid" name="place bid">
+  </form>
+  </c:otherwise>
+</c:choose>
 <a href="main">return to main</a>
 <a href="main.back">back</a>
 </body>

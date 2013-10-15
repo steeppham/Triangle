@@ -12,6 +12,9 @@
 			<param-value>value</param-value>
 		</init-param>
 	</filter>
+	<listener>
+    	<listener-class>edu.unsw.triangle.service.ItemServiceScheduler</listener-class>
+	</listener>
 	<filter-mapping>
 		<filter-name>ControllerFilter</filter-name>
 		<url-pattern>/control/*</url-pattern>

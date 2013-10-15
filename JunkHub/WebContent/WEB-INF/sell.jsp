@@ -23,14 +23,15 @@
 <div style="color: #FF0000;">${errors.getErrorMessage("start")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("increment")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("period")}</div>
+<div style="color: #FF0000;">${errors.getErrorMessage("sell.error")}</div>
 
-<form  method="POST" action="sell">
+<form  method="POST" action="sell" enctype="multipart/form-data">
 <label>title</label>
 <input type="text" value="${item.title}" name="title" maxlength="10"><br>
 <label>category</label>
 <input type="text" value="${item.category}" name="category" maxlength= "20"><br>
 <label>picture</label>
-<input type="file" value="${item.picture}" name="picture"><br>
+<input type="file" value="${item.picture}" name="picture" maxlength= "50" accept="image/gif, image/jpeg, image/jpg, image/png, image/bmp"><br>
 <label>description</label>
 <input type="text" value="${item.description}" name="description" maxlength= "100"><br>
 <label>postage</label>

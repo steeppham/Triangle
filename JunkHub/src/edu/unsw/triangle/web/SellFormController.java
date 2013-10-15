@@ -51,7 +51,7 @@ public class SellFormController extends AbstractFormController
 		{
 			logger.warning("cannot add new item to repository reason: " + e.getMessage());
 			e.printStackTrace();
-			Errors errors = new Errors().rejectValue("submit", "cannot add new item tp repository");
+			Errors errors = new Errors().rejectValue("sell.error", "cannot add new item to repository");
 			modelView = handleFormError(command, errors);
 		}
 

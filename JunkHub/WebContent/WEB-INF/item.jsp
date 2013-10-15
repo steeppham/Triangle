@@ -17,9 +17,9 @@
 <div style="color: #FF0000;">${errors.getErrorMessage("bid")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("id")}</div>
 
-
 <h1>${item.title}</h1>
 <p>${item.category}</p>
+<img src="../images/${item.picture}" alt="${item.picture}"/>
 <p>${item.description}</p>
 <p>${item.postage}</p>
 <p>${item.start}</p>

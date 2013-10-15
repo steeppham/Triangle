@@ -11,7 +11,9 @@
 <title>Register</title>
 </head>
 <body>
-Register
+<h1>Register</h1>
+
+	<!-- ui messages here -->
 	<div style="color: #FF0000;">${errors.getErrorMessage("register.error")}</div>
 	<div style="color: #FF0000;">${errors.getErrorMessage("username")}</div>
 	<div style="color: #FF0000;">${errors.getErrorMessage("password")}</div>
@@ -22,18 +24,24 @@ Register
 	<div style="color: #FF0000;">${errors.getErrorMessage("address")}</div>
 	<div style="color: #FF0000;">${errors.getErrorMessage("dob")}</div>
 	<div style="color: #FF0000;">${errors.getErrorMessage("credit")}</div>
+	<br>
+	
+	
 	<form method="POST" action="register">
-		Username <input type="text" name="username" value="${profile.username}" maxlength= "20"/><br>
-		Password <input type="password" name="password" value="${profile.password}" maxlength= "20" /><br>
-		Nickname <input type="text" name="nickname" value="${profile.nickname}" maxlength= "20"/><br>
-		Email address <input type="text" name="email" value="${profile.email}" maxlength= "20"/><br>
-		First name <input type="text" name="firstname" value="${profile.firstname}" maxlength= "20"/><br>
-		Last name <input type="text" name="lastname" value="${profile.lastname}" maxlength= "20"/><br>
-		Date of birth <input type="text" name="dob" value="${profile.dob}"/><br>
-		Address <input type="text" name="address" value="${profile.address}" maxlength= "20"/><br>
-		Credit card number <input type="text" name="credit" value="${profile.credit}" maxlength= "8"/><br>
-		<input type="submit" value="register">
+	<table>
+		<tr><td>Username:</td><td><input type="text" name="username" value="${profile.username}" maxlength= "20"></td></tr>
+		<tr><td>Password:</td><td><input type="password" name="password" value="${profile.password}" maxlength= "20"></td></tr>
+		<tr><td>Nickname:</td><td><input type="text" name="nickname" value="${profile.nickname}" maxlength= "20"></td></tr>
+		<tr><td>Email:</td><td><input type="text" name="email" value="${profile.email}" maxlength= "20"></td></tr>
+		<tr><td>First Name:</td><td><input type="text" name="firstname" value="${profile.firstname}" maxlength= "20"/></td></tr>
+		<tr><td>Last Name:</td><td><input type="text" name="lastname" value="${profile.lastname}" maxlength= "20"/> </td></tr>
+		<tr><td>Date of Birth:</td><td><input type="text" name="dob" value="${profile.dob}" maxlength= "10"/> </td></tr>
+		<tr><td>Address:</td><td><input type="text" name="address" value="${profile.address}" maxlength= "20"/> </td></tr>
+		<tr><td>Credit Number:</td><td><input type="text" name="credit" value="${profile.credit}" maxlength= "8"/> </td></tr>
+		</table>
+		<p><input type="submit" value="register"></p>
 	</form>
-	<a href="login">Login</a>
+	
+	<p><a href="login">Login</a></p>
 </body>
 </html>

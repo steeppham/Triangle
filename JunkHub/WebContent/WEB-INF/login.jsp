@@ -12,14 +12,17 @@
 <title>Login</title>
 </head>
 <body>
-	Login
+	<h1>Login</h1>
 	 <!-- listing of errors here -->	
 	<div style="color: #FF0000;">${errors.getErrorMessage("username")}</div>
 	<div style="color: #FF0000;">${errors.getErrorMessage("password")}</div>
 	<div style="color: #FF0000;">${errors.getErrorMessage("authentication")}</div>
+	<br>
 	<form method="POST" action="login">
-		<p>Please enter your username <input type="text" name="username" value="${login.username}"/></p>
-		<p>Please enter your password <input type="password" name="password" /><p>
+		<table>
+		<tr><td>username</td><td><input type="text" name="username" value="${login.username}"></td></tr>
+		<tr><td>password</td><td><input type="password" name="password"></td></tr>
+		</table>
 		<input type="submit" value="login">
 	</form>
 	<a href="register">Register</a>

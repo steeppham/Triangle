@@ -4,6 +4,10 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
 	<display-name>JunkHub</display-name>
+	<context-param>    
+   		<param-name>itemSchedulerPeriod</param-name>
+   		<param-value>300</param-value>
+	</context-param>
 	<filter>
 		<filter-name>ControllerFilter</filter-name>
 		<filter-class>edu.unsw.triangle.controller.ControllerFilter</filter-class>

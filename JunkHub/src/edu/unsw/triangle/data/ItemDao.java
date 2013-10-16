@@ -5,6 +5,7 @@ import java.util.List;
 
 import edu.unsw.triangle.model.Bid;
 import edu.unsw.triangle.model.Item;
+import edu.unsw.triangle.model.Item.ItemStatus;
 
 public interface ItemDao
 {
@@ -23,4 +24,9 @@ public interface ItemDao
 	public List<Item> findByTitle(String title) throws SQLException;
 
 	public List<Integer> getAllIds() throws SQLException;
-}
+	
+	public List<Item> findItemsByStatus(ItemStatus status) throws SQLException;
+	
+	public void updateItemStatus(Integer id, ItemStatus status) throws SQLException;
+	
+	}

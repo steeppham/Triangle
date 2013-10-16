@@ -13,6 +13,7 @@ import edu.unsw.triangle.model.Item;
 public class ItemService 
 {
 	private static final Logger logger = Logger.getLogger(ItemService.class.getName());
+	
 	public static Item findItemById(int id) throws SQLException, DataSourceException
 	{
 		Item item = null;
@@ -73,6 +74,11 @@ public class ItemService
 				daoManager.close();
 		}
 		return items;
+	}
+	
+	public static List<Item> findAllActiveItems()
+	{
+		return null;
 	}
 
 }

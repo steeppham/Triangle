@@ -131,7 +131,8 @@ public class ItemDaoImpl extends GenericDao implements ItemDao
 		statement.setInt(3, bid.getItemId());
 
 		int result = statement.executeUpdate();
-		logger.info("Item " + bid.getItemId() + "bid successfully updated"+ result);
+		logger.info(String.format("Item id= %d bid successfully updated bidder %s bid %d result=%d", 
+				bid.getItemId(), bid.getBidder(), bid.getBid(), result));
 		statement.close();
 	}
 
@@ -147,4 +148,36 @@ public class ItemDaoImpl extends GenericDao implements ItemDao
 		}
 		return id;
 	}
+
+	@Override
+	public List<Item> findItemsByStatus(ItemStatus status) throws SQLException 
+	{
+		List<Item> items = new ArrayList<Item>();
+		// Find items by title that contains search string..
+		Statement statement = connection.createStatement();
+		ResultSet result = statement.executeQuery("SELECT * FROM ITEMS WHERE STATUS = " + status.ordinal());
+		
+		while (result.next())
+		{
+			items.add(bindResultToItem(result));
+		}
+		statement.close();
+		result.close();
+		return items;
+	}
+
+	@Override
+	public void updateItemStatus(Integer id, ItemStatus status) throws SQLException 
+	{
+		String query = "UPDATE ITEMS SET STATUS=? WHERE ID=?";
+		PreparedStatement statement = connection.prepareStatement(query);
+		statement.setInt(1, status.ordinal());
+		statement.setInt(2, id);
+
+		int result = statement.executeUpdate();
+		logger.info("Item " + id + " status successfully updated to " + status + " result="  + result);
+		statement.close();
+	}
+
+	
 }

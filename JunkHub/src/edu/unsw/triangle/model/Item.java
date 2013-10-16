@@ -10,7 +10,8 @@ public class Item implements Serializable
 		NOT_ACTIVE,
 		ACTIVE,
 		SOLD,
-		UNSOLD;
+		UNSOLD,
+		PENDING;
 	}
 	
 	private static final long serialVersionUID = 1L;

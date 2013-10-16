@@ -40,7 +40,14 @@
 <br>
 <c:choose>
   <c:when test="${websession.profile.admin}"><div style="color: #FF0000;">admin cannot place bids</div></c:when>
+  <c:when test="${item.owner eq websession.username and item.status eq 'PENDING'}">
+  <div style="color: #FF9900;">item pending</div>
+  accept?
+  </c:when>
   <c:when test="${item.owner eq websession.username}"><div style="color: #FF0000;">owner of item cannot place bids</div></c:when>
+  <c:when test="${item.status eq 'PENDING'}"><div style="color: #FF9900;">item pending</div></c:when>
+  <c:when test="${item.status eq 'SOLD'}"><div style="color: #009900;">item sold</div></c:when>
+  <c:when test="${item.status eq 'UNSOLD'}"><div style="color: #FF0000;">item unsold</div></c:when>
   <c:otherwise>
   <form  method="POST" action="item">
   	<p><label>bid increments of $${item.increment}</label></p>

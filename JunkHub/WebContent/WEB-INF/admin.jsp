@@ -18,25 +18,32 @@ ADMIN PAGE ${profile.username}
 <!-- show list of users -->
 
 <h3>Profiles</h3>
+<form action="admin.profile" method="POST">
 <table>
 	<c:forEach  var="profile" items="${profiles}">
 	<tr>
-		<td>${profile.username} ${profile.status}</td>
+		<td><input type="checkbox" name="selected" value="${profile.username}"/></td>
+		<td>${profile.username}</td><td>${profile.status}</td>
 	</tr>
 	</c:forEach>
 </table>
+<input type="submit" name="ban" value="ban user"/>
+</form>
 
 <!-- show list of auctions -->
 <h3>Items</h3>
+<form action="admin.item" method="POST">
 <table>
 	<c:forEach  var="item" items="${items}">
 	<tr>
-		<td>${item.title} ${item.status}</td>
+		<td><input type="checkbox" name="selected" value="${item.id}"/></td>
+		<td>${item.title}</td><td>${item.status}</td>
 	</tr>
 	</c:forEach>
 </table>
+</form>
 
 
-<a href="main">Main</a>
+<p><a href="main">Main</a></p>
 </body>
 </html>

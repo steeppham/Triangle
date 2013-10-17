@@ -32,7 +32,8 @@ public class Item implements Serializable
 	private String bidder;
 	private float bid;
 	private Date startTime;
-	private int period;
+	// Default 10 min aucion period time
+	private int period = 10;
 	
 	public int getId() {
 		return id;

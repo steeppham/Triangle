@@ -42,7 +42,7 @@
 <input type="text" value="${item.start}" name="start" maxlength= "5"><br>
 <label>bid increments</label>
 <input type="text" value="${item.increment}" name="increment" maxlength= "5"><br>
-<label>closing time period</label>
+<label>closing time period (min)</label>
 <input type="text" value="${item.period}" name="period" maxlength= "2"><br>
 <input type="submit" value="sell" name="sell">
 </form>

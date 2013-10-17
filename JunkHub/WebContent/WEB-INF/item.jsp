@@ -58,6 +58,5 @@
   </c:otherwise>
 </c:choose>
 <p><a href="main">return to main</a></p>
-<a href="main.back">back</a>
 </body>
 </html>

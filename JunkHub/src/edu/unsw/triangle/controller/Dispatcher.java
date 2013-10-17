@@ -42,7 +42,7 @@ public class Dispatcher
 				url = url + "?";
 			else
 				url = url + "&";
-			url = url + parameter + modelView.getParameter(parameter);
+			url = url + parameter + "=" + modelView.getParameter(parameter);
 		}
 		
 		if (url == null)

@@ -65,7 +65,7 @@ public class ItemFormController extends AbstractFormController {
 		}
 		
 		// Check bid is greater than current bid plus increment
-		if (bid.getBidFloat() <= (item.getBid() + item.getIncrement()))
+		if (bid.getBidFloat() < (item.getBid() + item.getIncrement()))
 		{
 			logger.severe("item id: bid (" + bid.getBid() + ") is less than current bid and increment (" + item.getBid() + item.getIncrement() + ")" );
 			Errors errors = new Errors().rejectValue("bid", "bid is less than current bid plus increment");

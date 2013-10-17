@@ -131,7 +131,7 @@ public class ItemDaoImpl extends GenericDao implements ItemDao
 		statement.setInt(3, bid.getItemId());
 
 		int result = statement.executeUpdate();
-		logger.info(String.format("Item id= %d bid successfully updated bidder %s bid %d result=%d", 
+		logger.info(String.format("Item id= %d bid successfully updated bidder %s bid %s result=%d", 
 				bid.getItemId(), bid.getBidder(), bid.getBid(), result));
 		statement.close();
 	}

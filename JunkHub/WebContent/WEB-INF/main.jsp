@@ -9,43 +9,42 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>JunkHub</title>
 </head>
 <body>
-	Main Page
+	<h1>JunkHub</h1>
+	<div style="color: #FF0000;">${errors.getErrorMessage("search.error")}</div><br>
 	<c:if test="${websession.profile.admin}">
 		<a href="admin">Admin</a>
 	</c:if>
+	<a href="profile">Profile</a>
+	<a href="sell">Sell Item</a>
+	<a href="logout">Logout</a>
 	<form method="GET" action="search">
 		<input type="submit" name="search"> 
 		<input type="text" name="query"><br>
 	</form>
-	<!-- Search results shown below -->
-			<div style="color: #FF0000;">${errors.getErrorMessage("search.error")}</div>
-			<!--Display message-->
-			SEARCH RESULT
-			<c:choose>
-			<c:when test="${result.size() == 0}">
-				NO RESULTS
-			</c:when>
-			<c:otherwise> 
-				<!-- search results here -->
-				${result.size()}
-				<table>
-			      <c:forEach var="item" items="${result}">
-			        <tr>
-			          <td>${item.title}</td>
-			          <td>${item.category}</td>
-			          <td>${item.start}</td>
-			          <td><a href="item?id=${item.id}">${item.title}</a></td>
-			        </tr>
-			      </c:forEach>
-			    </table>
-			</c:otherwise>
-			</c:choose>
-
-	<a href="profile">Profile</a>
-	<a href="sell">Sell Item</a>
-	<a href="logout">Logout</a>
+	<c:choose>
+	<c:when test="${empty result}">
+	<!-- display nothing -->
+	</c:when>
+	<c:when test="${result.size() == 0}">
+		<h3>No search results</h3>
+	</c:when>
+	<c:otherwise> 
+		<!-- search results here -->
+		<h3>Found ${result.size()} items matching search</h3>
+		<table>
+	      <c:forEach var="item" items="${result}">
+	        <tr>
+	          <td><a href="item?id=${item.id}">${item.title}</a></td>
+	          <td>${item.title}</td>
+	          <td>${item.category}</td>
+	          <td>${item.start}</td>
+	        </tr>
+	      </c:forEach>
+	    </table>
+	</c:otherwise>
+	</c:choose>
 </body>
 </html>

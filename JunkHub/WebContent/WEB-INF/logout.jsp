@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Logout</title>
 </head>
 <body>
-Logout
-<a href="login" >Login</a>
+<h1>You are now logged out</h1>
+<p><a href="login" >login?</a></p>
 </body>
 </html>

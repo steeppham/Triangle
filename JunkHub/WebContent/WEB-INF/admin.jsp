@@ -8,10 +8,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Admin</title>
 </head>
 <body>
-ADMIN PAGE ${profile.username}
+<h1>Admin</h1>
 <div style="color: #FF0000;">${errors.getErrorMessage("admin.profiles.error")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("admin.items.error")}</div>
 
@@ -20,27 +20,47 @@ ADMIN PAGE ${profile.username}
 <h3>Profiles</h3>
 <form action="admin.profile" method="POST">
 <table>
+	<tr>
+		<td></td>
+		<td>Username</td>
+		<td>Status</td>
+	</tr>
 	<c:forEach  var="profile" items="${profiles}">
 	<tr>
-		<td><input type="checkbox" name="selected" value="${profile.username}"/></td>
+		<td>
+			<c:choose>
+			<c:when test="${profile.status eq 'ACTIVE'}">
+			<input type="checkbox" name="suspend.profiles" value="${profile.username}"/>
+			</c:when>
+			<c:otherwise>X</c:otherwise>
+			</c:choose>
+			
+		</td>
 		<td>${profile.username}</td><td>${profile.status}</td>
 	</tr>
 	</c:forEach>
 </table>
-<input type="submit" name="ban" value="ban user"/>
+<input type="submit" name="suspend.profile" value="suspend users"/>
 </form>
 
 <!-- show list of auctions -->
 <h3>Items</h3>
 <form action="admin.item" method="POST">
 <table>
+	<tr>
+		<td></td>
+		<td>Title</td>
+		<td>Status</td>
+		<td>Owner</td>	
+	</tr>
 	<c:forEach  var="item" items="${items}">
 	<tr>
-		<td><input type="checkbox" name="selected" value="${item.id}"/></td>
-		<td>${item.title}</td><td>${item.status}</td>
+		<td><input type="checkbox" name="suspend.item" value="${item.id}"/></td>
+		<td>${item.title}</td><td>${item.status}</td><td>${item.owner}</td>
 	</tr>
 	</c:forEach>
 </table>
+<input type="submit" name="suspend.items" value="suspend items"/>
 </form>
 
 

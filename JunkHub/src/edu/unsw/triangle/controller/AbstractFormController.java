@@ -26,11 +26,14 @@ public abstract class AbstractFormController implements Controller
 			return handleFormError(command, errors);
 		}
 		
-		getValidator().validate(command, errors);
-		if (errors.hasErrors())
+		if (getValidator() != null)
 		{
-			logger.warning("Form validation has errors: " + getValidator().getClass().getName());
-			return handleFormError(command, errors);
+			getValidator().validate(command, errors);
+			if (errors.hasErrors())
+			{
+				logger.warning("Form validation has errors: " + getValidator().getClass().getName());
+				return handleFormError(command, errors);
+			}
 		}
 		
 		return handleFormSubmit(command);

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import edu.unsw.triangle.model.Profile;
+import edu.unsw.triangle.model.Profile.AccountStatus;
 
 public interface ProfileDao
 {
@@ -20,5 +21,7 @@ public interface ProfileDao
 	public void detele(Profile value);
 	
 	public void insert(Profile value) throws SQLException;
+
+	public void updateStatus(String username, AccountStatus status) throws SQLException;
 
 }

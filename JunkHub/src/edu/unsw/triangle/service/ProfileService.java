@@ -10,6 +10,7 @@ import edu.unsw.triangle.data.DataSourceException;
 import edu.unsw.triangle.data.DerbyDaoManager;
 import edu.unsw.triangle.data.ProfileDaoImpl;
 import edu.unsw.triangle.model.Profile;
+import edu.unsw.triangle.model.Profile.AccountStatus;
 
 public class ProfileService
 {
@@ -45,6 +46,32 @@ public class ProfileService
 		}
 		
 		return profiles;
+	}
+
+	public static void suspendUsers(List<String> usernames) throws DataSourceException, SQLException 
+	{
+		// Short circuit if there is nothing to update
+		if (usernames == null || usernames.isEmpty())
+		{
+			return;
+		}
+		
+		DerbyDaoManager derbyManager = null;
+		try
+		{
+			derbyManager = new DerbyDaoManager(ConnectionManager.getInstance());
+			// Update status for each user to NOT_ACTIVE
+			for (String username : usernames)
+			{
+				derbyManager.getProfileDao().updateStatus(username, AccountStatus.NOT_ACTIVE);
+			}
+			logger.info("users suspended status updated to repository");
+		}
+		finally
+		{
+			if (derbyManager != null)
+				derbyManager.close();
+		}	
 	}
 
 }

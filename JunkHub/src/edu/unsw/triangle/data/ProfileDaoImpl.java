@@ -157,4 +157,20 @@ public class ProfileDaoImpl extends GenericDao implements ProfileDao
 			throw new SQLException("Profile " + profile.getUsername() + "was not inserted into the repository");
 		statement.close();
 	}
+
+	@Override
+	public void updateStatus(String username, AccountStatus status) throws SQLException 
+	{
+		String query = "UPDATE PROFILES SET STATUS=? WHERE USERNAME=?";
+		PreparedStatement statement = connection.prepareStatement(query);
+		statement.setInt(1, status.ordinal());
+		statement.setString(2, username);
+
+		int result = statement.executeUpdate();
+		if (result == 1)
+			logger.info("Profile:" + username + "is successfully updated to " + status + " result:" + result);
+		else
+			throw new SQLException("Profile " + username + " was not updated into the repository");
+		statement.close();
+	}
 }

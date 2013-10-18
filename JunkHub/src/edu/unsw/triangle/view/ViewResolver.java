@@ -28,6 +28,7 @@ public class ViewResolver
 		mapping.put("item", "item");
 		mapping.put("confirm", "/WEB-INF/confirm.jsp");
 		mapping.put("logout.view", "/WEB-INF/logout.jsp");
+		mapping.put("admin", "admin");
 		mapping.put("admin.view", "/WEB-INF/admin.jsp");
 	}
 	

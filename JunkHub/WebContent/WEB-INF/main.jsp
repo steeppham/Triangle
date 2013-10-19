@@ -22,14 +22,14 @@
 	<a href="logout">Logout</a>
 	<form method="GET" action="search">
 		<input type="submit" name="search"> 
-		<input type="text" name="query"><br>
+		<input type="text" name="query" value="${query.findByTitle}"><br>
 	</form>
 	<c:choose>
-	<c:when test="${empty result}">
-	<!-- display nothing -->
-	</c:when>
 	<c:when test="${result.size() == 0}">
 		<h3>No search results</h3>
+	</c:when>
+	<c:when test="${empty result}">
+	<!-- display nothing -->
 	</c:when>
 	<c:otherwise> 
 		<!-- search results here -->

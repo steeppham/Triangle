@@ -75,7 +75,8 @@ public class ItemFormController extends AbstractFormController {
 		// Update new bid
 		try
 		{
-			BidService.updateItemBid(bid);
+			// Notify bidder of success
+			BidService.updateItemBidAndNotify(bid, item);
 		}
 		catch (Exception e)
 		{

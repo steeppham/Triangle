@@ -47,24 +47,26 @@ public class ItemBidTask  implements Runnable
 					item.setStatus(ItemStatus.SOLD);
 					logger.info("Item '" + item.getTitle() + "' is sold");
 					// Notify owner
-					NotificationService.notify(owner.getEmail(), "Item Sold!", "You item has sold");
+					NotificationService.notifyItemOwnerSold(owner.getEmail(), item);
 					// Notify bidder
 					Profile bidder = daoManager.getProfileDao().findByUsername(item.getBidder());
-					NotificationService.notify(bidder.getEmail(), "You have won!", "You have successfuly bidded for item");
+					NotificationService.notifyItemBidderSold(bidder.getEmail(), item);
 				}
 				else if (item.getBid() > item.getStart())
 				{
 					// Bid did not make reserve
 					item.setStatus(ItemStatus.PENDING);
-					// Notify owner and bidder
 					logger.info("Item '" + item.getTitle() + "' is pending");
+					// Notify owner
+					NotificationService.notifyItemOwnerPending(owner.getEmail(), item);
 				}
 				else
 				{
-					// No bids
+					// No bid
 					item.setStatus(ItemStatus.UNSOLD);
-					// Notify owner and bidder
 					logger.info("Item '" + item.getTitle() + "' is unsold");
+					// Notify owner and bidder
+					NotificationService.notifyItemOwnerUnsold(owner.getEmail(), item);
 				}
 				// Update repository
 				daoManager.getItemDao().updateItemStatus(item.getId(), item.getStatus());

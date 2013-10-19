@@ -44,7 +44,7 @@ public class AdminItemFormController extends AbstractFormController {
 		catch (Exception e)
 		{
 			logger.severe("failed to halt items reason: " + e.getMessage());
-			Errors errors = new Errors().rejectValue("admin.error", "failed to halt items reason: " + e.getMessage());
+			Errors errors = new Errors().rejectValue("admin.items.error", "failed to halt items reason: " + e.getMessage());
 			return handleFormError(null, errors);
 		}
 		

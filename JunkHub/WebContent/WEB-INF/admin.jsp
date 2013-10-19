@@ -26,6 +26,7 @@
 		<td>Status</td>
 	</tr>
 	<c:forEach  var="profile" items="${profiles}">
+	<c:if test="${not profile.admin}">
 	<tr>
 		<td>
 			<c:choose>
@@ -37,6 +38,7 @@
 		</td>
 		<td>${profile.username}</td><td>${profile.status}</td>
 	</tr>
+	</c:if>
 	</c:forEach>
 </table>
 <input type="submit" name="suspend.profile" value="suspend users"/>

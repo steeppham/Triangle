@@ -44,7 +44,7 @@ public class AdminProfileFormController extends AbstractFormController {
 		catch (Exception e)
 		{
 			logger.severe("failed to suspend users reason: " + e.getMessage());
-			Errors errors = new Errors().rejectValue("admin.error", "failed to suspend users reason: " + e.getMessage());
+			Errors errors = new Errors().rejectValue("admin.profiles.error", "failed to suspend users reason: " + e.getMessage());
 			return handleFormError(null, errors);
 		}
 		

@@ -48,8 +48,10 @@
   <c:when test="${item.status eq 'PENDING'}"><div style="color: #FF9900;">item pending</div></c:when>
   <c:when test="${item.status eq 'SOLD'}"><div style="color: #009900;">item sold</div></c:when>
   <c:when test="${item.status eq 'UNSOLD'}"><div style="color: #FF0000;">item unsold</div></c:when>
+  <c:when test="${item.status eq 'NOT_ACTIVE'}"><div style="color: #FF0000;">item suspended</div></c:when>
   <c:otherwise>
   <form  method="POST" action="item">
+  	<div style="color: #009900;">item active</div>
   	<p><label>bid increments of $${item.increment}</label></p>
 	<input type="text" name="bid" maxlength= "5">
 	<input type="hidden" name="id" value="${item.id}"> 

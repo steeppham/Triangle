@@ -111,4 +111,29 @@ public class ItemService
 		}
 	}
 
+	public static void suspendItem(List<Integer> items) throws DataSourceException, SQLException 
+	{
+		// Short circuit if there is nothing to process
+		if (items == null || items.isEmpty())
+		{
+			return;
+		}
+		DerbyDaoManager daoManager = null;
+		try
+		{
+			daoManager = new DerbyDaoManager(ConnectionManager.getInstance());
+			for (int itemId : items)
+			{
+				daoManager.getItemDao().updateItemStatus(itemId, ItemStatus.NOT_ACTIVE);
+				logger.info("item id: " + itemId + " suspended");
+			}
+		}
+		finally
+		{
+			if(daoManager != null)
+				daoManager.close();
+		}
+		
+	}
+
 }

@@ -33,8 +33,7 @@
 			<input type="checkbox" name="suspend.profiles" value="${profile.username}"/>
 			</c:when>
 			<c:otherwise>X</c:otherwise>
-			</c:choose>
-			
+			</c:choose>	
 		</td>
 		<td>${profile.username}</td><td>${profile.status}</td>
 	</tr>
@@ -55,12 +54,17 @@
 	</tr>
 	<c:forEach  var="item" items="${items}">
 	<tr>
-		<td><input type="checkbox" name="suspend.item" value="${item.id}"/></td>
+		<td>
+		<c:choose>
+			<c:when test="${item.status eq 'NOT_ACTIVE'}">X</c:when>
+			<c:otherwise><input type="checkbox" name="suspend.items" value="${item.id}"/></c:otherwise>
+		</c:choose>
+		</td>
 		<td>${item.title}</td><td>${item.status}</td><td>${item.owner}</td>
 	</tr>
 	</c:forEach>
 </table>
-<input type="submit" name="suspend.items" value="suspend items"/>
+<input type="submit" name="suspend.item" value="suspend items"/>
 </form>
 
 

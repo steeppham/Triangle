@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
+import edu.unsw.triangle.web.AdminItemFormController;
 import edu.unsw.triangle.web.AdminProfileFormController;
 import edu.unsw.triangle.web.AdminRequestController;
 import edu.unsw.triangle.web.ItemFormController;
@@ -60,6 +61,7 @@ public class ControllerFactory
 		mapping.put("GET/logout", new LogoutRequestController());
 		mapping.put("GET/admin", new AdminRequestController());
 		mapping.put("POST/admin.profile", new AdminProfileFormController());
+		mapping.put("POST/admin.item", new AdminItemFormController());
 	}
 	
 	/**

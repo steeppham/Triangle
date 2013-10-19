@@ -32,10 +32,17 @@ public class ItemServiceScheduler implements ServletContextListener
 		catch (NumberFormatException e)
 		{
 			logger.warning("invalid itemSchedulerPeriod parameter " + value);
-			period = 180;
 		}
-		logger.info("item scheduler period=" + period);
-		scheduler.scheduleAtFixedRate(new ItemBidTask(), 0, period, TimeUnit.SECONDS);
+		
+		if (period > 0)
+		{
+			logger.info("item scheduler period=" + period);
+			scheduler.scheduleAtFixedRate(new ItemBidTask(), 0, period, TimeUnit.SECONDS);
+		}
+		else
+		{
+			logger.info("item scheduler disabled");
+		}
 	}
 
 	@Override

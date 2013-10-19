@@ -9,6 +9,7 @@ import edu.unsw.triangle.data.ConnectionManager;
 import edu.unsw.triangle.data.DerbyDaoManager;
 import edu.unsw.triangle.model.Item;
 import edu.unsw.triangle.model.Item.ItemStatus;
+import edu.unsw.triangle.model.Profile;
 
 public class ItemBidTask  implements Runnable
 {
@@ -37,12 +38,19 @@ public class ItemBidTask  implements Runnable
 			// Check item bid condition
 			for (Item item : expiredItems)
 			{
+				// Retrieve owner of item profile
+				Profile owner = daoManager.getProfileDao().findByUsername(item.getOwner());
+				
 				if (item.getBid() > item.getReserve())
 				{
 					// Bid successful
 					item.setStatus(ItemStatus.SOLD);
-					// Notify owner and bidder
 					logger.info("Item '" + item.getTitle() + "' is sold");
+					// Notify owner
+					NotificationService.notify(owner.getEmail(), "Item Sold!", "You item has sold");
+					// Notify bidder
+					Profile bidder = daoManager.getProfileDao().findByUsername(item.getBidder());
+					NotificationService.notify(bidder.getEmail(), "You have won!", "You have successfuly bidded for item");
 				}
 				else if (item.getBid() > item.getStart())
 				{

@@ -27,15 +27,15 @@
 
 <form  method="POST" action="sell" enctype="multipart/form-data">
 <label>title</label>
-<input type="text" value="${item.title}" name="title" maxlength="10"><br>
+<input type="text" value="${item.title}" name="title" maxlength="100"><br>
 <label>category</label>
-<input type="text" value="${item.category}" name="category" maxlength= "20"><br>
+<input type="text" value="${item.category}" name="category" maxlength= "100"><br>
 <label>picture</label>
 <input type="file" value="${item.picture}" name="picture" maxlength= "50" accept="image/gif, image/jpeg, image/jpg, image/png, image/bmp"><br>
 <label>description</label>
-<input type="text" value="${item.description}" name="description" maxlength= "100"><br>
+<input type="text" value="${item.description}" name="description" maxlength= "750"><br>
 <label>postage</label>
-<input type="text" value="${item.postage}" name="postage" maxlength= "20"><br>
+<input type="text" value="${item.postage}" name="postage" maxlength= "50"><br>
 <label>reserve price</label>
 <input type="text" value="${item.reserve}" name="reserve" maxlength= "5"><br>
 <label>start price</label>

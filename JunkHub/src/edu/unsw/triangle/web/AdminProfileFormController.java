@@ -35,6 +35,8 @@ public class AdminProfileFormController extends AbstractFormController {
 	{
 		List<String> usernames = (List<String>) command;
 		logger.info("Suspend users: " + usernames);
+		
+		// Suspend users
 		try
 		{
 			ProfileService.suspendUsers(usernames);
@@ -45,7 +47,20 @@ public class AdminProfileFormController extends AbstractFormController {
 			Errors errors = new Errors().rejectValue("admin.error", "failed to suspend users reason: " + e.getMessage());
 			return handleFormError(null, errors);
 		}
-			//ItemService.suspendItemsOfUsers(usernames);
+		
+		// Halt item owned by users
+		logger.info("Suspend items of users: " + usernames);
+		try
+		{
+			ItemService.suspendItemsOfUsers(usernames);
+		}
+		catch (Exception e)
+		{
+			logger.severe("failed to halt items of users reason: " + e.getMessage());
+			Errors errors = new Errors().rejectValue("admin.error", "failed to halt items of users reason: " + e.getMessage());
+			return handleFormError(null, errors);
+		}
+		
 		// Message model here.
 		ModelView modelView = new ModelView(getSuccessView()).redirect();
 		return modelView;

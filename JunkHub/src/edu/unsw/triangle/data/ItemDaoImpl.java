@@ -153,7 +153,7 @@ public class ItemDaoImpl extends GenericDao implements ItemDao
 	public List<Item> findItemsByStatus(ItemStatus status) throws SQLException 
 	{
 		List<Item> items = new ArrayList<Item>();
-		// Find items by title that contains search string..
+		// Find items by status
 		Statement statement = connection.createStatement();
 		ResultSet result = statement.executeQuery("SELECT * FROM ITEMS WHERE STATUS = " + status.ordinal());
 		
@@ -177,6 +177,24 @@ public class ItemDaoImpl extends GenericDao implements ItemDao
 		int result = statement.executeUpdate();
 		logger.info("Item " + id + " status successfully updated to " + status + " result="  + result);
 		statement.close();
+	}
+
+	@Override
+	public List<Item> findByOwner(String username) throws SQLException 
+	{
+		List<Item> items = new ArrayList<Item>();
+		// Find items by owner username.
+		Statement statement = connection.createStatement();
+		ResultSet result = statement.executeQuery("SELECT * FROM ITEMS WHERE OWNER = '" + username + "'");
+		
+		while (result.next())
+		{
+			items.add(bindResultToItem(result));
+		}
+		logger.info("username " + username + " found items owned: " + items + " result="  + result);
+		statement.close();
+		result.close();
+		return items;
 	}
 
 	

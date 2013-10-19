@@ -28,5 +28,7 @@ public interface ItemDao
 	public List<Item> findItemsByStatus(ItemStatus status) throws SQLException;
 	
 	public void updateItemStatus(Integer id, ItemStatus status) throws SQLException;
+
+	public List<Item> findByOwner(String username) throws SQLException;
 	
 	}

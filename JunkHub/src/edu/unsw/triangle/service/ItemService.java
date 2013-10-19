@@ -9,6 +9,7 @@ import edu.unsw.triangle.data.ConnectionManager;
 import edu.unsw.triangle.data.DataSourceException;
 import edu.unsw.triangle.data.DerbyDaoManager;
 import edu.unsw.triangle.model.Item;
+import edu.unsw.triangle.model.Item.ItemStatus;
 
 public class ItemService 
 {
@@ -79,6 +80,35 @@ public class ItemService
 	public static List<Item> findAllActiveItems()
 	{
 		return null;
+	}
+
+	public static void suspendItemsOfUsers(List<String> usernames) throws DataSourceException, SQLException 
+	{
+		// Short circuit if there is nothing to process
+		if (usernames == null || usernames.isEmpty())
+		{
+			return;
+		}
+		DerbyDaoManager daoManager = null;
+		try
+		{
+			daoManager = new DerbyDaoManager(ConnectionManager.getInstance());
+			for (String username : usernames)
+			{
+				logger.info("halt items of user: " + username);
+				List<Item> items = daoManager.getItemDao().findByOwner(username);
+				for (Item item : items)
+				{
+					daoManager.getItemDao().updateItemStatus(item.getId(), ItemStatus.NOT_ACTIVE);
+					logger.info("item: " + item.getTitle() + "halted owned by user:" + username);
+				}
+			}
+		}
+		finally
+		{
+			if(daoManager != null)
+				daoManager.close();
+		}
 	}
 
 }

@@ -7,11 +7,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Confirm</title>
 </head>
 <body>
-Confirmation
-Registration has been confirmed ${profile.username}
-<a href="login">Login</a>
+<h1>Confirm Registration</h1>
+<!-- error messages -->
+<div style="color: #FF0000;">${errors.getErrorMessage("confirm.error")}</div>
+<div style="color: #009900;">${messages.getMessage("confirm.success")}</div>
+<br>
+<a href="login">go to login</a>
 </body>
 </html>

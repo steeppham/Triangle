@@ -9,6 +9,7 @@ import edu.unsw.triangle.controller.Controller;
 import edu.unsw.triangle.controller.ModelView;
 import edu.unsw.triangle.service.RegisterService;
 import edu.unsw.triangle.util.Errors;
+import edu.unsw.triangle.util.Messages;
 
 public class ConfirmRequestController implements Controller
 {
@@ -35,6 +36,9 @@ public class ConfirmRequestController implements Controller
 		{	
 			if (RegisterService.activate(username, code))
 			{
+				// TODO need a redirect here
+				Messages message = new Messages().add("confirm.success",  "user " + username + " is now activated");
+				modelView.addModel("messages", message);
 				logger.info("user: " + username + " has been activated");
 			}
 			else

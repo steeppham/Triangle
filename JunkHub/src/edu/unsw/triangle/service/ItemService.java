@@ -10,6 +10,7 @@ import edu.unsw.triangle.data.DataSourceException;
 import edu.unsw.triangle.data.DerbyDaoManager;
 import edu.unsw.triangle.model.Item;
 import edu.unsw.triangle.model.Item.ItemStatus;
+import edu.unsw.triangle.model.Profile;
 
 public class ItemService 
 {
@@ -101,6 +102,10 @@ public class ItemService
 				{
 					daoManager.getItemDao().updateItemStatus(item.getId(), ItemStatus.NOT_ACTIVE);
 					logger.info("item: " + item.getTitle() + "halted owned by user:" + username);
+					
+					// Notify owner that item has been suspended
+					Profile owner = daoManager.getProfileDao().findByUsername(item.getOwner());
+					NotificationService.notifyItemOwnerSuspend(owner.getEmail(), item);
 				}
 			}
 		}
@@ -111,10 +116,10 @@ public class ItemService
 		}
 	}
 
-	public static void suspendItem(List<Integer> items) throws DataSourceException, SQLException 
+	public static void suspendItem(List<Integer> itemsId) throws DataSourceException, SQLException 
 	{
 		// Short circuit if there is nothing to process
-		if (items == null || items.isEmpty())
+		if (itemsId == null || itemsId.isEmpty())
 		{
 			return;
 		}
@@ -122,10 +127,15 @@ public class ItemService
 		try
 		{
 			daoManager = new DerbyDaoManager(ConnectionManager.getInstance());
-			for (int itemId : items)
+			for (int itemId : itemsId)
 			{
 				daoManager.getItemDao().updateItemStatus(itemId, ItemStatus.NOT_ACTIVE);
 				logger.info("item id: " + itemId + " suspended");
+				
+				// Notify owner that item has been suspended
+				Item item = daoManager.getItemDao().findById(itemId);
+				Profile owner = daoManager.getProfileDao().findByUsername(item.getOwner());
+				NotificationService.notifyItemOwnerSuspend(owner.getEmail(), item);
 			}
 		}
 		finally

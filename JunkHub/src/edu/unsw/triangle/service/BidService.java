@@ -9,7 +9,6 @@ import edu.unsw.triangle.data.DerbyDaoManager;
 import edu.unsw.triangle.model.Bid;
 import edu.unsw.triangle.model.Item;
 import edu.unsw.triangle.model.Profile;
-import edu.unsw.triangle.web.ItemFormController;
 
 public class BidService 
 {

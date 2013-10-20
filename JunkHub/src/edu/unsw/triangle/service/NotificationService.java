@@ -77,4 +77,11 @@ public class NotificationService
 		String message = String.format("Hello %d, item '%s' has been out bidded by '%s'", item.getBidder(), item.getTitle(), bid.getBidder());
 		notify(address, subject, message);
 	}
+
+	public static void notifyItemOwnerSuspend(String address, Item item) 
+	{
+		String subject = String.format("JunkHub: Your item '%s has been suspended", item.getTitle());
+		String message = String.format("Hello %d, item '%s' has been out suspended by JunkHub", item.getOwner(), item.getTitle());
+		notify(address, subject, message);
+	}
 }

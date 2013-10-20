@@ -30,6 +30,7 @@ public class ViewResolver
 		mapping.put("logout.view", "/WEB-INF/logout.jsp");
 		mapping.put("admin", "admin");
 		mapping.put("admin.view", "/WEB-INF/admin.jsp");
+		mapping.put("confirm.view", "/WEB-INF/confirm.jsp");
 	}
 	
 	public String resolve(String name)

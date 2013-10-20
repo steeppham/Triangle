@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 /**
  * A bean that represents a user profile information. 
  */
@@ -13,7 +16,7 @@ public class Profile implements Serializable
 	{
 		NOT_ACTIVE,
 		ACTIVE,
-		NOT_CONFIRMED;
+		PENDING;
 	}
 	
 	private static final long serialVersionUID = 1L;
@@ -123,4 +126,30 @@ public class Profile implements Serializable
 	{
 		return new java.sql.Date(this.dob.getTime());
 	}
+	
+	@Override
+	public int hashCode() 
+	{
+		HashCodeBuilder builder = new HashCodeBuilder();
+	    builder.append(getUsername());
+	    builder.append(getEmail());
+	    builder.append(getCredit());
+	    return builder.toHashCode();
+	}
+	
+	@Override
+	public boolean equals(Object obj) 
+	{
+		 if (obj instanceof Profile) {
+	        Profile other = (Profile) obj;
+	        EqualsBuilder builder = new EqualsBuilder();
+	        builder.append(getUsername(), other.getUsername());
+	        builder.append(getEmail(), other.getEmail());
+	        builder.append(getCredit(), other.getCredit());
+	        return builder.isEquals();
+	    }
+	    return false;
+	}
+	
+	
 }

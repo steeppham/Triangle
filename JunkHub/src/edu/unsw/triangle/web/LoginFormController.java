@@ -82,7 +82,7 @@ public class LoginFormController extends AbstractFormController
 			errors.rejectValue("authentication", "access has been revoked");
 			modelView = handleFormError(login, errors).addModel("login", login);
 		}
-		else if (profile.getStatus() == AccountStatus.NOT_CONFIRMED)
+		else if (profile.getStatus() == AccountStatus.PENDING)
 		{
 			// User has not confirmed registration
 			logger.info("confirmation invalid for: " + login.getUsername());

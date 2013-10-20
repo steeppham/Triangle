@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import edu.unsw.triangle.model.Bid;
 import edu.unsw.triangle.model.Item;
+import edu.unsw.triangle.model.Profile;
 
 public class NotificationService
 {
@@ -82,6 +83,15 @@ public class NotificationService
 	{
 		String subject = String.format("JunkHub: Your item '%s has been suspended", item.getTitle());
 		String message = String.format("Hello %d, item '%s' has been out suspended by JunkHub", item.getOwner(), item.getTitle());
+		notify(address, subject, message);
+	}
+
+	public static void notifyConfirmProfile(String address, Profile user) 
+	{
+		String subject = String.format("JunkHub: Activate your account for '%s'", user.getUsername());
+		String confirmUrl = String.format("http://localhost:8080/JunkHub/control/confirm?username=%s&code=%d", user.getUsername(), user.hashCode());
+		logger.info("generate unique activation url: " + confirmUrl);
+		String message = String.format("Hello %s, please activate your account at %s", user.getUsername(), confirmUrl);
 		notify(address, subject, message);
 	}
 }

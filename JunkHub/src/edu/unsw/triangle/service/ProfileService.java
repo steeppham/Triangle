@@ -8,7 +8,6 @@ import java.util.logging.Logger;
 import edu.unsw.triangle.data.ConnectionManager;
 import edu.unsw.triangle.data.DataSourceException;
 import edu.unsw.triangle.data.DerbyDaoManager;
-import edu.unsw.triangle.data.ProfileDaoImpl;
 import edu.unsw.triangle.model.Profile;
 import edu.unsw.triangle.model.Profile.AccountStatus;
 

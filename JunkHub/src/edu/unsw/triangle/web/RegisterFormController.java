@@ -6,10 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import edu.unsw.triangle.controller.AbstractFormController;
 import edu.unsw.triangle.controller.ModelView;
-import edu.unsw.triangle.data.ConnectionManager;
-import edu.unsw.triangle.data.DerbyDaoManager;
 import edu.unsw.triangle.model.Profile;
-import edu.unsw.triangle.model.Profile.AccountStatus;
+import edu.unsw.triangle.service.RegisterService;
 import edu.unsw.triangle.util.Errors;
 import edu.unsw.triangle.util.ProfileValidator;
 import edu.unsw.triangle.util.Validator;
@@ -37,15 +35,10 @@ public class RegisterFormController extends AbstractFormController
 		
 		try 
 		{
-			DerbyDaoManager derbyManager = new DerbyDaoManager(ConnectionManager.getInstance());
-			
 			// check if username is free
-			if (derbyManager.getProfileDao().findByUsername(profile.getUsername()) == null)
+			if (RegisterService.registerUser(profile))
 			{
-				// insert new profile into repository
-				// set profile to default for new user
-				profile.setAdmin(false).setStatus(AccountStatus.ACTIVE); //TODO change this for confirmation
-				derbyManager.getProfileDao().insert(profile);
+				logger.info("username: " + profile.getUsername() + " added to repository");
 				modelView = new ModelView(getSuccessView()).forward().addModel("profile", command);
 			}
 			else
@@ -55,7 +48,7 @@ public class RegisterFormController extends AbstractFormController
 				Errors errors = new Errors().rejectValue("username", "username is alredy taken");
 				modelView = handleFormError(profile, errors);
 			}
-			derbyManager.close();
+
 		} 
 		catch (Exception e)
 		{

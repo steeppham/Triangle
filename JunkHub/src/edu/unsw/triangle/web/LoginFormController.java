@@ -135,4 +135,10 @@ public class LoginFormController extends AbstractFormController
 		return "login.view";
 	}
 
+	@Override
+	public void handleSession(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

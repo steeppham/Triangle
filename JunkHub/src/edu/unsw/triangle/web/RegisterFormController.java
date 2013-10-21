@@ -9,7 +9,6 @@ import edu.unsw.triangle.controller.ModelView;
 import edu.unsw.triangle.model.Profile;
 import edu.unsw.triangle.service.RegisterService;
 import edu.unsw.triangle.util.Errors;
-import edu.unsw.triangle.util.Messages;
 import edu.unsw.triangle.util.ProfileValidator;
 import edu.unsw.triangle.util.Validator;
 import edu.unsw.triangle.view.ProfileBinder;
@@ -40,8 +39,8 @@ public class RegisterFormController extends AbstractFormController
 			if (RegisterService.registerUser(profile))
 			{
 				logger.info("username: " + profile.getUsername() + " added to repository");
-				Messages messages = new Messages().add("confirm.success", "you registration has been save, please check your email for confirmation details");
-				modelView = new ModelView(getSuccessView()).forward().addModel("messages", messages);
+				modelView = new ModelView(getSuccessView()).redirect().addModel("registerSuccess", 
+						profile.getUsername() + " your registration has been saved, please check your email for confirmation details");
 			}
 			else
 			{
@@ -71,7 +70,7 @@ public class RegisterFormController extends AbstractFormController
 	@Override
 	protected String getSuccessView() 
 	{
-		return "confirm.view";
+		return "register";
 	}
 
 	@Override
@@ -92,6 +91,12 @@ public class RegisterFormController extends AbstractFormController
 	public String getFormView() 
 	{
 		return "register.view";
+	}
+
+	@Override
+	public void handleSession(HttpServletRequest request) 
+	{
+		// No implementation
 	}
 
 }

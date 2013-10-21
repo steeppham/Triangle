@@ -14,6 +14,7 @@
 <h1>Register</h1>
 
 	<!-- ui messages here -->
+	<div style="color: #009900;">${registerSuccess}</div>
 	<div style="color: #FF0000;">${errors.getErrorMessage("register.error")}</div>
 	<div style="color: #FF0000;">${errors.getErrorMessage("username")}</div>
 	<div style="color: #FF0000;">${errors.getErrorMessage("password")}</div>

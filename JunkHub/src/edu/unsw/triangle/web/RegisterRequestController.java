@@ -26,4 +26,16 @@ public class RegisterRequestController implements Controller {
 		return "register.view";
 	}
 
+	@Override
+	public void handleSession(HttpServletRequest request) 
+	{
+		if (request.getSession().getAttribute("registerSuccess") != null)
+		{
+			// Add redirect model to request attribute
+			request.setAttribute("registerSuccess", request.getSession().getAttribute("registerSuccess"));
+			// Remove from websession
+			request.getSession().removeAttribute("registerSuccess");
+		}
+	}
+
 }

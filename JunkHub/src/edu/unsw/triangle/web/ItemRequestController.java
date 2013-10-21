@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import edu.unsw.triangle.controller.Controller;
 import edu.unsw.triangle.controller.ModelView;
 import edu.unsw.triangle.model.Item;
-import edu.unsw.triangle.model.WebSession;
 import edu.unsw.triangle.service.ItemService;
 import edu.unsw.triangle.util.Errors;
 
@@ -59,6 +58,12 @@ public class ItemRequestController implements Controller
 	public String getFormView() 
 	{
 		return "item.view";
+	}
+
+	@Override
+	public void handleSession(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

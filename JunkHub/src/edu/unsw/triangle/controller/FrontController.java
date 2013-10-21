@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import edu.unsw.triangle.controller.ModelView.ResponseAction;
+import edu.unsw.triangle.model.WebSession;
+
 /**
  * Front controller for all servlet requests. Delegates to controller implementations according to request.
  */
@@ -45,8 +48,8 @@ public class FrontController extends HttpServlet
 		try 
 		{
 			Controller controller = ControllerFactory.create(request);
+			controller.handleSession(request);
 			ModelView modelView = controller.handleRequest(request, response);
-			// Intermediate steps here...
 			bindModelView(request, modelView);
 			Dispatcher.create(request, response).doDispatch(modelView);
 			
@@ -63,12 +66,24 @@ public class FrontController extends HttpServlet
 	
 	protected void bindModelView(HttpServletRequest request, ModelView modelView)
 	{
-		for (String name : modelView.modelSet())
+		HttpSession session = request.getSession();
+		
+		if (modelView.getAction() == ResponseAction.FORWARD) {
+			// Add models to the request attributes
+			for (String name : modelView.modelSet())
+			{
+				request.setAttribute(name, modelView.getModel(name));
+			}
+		}
+		else
 		{
-			request.setAttribute(name, modelView.getModel(name));
+			// Add message models to the session for redirect
+			for (String name : modelView.modelSet())
+			{
+				session.setAttribute(name, modelView.getModel(name));
+			}
 		}
 		
-		HttpSession session = request.getSession();
 		for (String name : modelView.sessionModelSet())
 		{
 			session.setAttribute(name, modelView.getSessionModel(name));

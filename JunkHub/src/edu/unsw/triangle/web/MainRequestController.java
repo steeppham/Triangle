@@ -25,4 +25,10 @@ public class MainRequestController implements Controller
 		return "main.view";
 	}
 
+	@Override
+	public void handleSession(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

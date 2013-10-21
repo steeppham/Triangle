@@ -72,4 +72,10 @@ public class AdminRequestController implements Controller
 		return "admin.view";
 	}
 
+	@Override
+	public void handleSession(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

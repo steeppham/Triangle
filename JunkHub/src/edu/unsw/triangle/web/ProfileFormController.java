@@ -111,4 +111,10 @@ public class ProfileFormController extends AbstractFormController
 		return modelView;
 	}
 
+	@Override
+	public void handleSession(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

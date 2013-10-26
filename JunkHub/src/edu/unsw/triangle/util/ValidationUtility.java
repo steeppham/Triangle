@@ -84,4 +84,12 @@ public class ValidationUtility
 			errors.rejectValue(field, message);
 		}	
 	}
+	
+	public static void rejectInvalidCharacters(Errors errors, String field, String value, String message)
+	{
+		if (!value.matches("^[^\\s]+$"))
+		{
+			errors.rejectValue(field, message);
+		}
+	}
 }

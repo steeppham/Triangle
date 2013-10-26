@@ -10,20 +10,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-
-import edu.unsw.triangle.model.Item;
-import edu.unsw.triangle.model.Item.ItemStatus;
-import edu.unsw.triangle.model.WebSession;
-import edu.unsw.triangle.util.Errors;
-import edu.unsw.triangle.util.ValidationUtility;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
+
+import edu.unsw.triangle.model.Item;
+import edu.unsw.triangle.model.Item.ItemStatus;
+import edu.unsw.triangle.model.WebSession;
+import edu.unsw.triangle.util.Errors;
+import edu.unsw.triangle.util.ValidationUtility;
 
 public class ItemBinder implements RequestBinder {
 

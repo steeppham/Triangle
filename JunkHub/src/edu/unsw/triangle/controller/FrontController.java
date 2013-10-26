@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import edu.unsw.triangle.controller.ModelView.ResponseAction;
-import edu.unsw.triangle.model.WebSession;
 
 /**
  * Front controller for all servlet requests. Delegates to controller implementations according to request.
@@ -36,7 +35,7 @@ public class FrontController extends HttpServlet
 	@Override
 	public void init() throws ServletException 
 	{
-		super.init();
+		// Not implemented
 	}
 
 	/**

@@ -16,17 +16,16 @@ public class MailSender
 {
 	private final static Logger logger = Logger.getLogger(MailSender.class.getName());
 	private Session session;
-	public MailSender()
+	public MailSender(int timeout, final String username, final String password)
 	{
 		// Set up mailing session
-		final String username = "triangle.junkhub@gmail.com";
-		final String password = "5andst0ne";
- 
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.port", "587");
+        props.put( "mail.smtp.connectiontimeout", timeout);
+        props.put( "mail.smtp.timeout", timeout);
  
 		session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {

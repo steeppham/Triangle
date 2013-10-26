@@ -79,6 +79,7 @@ public class ItemBidTask  implements Runnable
 				// Bid successful
 				item.setStatus(ItemStatus.SOLD);
 				logger.info("Item '" + item.getTitle() + "' is sold after pending accepted");
+				daoManager.getItemDao().updateItemStatus(item.getId(), item.getStatus());
 				// Notify owner
 				Profile owner = daoManager.getProfileDao().findByUsername(item.getOwner());
 				NotificationService.notifyItemOwnerSold(owner.getEmail(), item);

@@ -10,9 +10,14 @@ public class NotificationService
 {
 	private final static Logger logger = Logger.getLogger(NotificationService.class.getName());
 	
+	private static boolean isEnabled = false;
+	private static int timeout = 5000;
+	private static String adminAddress = "email";
+	private static String adminPassword = "password";
+	
 	public static void email(MailMessage message) throws MailException
 	{
-		MailSender mailSender = new MailSender();
+		MailSender mailSender = new MailSender(timeout, adminAddress, adminPassword);
 		mailSender.send(message);
 	}
 	
@@ -23,16 +28,23 @@ public class NotificationService
 
 	public static void notify(String address, String subject, String text) 
 	{
-		MailMessage message = createMessage().setBody(text).setRecipient(address).setSubject(subject).setFrom("admin@junkhub.com");
-		
-		try
+		if (isEnabled)
 		{
-			email(message);	
-			logger.info("notification sent to: " + address);
+			MailMessage message = createMessage().setBody(text).setRecipient(address).setSubject(subject).setFrom(adminAddress);
+			
+			try
+			{
+				email(message);	
+				logger.info("notification sent to: " + address);
+			}
+			catch (MailException e)
+			{
+				logger.warning("notification failed to send to: " + address);
+			}
 		}
-		catch (MailException e)
+		else
 		{
-			logger.warning("notification failed to send to: " + address);
+			logger.warning("notification is disabled");
 		}
 	}
 	
@@ -93,5 +105,25 @@ public class NotificationService
 		logger.info("generate unique activation url: " + confirmUrl);
 		String message = String.format("Hello %s, please activate your account at %s", user.getUsername(), confirmUrl);
 		notify(address, subject, message);
+	}
+
+	public static void enabled(boolean value) 
+	{
+		isEnabled = value;
+	}
+	
+	public static void setTimeout(int timeoutSeconds)
+	{
+		timeout = timeoutSeconds * 1000;
+	}
+	
+	public static void setAdminAddress(String email)
+	{
+		adminAddress = email;
+	}
+
+	public static void setAdminPassword(String password) 
+	{
+		adminPassword = password;
 	}
 }

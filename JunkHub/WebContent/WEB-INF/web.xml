@@ -8,6 +8,22 @@
    		<param-name>itemSchedulerPeriod</param-name>
    		<param-value>180</param-value>
 	</context-param>
+	<context-param> 
+		<param-name>email.enabled</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param> 
+		<param-name>host.email</param-name>
+		<param-value>triangle.junkhub@gmail.com</param-value>
+	</context-param>
+	<context-param> 
+		<param-name>host.password</param-name>
+		<param-value>5andst0ne</param-value>
+	</context-param>
+	<context-param> 
+		<param-name>email.timeout</param-name>
+		<param-value>5</param-value>
+	</context-param>
 	<filter>
 		<filter-name>ControllerFilter</filter-name>
 		<filter-class>edu.unsw.triangle.controller.ControllerFilter</filter-class>
@@ -17,7 +33,7 @@
 		</init-param>
 	</filter>
 	<listener>
-    	<listener-class>edu.unsw.triangle.service.ItemServiceScheduler</listener-class>
+    	<listener-class>edu.unsw.triangle.service.ServletContextService</listener-class>
 	</listener>
 	<filter-mapping>
 		<filter-name>ControllerFilter</filter-name>

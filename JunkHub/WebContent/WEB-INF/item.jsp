@@ -52,6 +52,9 @@
 	<input type="submit" value="Reject" name="reject">
   </form>
   </c:when>
+  <c:when test="${item.owner eq websession.username and item.status eq 'PENDING'}">
+  	<div style="color: #FF9900;">bid has been accepted</div>
+  </c:when>
   <c:when test="${item.owner eq websession.username}"><div style="color: #FF0000;">owner of item cannot place bids</div></c:when>
   <c:when test="${item.status eq 'PENDING'}"><div style="color: #FF9900;">item pending</div></c:when>
   <c:when test="${item.status eq 'SOLD'}"><div style="color: #009900;">item sold</div></c:when>

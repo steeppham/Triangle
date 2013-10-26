@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import edu.unsw.triangle.model.WebSession;
-
 public class ModelView 
 {
 	public enum ResponseAction

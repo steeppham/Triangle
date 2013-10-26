@@ -72,6 +72,20 @@ public class ItemBidTask  implements Runnable
 				daoManager.getItemDao().updateItemStatus(item.getId(), item.getStatus());
 			}
 			
+			// Find items that have been accepted in pending stage
+			List<Item> acceptedItems = daoManager.getItemDao().findItemsByStatus(ItemStatus.PENDING_ACCEPT);
+			for (Item item : acceptedItems)
+			{
+				// Bid successful
+				item.setStatus(ItemStatus.SOLD);
+				logger.info("Item '" + item.getTitle() + "' is sold after pending accepted");
+				// Notify owner
+				Profile owner = daoManager.getProfileDao().findByUsername(item.getOwner());
+				NotificationService.notifyItemOwnerSold(owner.getEmail(), item);
+				// Notify bidder
+				Profile bidder = daoManager.getProfileDao().findByUsername(item.getBidder());
+				NotificationService.notifyItemBidderSold(bidder.getEmail(), item);
+			}
 		}
 		catch (Exception e)
 		{

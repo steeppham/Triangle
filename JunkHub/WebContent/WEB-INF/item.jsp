@@ -13,6 +13,8 @@
 <body>
 <h1>${item.title}</h1>
 <!-- messages here -->
+<div style="color: #009900;">${pendingSuccess}</div>
+<div style="color: #FF0000;">${errors.getErrorMessage("pending")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("request")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("bid")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("id")}</div>
@@ -42,7 +44,13 @@
   <c:when test="${websession.profile.admin}"><div style="color: #FF0000;">admin cannot place bids</div></c:when>
   <c:when test="${item.owner eq websession.username and item.status eq 'PENDING'}">
   <div style="color: #FF9900;">item pending</div>
-  accept?
+  <form method="POST" action="item.pending">
+	<input type="hidden" name="id" value="${item.id}">
+	<input type="hidden" name="owner" value="${item.owner}">
+	<input type="hidden" name="bidder" value="${item.bidder}">
+	<input type="submit" value="Accept" name="accept">
+	<input type="submit" value="Reject" name="reject">
+  </form>
   </c:when>
   <c:when test="${item.owner eq websession.username}"><div style="color: #FF0000;">owner of item cannot place bids</div></c:when>
   <c:when test="${item.status eq 'PENDING'}"><div style="color: #FF9900;">item pending</div></c:when>
@@ -55,7 +63,7 @@
   	<p><label>bid increments of $${item.increment}</label></p>
 	<input type="text" name="bid" maxlength= "5">
 	<input type="hidden" name="id" value="${item.id}"> 
-  	<input type="submit" value="bid" name="Place Bid">
+  	<input type="submit" value="Place Bid" name="bid">
   </form>
   </c:otherwise>
 </c:choose>

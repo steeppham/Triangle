@@ -145,5 +145,20 @@ public class ItemService
 		}
 		
 	}
+	
+	public static void updateItemStatus(int itemId, ItemStatus status) throws SQLException, DataSourceException
+	{
+		DerbyDaoManager daoManager = null;
+		try
+		{
+			daoManager = new DerbyDaoManager(ConnectionManager.getInstance());
+			daoManager.getItemDao().updateItemStatus(itemId, status);
+		}
+		finally
+		{
+			if(daoManager != null)
+				daoManager.close();
+		}
+	}
 
 }

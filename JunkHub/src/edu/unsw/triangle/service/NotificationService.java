@@ -39,21 +39,21 @@ public class NotificationService
 	public static void notifyItemOwnerSold(String address, Item item)
 	{
 		String subject = String.format("JunkHub: Your item '%s' has sold!", item.getTitle());
-		String message = String.format("Hello %d, item '%s' has been sold to '%s' for $%d", item.getOwner(), item.getTitle(), item.getBidder(), item.getBid());
+		String message = String.format("Hello %s, item '%s' has been sold to '%s' for $%s", item.getOwner(), item.getTitle(), item.getBidder(), item.getBid());
 		notify(address, subject, message);
 	}
 	
 	public static void notifyItemBidderSold(String address, Item item)
 	{
 		String subject = String.format("JunkHub: You have won item '%s'!", item.getTitle());
-		String message = String.format("Hello %d, you have successfuly won item '%s' for $%d", item.getBidder(), item.getTitle(), item.getBid());
+		String message = String.format("Hello %s, you have successfuly won item '%s' for $%s", item.getBidder(), item.getTitle(), item.getBid());
 		notify(address, subject, message);
 	}
 
 	public static void notifyItemOwnerPending(String address, Item item) 
 	{
 		String subject = String.format("JunkHub: Action required, your item '%s' did not meet reserve", item.getTitle());
-		String message = String.format("Hello %d, please login to accept or decline bidder '%s' offer of $%d for item '%s'.\nhttp://localhost:8080/JunkHub/control/item?id=%d", 
+		String message = String.format("Hello %s, please login to accept or decline bidder '%s' offer of $%s for item '%s'.\nhttp://localhost:8080/JunkHub/control/item?id=%s", 
 				item.getOwner(), item.getBidder(), item.getBid(), item.getTitle(), item.getId());
 		notify(address, subject, message);
 	}
@@ -61,35 +61,35 @@ public class NotificationService
 	public static void notifyItemOwnerUnsold(String address, Item item) 
 	{
 		String subject = String.format("JunkHub: Your item '%s' did not sell", item.getTitle());
-		String message = String.format("Hello %d, item '%s' did not sell", item.getOwner(), item.getTitle());
+		String message = String.format("Hello %s, item '%s' did not sell", item.getOwner(), item.getTitle());
 		notify(address, subject, message);
 	}
 
 	public static void notifyItemBidderSuccess(String address, Item item, Bid bid) 
 	{
 		String subject = String.format("JunkHub: Your have successfully bidded for item '%s'", item.getTitle());
-		String message = String.format("Hello %d, you have bidded $%d for item '%s'", bid.getBidder(), bid.getBid(), item.getTitle());
+		String message = String.format("Hello %s, you have bidded $%s for item '%s'", bid.getBidder(), bid.getBid(), item.getTitle());
 		notify(address, subject, message);
 	}
 
 	public static void notifyItemBidderLoss(String address, Item item, Bid bid) 
 	{
 		String subject = String.format("JunkHub: Your have been out bidded on item '%s", item.getTitle());
-		String message = String.format("Hello %d, item '%s' has been out bidded by '%s'", item.getBidder(), item.getTitle(), bid.getBidder());
+		String message = String.format("Hello %s, item '%s' has been out bidded by '%s'", item.getBidder(), item.getTitle(), bid.getBidder());
 		notify(address, subject, message);
 	}
 
 	public static void notifyItemOwnerSuspend(String address, Item item) 
 	{
 		String subject = String.format("JunkHub: Your item '%s has been suspended", item.getTitle());
-		String message = String.format("Hello %d, item '%s' has been out suspended by JunkHub", item.getOwner(), item.getTitle());
+		String message = String.format("Hello %s, item '%s' has been out suspended by JunkHub", item.getOwner(), item.getTitle());
 		notify(address, subject, message);
 	}
 
 	public static void notifyConfirmProfile(String address, Profile user) 
 	{
 		String subject = String.format("JunkHub: Activate your account for '%s'", user.getUsername());
-		String confirmUrl = String.format("http://localhost:8080/JunkHub/control/confirm?username=%s&code=%d", user.getUsername(), user.hashCode());
+		String confirmUrl = String.format("http://localhost:8080/JunkHub/control/confirm?username=%s&code=%s", user.getUsername(), user.hashCode());
 		logger.info("generate unique activation url: " + confirmUrl);
 		String message = String.format("Hello %s, please activate your account at %s", user.getUsername(), confirmUrl);
 		notify(address, subject, message);

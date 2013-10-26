@@ -12,6 +12,7 @@ import edu.unsw.triangle.web.AdminProfileFormController;
 import edu.unsw.triangle.web.AdminRequestController;
 import edu.unsw.triangle.web.ConfirmRequestController;
 import edu.unsw.triangle.web.ItemFormController;
+import edu.unsw.triangle.web.ItemPendingFormController;
 import edu.unsw.triangle.web.ItemRequestController;
 import edu.unsw.triangle.web.LoginFormController;
 import edu.unsw.triangle.web.LoginRequestController;
@@ -35,9 +36,6 @@ public class ControllerFactory
 	public static final String REGISTER = "register";
 	public static final String LOGIN = "login";
 	public static final String MAIN = "main";
-	private static final String CONFIRM = "confirm";
-	private static final String SEARCH = "search";
-	private static final String PROFILE = "profile";
 	
 	private final static Map<String, Controller> mapping;
 	
@@ -59,6 +57,7 @@ public class ControllerFactory
 		mapping.put("POST/sell", new SellFormController());
 		mapping.put("GET/item", new ItemRequestController());
 		mapping.put("POST/item", new ItemFormController());
+		mapping.put("POST/item.pending", new ItemPendingFormController());
 		mapping.put("GET/logout", new LogoutRequestController());
 		mapping.put("GET/admin", new AdminRequestController());
 		mapping.put("POST/admin.profile", new AdminProfileFormController());

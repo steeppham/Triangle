@@ -117,9 +117,9 @@ public class ItemFormController extends AbstractFormController {
 	}
 
 	@Override
-	public void handleSession(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		
+	public void handleSession(HttpServletRequest request) 
+	{
+		// Not implemented
 	}
 
 }

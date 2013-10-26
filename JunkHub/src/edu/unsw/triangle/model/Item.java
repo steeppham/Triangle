@@ -11,7 +11,8 @@ public class Item implements Serializable
 		ACTIVE,
 		SOLD,
 		UNSOLD,
-		PENDING;
+		PENDING,
+		PENDING_ACCEPT;
 	}
 	
 	private static final long serialVersionUID = 1L;

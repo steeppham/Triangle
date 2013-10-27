@@ -61,10 +61,4 @@ public class ConfirmRequestController implements Controller
 	{
 		return "confirm.view";
 	}
-
-	@Override
-	public void handleSession(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		
-	}
 }

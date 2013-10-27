@@ -48,9 +48,4 @@ public class ProfileRequestController implements Controller
 		return "profile.view";
 	}
 
-	@Override
-	public void handleSession(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		
-	}
 }

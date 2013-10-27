@@ -19,12 +19,6 @@ public class ItemPendingFormController extends AbstractFormController {
 	private final static Logger logger = Logger.getLogger(ItemPendingFormController.class.getName());
 	
 	@Override
-	public void handleSession(HttpServletRequest request) 
-	{
-		//Not implemented
-	}
-
-	@Override
 	public String getFormView() {
 		return "item.view";
 	}

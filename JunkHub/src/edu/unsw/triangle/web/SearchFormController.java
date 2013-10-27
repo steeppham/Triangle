@@ -83,11 +83,4 @@ public class SearchFormController extends AbstractFormController
 				addModel("search", command).addModel("errors", errors);
 		return modelView;
 	}
-
-	@Override
-	public void handleSession(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

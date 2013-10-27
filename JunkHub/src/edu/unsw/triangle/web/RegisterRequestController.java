@@ -1,14 +1,17 @@
 package edu.unsw.triangle.web;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.unsw.triangle.controller.AbstractRequestController;
 import edu.unsw.triangle.controller.Controller;
 import edu.unsw.triangle.controller.ModelView;
 
-public class RegisterRequestController implements Controller {
+public class RegisterRequestController extends AbstractRequestController 
+{
 
 	private final Logger logger = Logger.getLogger(LoginRequestController.class.getName());
 	
@@ -27,15 +30,8 @@ public class RegisterRequestController implements Controller {
 	}
 
 	@Override
-	public void handleSession(HttpServletRequest request) 
-	{
-		if (request.getSession().getAttribute("registerSuccess") != null)
-		{
-			// Add redirect model to request attribute
-			request.setAttribute("registerSuccess", request.getSession().getAttribute("registerSuccess"));
-			// Remove from websession
-			request.getSession().removeAttribute("registerSuccess");
-		}
+	public String[] getRedirectObjects() {
+		return new String[] {"registerSuccess"};
 	}
 
 }

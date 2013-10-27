@@ -1,6 +1,7 @@
 package edu.unsw.triangle.controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
@@ -47,7 +48,11 @@ public class FrontController extends HttpServlet
 		try 
 		{
 			Controller controller = ControllerFactory.create(request);
-			controller.handleSession(request);
+			if (controller instanceof AbstractRequestController)
+			{
+				// Handle session objects for redirects
+				((AbstractRequestController) controller).handleSessionObjects(request);
+			}
 			ModelView modelView = controller.handleRequest(request, response);
 			bindModelView(request, modelView);
 			Dispatcher.create(request, response).doDispatch(modelView);

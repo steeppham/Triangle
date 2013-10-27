@@ -5,8 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface Controller 
 {
-	public void handleSession(HttpServletRequest request);
-	
 	public ModelView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	public String getFormView();

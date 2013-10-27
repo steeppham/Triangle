@@ -110,11 +110,4 @@ public class ProfileFormController extends AbstractFormController
 				addModel("profile.error", command).addModel("errors", errors);
 		return modelView;
 	}
-
-	@Override
-	public void handleSession(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

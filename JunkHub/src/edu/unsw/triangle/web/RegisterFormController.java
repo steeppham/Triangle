@@ -93,10 +93,4 @@ public class RegisterFormController extends AbstractFormController
 		return "register.view";
 	}
 
-	@Override
-	public void handleSession(HttpServletRequest request) 
-	{
-		// No implementation
-	}
-
 }

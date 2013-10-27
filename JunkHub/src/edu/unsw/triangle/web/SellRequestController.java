@@ -5,12 +5,13 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.unsw.triangle.controller.AbstractRequestController;
 import edu.unsw.triangle.controller.Controller;
 import edu.unsw.triangle.controller.ModelView;
 import edu.unsw.triangle.model.WebSession;
 import edu.unsw.triangle.util.Errors;
 
-public class SellRequestController implements Controller {
+public class SellRequestController extends AbstractRequestController {
 
 	private final Logger logger = Logger.getLogger(SellRequestController.class.getName());
 	
@@ -37,16 +38,8 @@ public class SellRequestController implements Controller {
 	}
 
 	@Override
-	public void handleSession(HttpServletRequest request) 
-	{
-		String attributeName = "messages";
-		if (request.getSession().getAttribute(attributeName) != null)
-		{
-			// Add redirect model to request attribute
-			request.setAttribute(attributeName, request.getSession().getAttribute(attributeName));
-			// Remove from websession
-			request.getSession().removeAttribute(attributeName);
-		}
+	public String[] getRedirectObjects() {
+		return new String[] {"messages"};
 	}
 
 }

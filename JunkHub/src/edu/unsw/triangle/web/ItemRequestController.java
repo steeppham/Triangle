@@ -1,17 +1,19 @@
 package edu.unsw.triangle.web;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.unsw.triangle.controller.Controller;
+import edu.unsw.triangle.controller.AbstractRequestController;
 import edu.unsw.triangle.controller.ModelView;
 import edu.unsw.triangle.model.Item;
 import edu.unsw.triangle.service.ItemService;
 import edu.unsw.triangle.util.Errors;
 
-public class ItemRequestController implements Controller
+public class ItemRequestController extends AbstractRequestController
 {
 	private final Logger logger = Logger.getLogger(LoginFormController.class.getName());
 	
@@ -61,16 +63,8 @@ public class ItemRequestController implements Controller
 	}
 
 	@Override
-	public void handleSession(HttpServletRequest request) 
-	{
-		String attributeName = "pendingSuccess";
-		if (request.getSession().getAttribute(attributeName) != null)
-		{
-			// Add redirect model to request attribute
-			request.setAttribute(attributeName, request.getSession().getAttribute(attributeName));
-			// Remove from websession
-			request.getSession().removeAttribute(attributeName);
-		}
+	public String[] getRedirectObjects() {
+		return new String[] {"pendingSuccess"};
 	}
 
 }

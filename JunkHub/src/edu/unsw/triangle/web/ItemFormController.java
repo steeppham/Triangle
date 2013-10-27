@@ -58,12 +58,25 @@ public class ItemFormController extends AbstractFormController {
 			return handleFormError(bid, errors);
 		}
 		
-		// Check bid is greater than current bid plus increment
-		if (bid.getBidFloat() < (item.getBid() + item.getIncrement()))
+		if (item.getBid() == 0)
 		{
-			logger.severe("item id: bid: $" + bid.getBid() + " is less than current bid: " + item.getBid() + " and increment: " + item.getIncrement());
-			Errors errors = new Errors().rejectValue("bid", "bid is less than current bid plus increment");
-			return handleFormError(bid, errors);
+			// Check new bid is greater than the starting price
+			if (bid.getBidFloat() < item.getStart())
+			{
+				logger.warning("item id: bid: $" + bid.getBid() + " is less than start bid: " + item.getStart());
+				Errors errors = new Errors().rejectValue("bid", "bid is less than starting price");
+				return handleFormError(bid, errors);
+			}
+		}
+		else
+		{
+			// Check bid is greater than current bid plus increment
+			if (bid.getBidFloat() < (item.getBid() + item.getIncrement()))
+			{
+				logger.warning("item id: bid: $" + bid.getBid() + " is less than current bid: " + item.getBid() + " and increment: " + item.getIncrement());
+				Errors errors = new Errors().rejectValue("bid", "bid is less than current bid plus increment");
+				return handleFormError(bid, errors);
+			}
 		}
 		
 		// Update new bid

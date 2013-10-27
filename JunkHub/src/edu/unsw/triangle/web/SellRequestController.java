@@ -37,9 +37,16 @@ public class SellRequestController implements Controller {
 	}
 
 	@Override
-	public void handleSession(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		
+	public void handleSession(HttpServletRequest request) 
+	{
+		String attributeName = "messages";
+		if (request.getSession().getAttribute(attributeName) != null)
+		{
+			// Add redirect model to request attribute
+			request.setAttribute(attributeName, request.getSession().getAttribute(attributeName));
+			// Remove from websession
+			request.getSession().removeAttribute(attributeName);
+		}
 	}
 
 }

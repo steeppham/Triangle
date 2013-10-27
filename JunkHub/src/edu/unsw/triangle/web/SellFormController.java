@@ -45,7 +45,7 @@ public class SellFormController extends AbstractFormController
 			Messages message = new Messages();
 			message.add("sell.success", "item \"" + item.getTitle() + "\" is now listed");
 			
-			modelView = new ModelView(getSuccessView()).addModel("messages", message);		
+			modelView = new ModelView(getSuccessView()).redirect().addModel("messages", message);		
 		}
 		catch (Exception e)
 		{
@@ -73,7 +73,7 @@ public class SellFormController extends AbstractFormController
 	@Override
 	protected String getSuccessView() 
 	{
-		return "sell.confirm.view";
+		return "sell";
 	}
 
 	@Override

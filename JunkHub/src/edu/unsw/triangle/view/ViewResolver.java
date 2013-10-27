@@ -24,7 +24,6 @@ public class ViewResolver
 		mapping.put("profile.view", "/WEB-INF/profile.jsp");
 		mapping.put("sell", "sell");
 		mapping.put("sell.view", "/WEB-INF/sell.jsp");
-		mapping.put("sell.confirm.view", "/WEB-INF/sell.jsp");
 		mapping.put("item.view", "/WEB-INF/item.jsp");
 		mapping.put("item", "item");
 		mapping.put("confirm", "/WEB-INF/confirm.jsp");

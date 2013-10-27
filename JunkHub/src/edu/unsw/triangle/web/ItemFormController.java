@@ -51,6 +51,7 @@ public class ItemFormController extends AbstractFormController {
 		{
 			// Error retrieving item
 			logger.severe("failure to retrieve item id: " + bid.getItemId() + " reason: " + e.getMessage());
+			e.printStackTrace();
 			Errors errors = new Errors().rejectValue("item.error", "repository failure reason:" + e.getMessage());
 			return handleFormError(bid, errors).addModel("item", item).addParameter("id", String.valueOf(item.getId()));
 		}
@@ -67,7 +68,7 @@ public class ItemFormController extends AbstractFormController {
 		// Check bid is greater than current bid plus increment
 		if (bid.getBidFloat() < (item.getBid() + item.getIncrement()))
 		{
-			logger.severe("item id: bid (" + bid.getBid() + ") is less than current bid and increment (" + item.getBid() + item.getIncrement() + ")" );
+			logger.severe("item id: bid: $" + bid.getBid() + " is less than current bid: " + item.getBid() + " and increment: " + item.getIncrement());
 			Errors errors = new Errors().rejectValue("bid", "bid is less than current bid plus increment");
 			return handleFormError(bid, errors).addModel("item", item).addParameter("id", String.valueOf(item.getId()));
 		}
@@ -81,6 +82,7 @@ public class ItemFormController extends AbstractFormController {
 		catch (Exception e)
 		{
 			logger.severe("updating item with new bid failed reason: " + e.getMessage());
+			e.printStackTrace();
 			Errors errors = new Errors().rejectValue("bid", "bid faild to update in repository");
 			return handleFormError(bid, errors).addModel("item", item).addParameter("id", String.valueOf(item.getId()));
 		}

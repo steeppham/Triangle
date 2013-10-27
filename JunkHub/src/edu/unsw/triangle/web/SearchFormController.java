@@ -43,7 +43,7 @@ public class SearchFormController extends AbstractFormController
 		try
 		{
 			results = SearchService.search(query);
-			logger.info(String.format("Search query \"%s\" returned %d results", query, results.size()));
+			logger.info(String.format("Search query '%s' returned %d results", query.getFindByTitle(), results.size()));
 			modelView = new ModelView(getSuccessView()).forward().addModel("query", query).addModel("result", results);
 		}
 		catch (Exception e)

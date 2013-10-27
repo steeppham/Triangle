@@ -40,9 +40,9 @@ public class BidService
 			Profile bidder = daoManager.getProfileDao().findByUsername(bid.getBidder());
 			NotificationService.notifyItemBidderSuccess(bidder.getEmail(), item, bid);
 			logger.info("notify bidder of bid: " + bid.getBidder());
-			if (!item.getBidder().isEmpty())
+			if (!item.getBidder().isEmpty() && item.getBidder() != bid.getBidder())
 			{
-				// Notify previous bidder of new current bid
+				// Notify previous bidder of new current bid if not the same bidder
 				Profile previousBidder = daoManager.getProfileDao().findByUsername(item.getBidder());
 				NotificationService.notifyItemBidderLoss(previousBidder.getEmail(), item, bid);
 				logger.info("notify previous bidder: " + previousBidder.getUsername());

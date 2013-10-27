@@ -76,7 +76,7 @@ public class ItemFormController extends AbstractFormController {
 		{
 			logger.severe("updating item with new bid failed reason: " + e.getMessage());
 			e.printStackTrace();
-			Errors errors = new Errors().rejectValue("bid", "bid faild to update in repository");
+			Errors errors = new Errors().rejectValue("bid", "bid faild to update in repository reason:" + e.getMessage());
 			return handleFormError(bid, errors);
 		}
 		

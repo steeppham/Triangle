@@ -144,6 +144,8 @@ public class Item implements Serializable
 	
 	public int getTimeLeft()
 	{
+		if (getStartTime() == null)
+			return 0;
 		long now = new Date().getTime();
 		long end = getStartTime().getTime() + (getPeriod() * 60 * MILLISECOND);
 		long difference = end - now;

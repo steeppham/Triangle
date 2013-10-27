@@ -14,6 +14,7 @@
 <h1>${item.title}</h1>
 <!-- messages -->
 <div style="color: #009900;">${pendingSuccess}</div>
+<div style="color: #009900;">${messages.getMessage("bid.success")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("pending")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("request")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("bid")}</div>

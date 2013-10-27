@@ -1,7 +1,5 @@
 package edu.unsw.triangle.web;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -64,7 +62,7 @@ public class ItemRequestController extends AbstractRequestController
 
 	@Override
 	public String[] getRedirectObjects() {
-		return new String[] {"pendingSuccess"};
+		return new String[] {"pendingSuccess", "messages"};
 	}
 
 }

@@ -13,6 +13,7 @@ import edu.unsw.triangle.service.BidService;
 import edu.unsw.triangle.service.ItemService;
 import edu.unsw.triangle.util.BidValidator;
 import edu.unsw.triangle.util.Errors;
+import edu.unsw.triangle.util.Messages;
 import edu.unsw.triangle.util.Validator;
 import edu.unsw.triangle.view.BidBinder;
 import edu.unsw.triangle.view.RequestBinder;
@@ -39,30 +40,22 @@ public class ItemFormController extends AbstractFormController {
 	protected ModelView handleFormSubmit(Object command) 
 	{
 		Bid bid = (Bid) command;
+		Item item = bid.getItem();
 		
-		// Check item is active
-		Item item = null;
-		//ModelView modelView = null;
-		try
+		if (item == null)
 		{
-			item = ItemService.findItemById(bid.getItemId());
-		}
-		catch (Exception e)
-		{
-			// Error retrieving item
-			logger.severe("failure to retrieve item id: " + bid.getItemId() + " reason: " + e.getMessage());
-			e.printStackTrace();
-			Errors errors = new Errors().rejectValue("item.error", "repository failure reason:" + e.getMessage());
-			return handleFormError(bid, errors).addModel("item", item).addParameter("id", String.valueOf(item.getId()));
+			logger.severe("item id: " + bid.getItemId() + " is null");
+			Errors errors = new Errors().rejectValue("item.error", "item id: " + bid.getItemId() + " is null");
+			return handleFormError(bid, errors);
 		}
 		
-		if (item.getStatus() != ItemStatus.ACTIVE)
+		// Check item is active and not expired
+		if (item.getStatus() != ItemStatus.ACTIVE || item.getTimeLeft() < 0)
 		{
-			// Item is not active
-			// Update view
-			logger.severe("item id: " + bid.getItemId() + " is not active");
-			Errors errors = new Errors().rejectValue("item.error", "repository failure reason:");
-			return handleFormError(bid, errors).addModel("item", item).addParameter("id", String.valueOf(item.getId()));
+			// Item is not active or expired
+			logger.severe("item id: " + bid.getItemId() + " is not active or expired");
+			Errors errors = new Errors().rejectValue("bid", "bid failed, item is no longer active");
+			return handleFormError(bid, errors);
 		}
 		
 		// Check bid is greater than current bid plus increment
@@ -70,7 +63,7 @@ public class ItemFormController extends AbstractFormController {
 		{
 			logger.severe("item id: bid: $" + bid.getBid() + " is less than current bid: " + item.getBid() + " and increment: " + item.getIncrement());
 			Errors errors = new Errors().rejectValue("bid", "bid is less than current bid plus increment");
-			return handleFormError(bid, errors).addModel("item", item).addParameter("id", String.valueOf(item.getId()));
+			return handleFormError(bid, errors);
 		}
 		
 		// Update new bid
@@ -84,10 +77,11 @@ public class ItemFormController extends AbstractFormController {
 			logger.severe("updating item with new bid failed reason: " + e.getMessage());
 			e.printStackTrace();
 			Errors errors = new Errors().rejectValue("bid", "bid faild to update in repository");
-			return handleFormError(bid, errors).addModel("item", item).addParameter("id", String.valueOf(item.getId()));
+			return handleFormError(bid, errors);
 		}
-		// Message session here...
-		ModelView modelView = new ModelView(getSuccessView()).redirect().addParameter("id", String.valueOf(item.getId()));
+		
+		Messages messages = new Messages().add("bid.success", "your bid was successful");
+		ModelView modelView = new ModelView(getSuccessView()).redirect().addParameter("id", String.valueOf(item.getId())).addModel("messages", messages);
 		
 		return modelView;
 	}
@@ -113,8 +107,9 @@ public class ItemFormController extends AbstractFormController {
 	@Override
 	protected ModelView handleFormError(Object command, Errors errors) 
 	{
-		ModelView modelView = new ModelView(getFormView()).forward().
-				addModel("errors", errors);
+		Bid bid = (Bid) command;
+		ModelView modelView = new ModelView(getFormView()).forward().addModel("item", bid.getItem()).
+				addModel("errors", errors).addParameter("id", String.valueOf(bid.getItemId()));
 		return modelView;
 	}
 }

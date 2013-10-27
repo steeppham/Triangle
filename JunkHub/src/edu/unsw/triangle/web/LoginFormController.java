@@ -49,7 +49,7 @@ public class LoginFormController extends AbstractFormController
 		{
 			logger.info("authentication failure reason:" + e.getMessage());
 			Errors errors = new Errors();
-			errors.rejectValue("authentication", "authentication failure");
+			errors.rejectValue("authentication", "authentication failure reason: " + e.getMessage());
 			return modelView = handleFormError(login, errors).addModel("login", login);
 		}
 		

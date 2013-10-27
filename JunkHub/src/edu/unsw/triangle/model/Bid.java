@@ -9,6 +9,7 @@ public class Bid implements Serializable
 	String bidder;
 	float bid;
 	int itemId;
+	Item item;
 	
 	public String getBidder() {
 		return bidder;
@@ -31,6 +32,10 @@ public class Bid implements Serializable
 	public void setItemId(int itemId) {
 		this.itemId = itemId;
 	}
-	
-
+	public Item getItem() {
+		return item;
+	}
+	public void setItem(Item item) {
+		this.item = item;
+	}
 }

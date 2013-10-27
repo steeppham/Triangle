@@ -12,11 +12,10 @@
 </head>
 <body>
 <h1>Admin</h1>
+<!-- messages -->
 <div style="color: #FF0000;">${errors.getErrorMessage("admin.profiles.error")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("admin.items.error")}</div>
-
-<!-- show list of users -->
-
+<!-- list of profiles -->
 <h3>Profiles</h3>
 <form action="admin.profile" method="POST">
 <table>
@@ -43,8 +42,7 @@
 </table>
 <input type="submit" name="suspend.profile" value="suspend users"/>
 </form>
-
-<!-- show list of auctions -->
+<!-- list of items-->
 <h3>Items</h3>
 <form action="admin.item" method="POST">
 <table>

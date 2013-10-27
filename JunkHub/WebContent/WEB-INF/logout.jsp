@@ -8,6 +8,7 @@
 </head>
 <body>
 <h1>You are now logged out</h1>
-<p><a href="login" >login?</a></p>
+<!-- navigation -->
+<p><a href="login" >Back to login</a></p>
 </body>
 </html>

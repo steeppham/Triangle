@@ -15,6 +15,7 @@
 <div style="color: #FF0000;">${errors.getErrorMessage("confirm.error")}</div>
 <div style="color: #009900;">${messages.getMessage("confirm.success")}</div>
 <br>
-<a href="login">go to login</a>
+<!-- naviation -->
+<p><a href="login">Go to login</a></p>
 </body>
 </html>

@@ -12,6 +12,7 @@
 </head>
 <body>
 <h1>Sell Item</h1>
+<!-- messages -->
 <div style="color: #009900;">${messages.getMessage("sell.success")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("title")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("category")}</div>
@@ -24,28 +25,22 @@
 <div style="color: #FF0000;">${errors.getErrorMessage("period")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("sell.error")}</div>
 <br>
-
+<!-- form -->
 <form  method="POST" action="sell" enctype="multipart/form-data">
-<label>title</label>
-<input type="text" value="${item.title}" name="title" maxlength="100"><br>
-<label>category</label>
-<input type="text" value="${item.category}" name="category" maxlength= "100"><br>
-<label>picture</label>
-<input type="file" value="${item.picture}" name="picture" maxlength= "50" accept="image/gif, image/jpeg, image/jpg, image/png, image/bmp"><br>
-<label>description</label>
-<input type="text" value="${item.description}" name="description" maxlength= "750"><br>
-<label>postage</label>
-<input type="text" value="${item.postage}" name="postage" maxlength= "50"><br>
-<label>reserve price</label>
-<input type="text" value="${item.reserve}" name="reserve" maxlength= "5"><br>
-<label>start price</label>
-<input type="text" value="${item.start}" name="start" maxlength= "5"><br>
-<label>bid increments</label>
-<input type="text" value="${item.increment}" name="increment" maxlength= "5"><br>
-<label>closing time period (min)</label>
-<input type="text" value="${item.period}" name="period" maxlength= "2"><br>
+<table>
+	<tr><td>Title:</td><td><input type="text" value="${item.title}" name="title" maxlength="100"></td></tr>
+	<tr><td>Category:</td><td><input type="text" value="${item.category}" name="category" maxlength= "100"></td></tr>
+	<tr><td>Picture:</td><td><input type="file" name="picture" maxlength= "50" accept="image/gif, image/jpeg, image/jpg, image/png, image/bmp"></td></tr>
+	<tr><td>Description:</td><td><input type="text" value="${item.description}" name="description" maxlength= "750"></td></tr>
+	<tr><td>Postage:</td><td><input type="text" value="${item.postage}" name="postage" maxlength= "50"></td></tr>
+	<tr><td>Reserve Price ($):</td><td><input type="text" value="${item.reserve}" name="reserve" maxlength= "5"></td></tr>
+	<tr><td>Start Price ($):</td><td><input type="text" value="${item.start}" name="start" maxlength= "5"></td></tr>
+	<tr><td>Bid Increments ($):</td><td><input type="text" value="${item.increment}" name="increment" maxlength= "5"></td></tr>
+	<tr><td>Auction Time (min):</td><td><input type="text" value="${item.period}" name="period" maxlength= "2"></td></tr>
+</table>
 <input type="submit" value="sell" name="sell">
 </form>
+<!-- navigation -->
 <p><a href="main">Back</a></p>
 </body>
 </html>

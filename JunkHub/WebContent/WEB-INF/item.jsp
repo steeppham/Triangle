@@ -12,7 +12,7 @@
 </head>
 <body>
 <h1>${item.title}</h1>
-<!-- messages here -->
+<!-- messages -->
 <div style="color: #009900;">${pendingSuccess}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("pending")}</div>
 <div style="color: #FF0000;">${errors.getErrorMessage("request")}</div>
@@ -22,22 +22,22 @@
 
 <p><img src="../images/${item.picture}" alt="${item.picture}" width="200" height="150"></p>
 <table>
-<tr><td>Category</td><td>${item.category}</td></tr>
-<tr><td>Description</td><td>${item.description}</td></tr>
-<tr><td>Seller</td><td>${item.owner}</td></tr>
-<tr><td>Postage</td><td>${item.postage}</td></tr>
-<tr><td>Starting Bid</td><td>$${item.start}</td></tr>
-<tr><td>Current Bid</td><td>$${item.bid} ${item.bidder}</td></tr>
-<tr><td>Time Left</td>
-<c:choose>
-	<c:when test="${item.timeLeft >= 0}">
-	<td>${item.timeLeft} mins</td>
-	</c:when>
-	<c:otherwise>
-	<td><div style="color: #FF0000;">Expired</div></td>
-	</c:otherwise>
-</c:choose>
-</tr>
+	<tr><td>Category</td><td>${item.category}</td></tr>
+	<tr><td>Description</td><td>${item.description}</td></tr>
+	<tr><td>Seller</td><td>${item.owner}</td></tr>
+	<tr><td>Postage</td><td>${item.postage}</td></tr>
+	<tr><td>Starting Bid</td><td>$${item.start}</td></tr>
+	<tr><td>Current Bid</td><td>$${item.bid} ${item.bidder}</td></tr>
+	<tr><td>Time Left</td>
+	<c:choose>
+		<c:when test="${item.timeLeft >= 0}">
+		<td>${item.timeLeft} mins</td>
+		</c:when>
+		<c:otherwise>
+		<td><div style="color: #FF0000;">Expired</div></td>
+		</c:otherwise>
+	</c:choose>
+	</tr>
 </table>
 <br>
 <c:choose>
@@ -70,6 +70,7 @@
   </form>
   </c:otherwise>
 </c:choose>
+<!-- navigation -->
 <p><a href="main">return to main</a></p>
 </body>
 </html>

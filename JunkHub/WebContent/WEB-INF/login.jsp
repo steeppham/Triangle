@@ -12,19 +12,21 @@
 <title>Login</title>
 </head>
 <body>
-	<h1>Login</h1>
-	 <!-- listing of errors here -->	
-	<div style="color: #FF0000;">${errors.getErrorMessage("username")}</div>
-	<div style="color: #FF0000;">${errors.getErrorMessage("password")}</div>
-	<div style="color: #FF0000;">${errors.getErrorMessage("authentication")}</div>
-	<br>
-	<form method="POST" action="login">
-		<table>
-		<tr><td>username</td><td><input type="text" name="username" value="${login.username}"></td></tr>
-		<tr><td>password</td><td><input type="password" name="password"></td></tr>
-		</table>
-		<input type="submit" value="login">
-	</form>
-	<a href="register">Register</a>
+<h1>Login</h1>
+ <!-- messages -->	
+<div style="color: #FF0000;">${errors.getErrorMessage("username")}</div>
+<div style="color: #FF0000;">${errors.getErrorMessage("password")}</div>
+<div style="color: #FF0000;">${errors.getErrorMessage("authentication")}</div>
+<br>
+<!-- form -->
+<form method="POST" action="login">
+	<table>
+	<tr><td>username</td><td><input type="text" name="username" value="${login.username}"></td></tr>
+	<tr><td>password</td><td><input type="password" name="password"></td></tr>
+	</table>
+	<input type="submit" value="login">
+</form>
+<!-- navigation -->
+<a href="register">Register</a>
 </body>
 </html>

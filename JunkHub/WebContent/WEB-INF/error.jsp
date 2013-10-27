@@ -9,6 +9,7 @@
 <body>
 <h1>Error, opps something bad has happened</h1>
 <div style="color: #FF0000;">${errors.getErrorMessage("error")}</div>
-<a href="main">Main</a>
+<!-- navigation -->
+<p><a href="main">Main</a></p>
 </body>
 </html>
